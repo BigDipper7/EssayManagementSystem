@@ -15,5 +15,6 @@ public class TestLog4j {
 	
 	public static void main(String[] args) {
 		logger.debug("this is a debug message");
+		logger.error("this is error");
 	}
 }
