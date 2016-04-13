@@ -22,7 +22,7 @@ public class StudentController {
 	
 	@RequestMapping(value={""}, method=RequestMethod.GET)
 	public ModelAndView student() {
-		return new ModelAndView("student", "command", new Student());
+		return new ModelAndView("Student", "command", new Student());
 	}
 	
 	@RequestMapping(value={"/add"},method=RequestMethod.POST)

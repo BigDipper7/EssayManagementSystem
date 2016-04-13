@@ -7,6 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1>This is result page:</h1>
+<hr/>
+<table>
+    <tr>
+        <td>Name</td>
+        <td>${name}</td>
+    </tr>
+    <tr>
+        <td>Age</td>
+        <td>${age}</td>
+    </tr>
+    <tr>
+        <td>Account</td>
+        <td>${account}</td>
+    </tr>
 </body>
 </html>
