@@ -16,5 +16,12 @@ public class TestLog4j {
 	public static void main(String[] args) {
 		logger.debug("this is a debug message");
 		logger.error("this is error");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		logger.info("this is a info message");
+		logger.fatal("this is a fatal message");
 	}
 }
