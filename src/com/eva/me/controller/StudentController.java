@@ -33,4 +33,14 @@ public class StudentController {
 		return "Result";
 	}
 	
+	//add demo for redirect
+	@RequestMapping(value={"/redirectToFinal"}, method=RequestMethod.GET)
+	public String redirectFinalPage() {
+		return "redirect:final";
+	}
+	
+	@RequestMapping(value={"/final"}, method=RequestMethod.GET)
+	public String redResultPage() {
+		return "Final";
+	}
 }

@@ -27,5 +27,12 @@
 			</tr>
 		</table>
 	</form:form>
+	
+	
+	<hr/>
+	
+	<form:form method="GET" action="/SpringMVCTest/student/redirectToFinal">
+		<input type="submit" value="Redirect"/>
+	</form:form>
 </body>
 </html>
