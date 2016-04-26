@@ -11,8 +11,13 @@
 <script src="//cdn.ckeditor.com/4.5.8/full/ckeditor.js"></script>
 </head>
 <body>
-	<form:form>
-		<form:textarea path="editor" rows="23" cols="34" id="editor" />
+	<form:form commandName="essay" method="POST" action="/SpringMVCTest/handle">
+		<form:label path="title">Title:</form:label>
+		<form:input path="title"/>
+		<form:label path="author">Author:</form:label>
+		<form:input path="author"/>
+		<form:label path="content">Content:</form:label>
+		<form:textarea path="content" rows="23" cols="34" id="editor" />
 		<input type="submit" value="Submit"/>
 	</form:form>
 
