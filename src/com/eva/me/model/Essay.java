@@ -8,43 +8,44 @@ package com.eva.me.model;
  *
  */
 public class Essay {
-	public String essayContent;
-	public String essayTitle;
-	public String essayAuthor;
+	public String content;
+	public String title;
+	public String author;
 	/**
-	 * @return the essayContent
+	 * @return the content
 	 */
-	public String getEssayContent() {
-		return essayContent;
+	public String getContent() {
+		return content;
 	}
 	/**
-	 * @param essayContent the essayContent to set
+	 * @param content the content to set
 	 */
-	public void setEssayContent(String essayContent) {
-		this.essayContent = essayContent;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	/**
-	 * @return the essayTitle
+	 * @return the title
 	 */
-	public String getEssayTitle() {
-		return essayTitle;
+	public String getTitle() {
+		return title;
 	}
 	/**
-	 * @param essayTitle the essayTitle to set
+	 * @param title the title to set
 	 */
-	public void setEssayTitle(String essayTitle) {
-		this.essayTitle = essayTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	/**
-	 * @return the essayAuthor
+	 * @return the author
 	 */
-	public String getEssayAuthor() {
-		return essayAuthor;
+	public String getAuthor() {
+		return author;
 	}
 	/**
-	 * @param essayAuthor the essayAuthor to set
+	 * @param author the author to set
 	 */
-	public void setEssayAuthor(String essayAuthor) {
-		this.essayAuthor = essayAuthor;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
+	
 }
