@@ -7,7 +7,9 @@ Using Tech:
 - Log by log4j
 - Maven Build
 
-# Version
+# Version 1.0.2
+Milestone: now add some basic directories and just fix the entire hierachy
+# Version 1.0.1
 Milestone: now it is a all config tamplate
 
 
