@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table>
+	<table bordercolor="black" border="1" style="width:100%">
+		<caption>Results:</caption>
 		<tr>
 			<td>Author</td>
 			<td>${author}</td>
