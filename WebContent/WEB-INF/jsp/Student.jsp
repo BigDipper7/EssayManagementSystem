@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form method="POST" action="/SpringMVCTest/student/add">
+	<form:form method="POST" action="/SpringMVCTest/student/add" commandName="student">
 		<table>
 			<tr>
 				<td><form:label path="name">Name</form:label></td>
