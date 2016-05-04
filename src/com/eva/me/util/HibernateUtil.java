@@ -12,12 +12,13 @@ import org.hibernate.cfg.Configuration;
  */
 public class HibernateUtil {
 	private static final SessionFactory sessionFactory;
+	private static final String configPath = "../config/com/eva/me/hibernate/hibernate.cfg.xml";
 	
 	static {
 		SessionFactory temp;
 		try {
 			Log.i("Session Factory Initialize Begin...");
-			temp = new Configuration().configure().buildSessionFactory();
+			temp = new Configuration().configure(configPath).buildSessionFactory();
 			Log.i("Session Factory Initialize Success...");
 		} catch (Exception e) {
 			temp = null;
