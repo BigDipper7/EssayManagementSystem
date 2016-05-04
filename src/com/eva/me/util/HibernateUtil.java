@@ -11,20 +11,22 @@ import org.hibernate.cfg.Configuration;
  *
  */
 public class HibernateUtil {
-	private static final SessionFactory SESSION_FACTORY;
+	private static final SessionFactory sessionFactory;
 	
 	static {
+		SessionFactory temp;
 		try {
-			SESSION_FACTORY = new Configuration().configure().buildSessionFactory();
+			temp = new Configuration().configure().buildSessionFactory();
 		} catch (Exception e) {
+			temp = null;
 			Log.e("session factory not initialized");
 			e.printStackTrace();
 		}
-		
+		sessionFactory = temp;
 	}
 	
 	
 	public static SessionFactory getSessionFactory() {
-		return SESSION_FACTORY;
+		return sessionFactory;
 	}
 }
