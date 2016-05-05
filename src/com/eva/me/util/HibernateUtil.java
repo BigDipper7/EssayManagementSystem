@@ -12,7 +12,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class HibernateUtil {
 	private static final SessionFactory sessionFactory;
-	private static final String configPath = "../config/com/eva/me/hibernate/hibernate.cfg.xml";
+	private static final String configPath = "/config/hibernate.cfg.xml";
 	
 	static {
 		SessionFactory temp;
