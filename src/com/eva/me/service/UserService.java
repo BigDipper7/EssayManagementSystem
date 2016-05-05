@@ -25,7 +25,7 @@ public class UserService {
 		session.beginTransaction();
 		
 		List<User> resuUsers = null;
-		String sql = "SELECT * FROM db_essay_ms.test;";
+		String sql = "SELECT * FROM db_essay_ms.test";
 		resuUsers = (List<User>)session.createQuery(sql).list();
 		
 		session.getTransaction().commit();
@@ -33,13 +33,13 @@ public class UserService {
 	}
 	
 	public int createUser(User user) {
-		Log.i("save user... : "+user);
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		session.beginTransaction();
 		
 		int id = -1;
 		id = (int) session.save(user);
+		Log.i("save user : "+user+" : id="+id);
 		
 		session.getTransaction().commit();
 		return id;
