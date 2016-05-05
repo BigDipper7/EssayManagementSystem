@@ -28,7 +28,7 @@ public class TestUserService {
 		}
 	}
 	
-//	@Test
+	@Test
 	public void testInsertUsers() {
 		UserService service = new UserService();
 		
@@ -52,7 +52,7 @@ public class TestUserService {
 				
 	}
 
-//	@Test
+	@Test
 	public void testUpdateUsers() {
 		UserService service = new UserService();
 
@@ -63,7 +63,7 @@ public class TestUserService {
 		service.updateUser(user1);
 	}
 
-//	@Test
+	@Test
 	public void testDeleteUser() {
 		UserService service = new UserService();
 		
