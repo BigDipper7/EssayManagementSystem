@@ -11,5 +11,6 @@
         <property name="show_sql">true</property>
         <property name="format_sql">false</property>
         <mapping resource="config/User.hbm.xml"/>
+        <mapping resource="config/Essay.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

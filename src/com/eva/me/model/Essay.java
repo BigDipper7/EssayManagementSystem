@@ -8,9 +8,23 @@ package com.eva.me.model;
  *
  */
 public class Essay {
+	public int id;
 	public String content;
 	public String title;
 	public String author;
+	
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 	/**
 	 * @return the content
 	 */
