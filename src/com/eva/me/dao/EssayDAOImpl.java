@@ -58,35 +58,61 @@ public class EssayDAOImpl extends BaseDAO implements EssayDAO{
 	 */
 	@Override
 	public List<Essay> getAllEssayList() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return baseProcess(new Executable<List<Essay>, Void>() {
+
+			@Override
+			public List<Essay> execute(Session session, Void toExecute) {
+				final String sql = "from Essay";
+				List<Essay> result = session.createQuery(sql).list();
+				return result;
+			}
+		}, null);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.eva.me.dao.EssayDAO#getEssayById(long)
 	 */
 	@Override
-	public Essay getEssayById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Essay getEssayById(int id) {
+		return baseProcess(new Executable<Essay, Integer>() {
+
+			@Override
+			public Essay execute(Session session, Integer toExecute) {
+				return session.get(Essay.class, id);
+			}
+		}, id);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.eva.me.dao.EssayDAO#updateEssay()
 	 */
 	@Override
-	public void updateEssay() {
-		// TODO Auto-generated method stub
-		
+	public void updateEssay(Essay essay) {
+		baseProcess(new Executable<Void, Essay>() {
+
+			@Override
+			public Void execute(Session session, Essay toExecute) {
+				session.update(essay);
+				return null;
+			}
+		}, essay);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.eva.me.dao.EssayDAO#deleteEssay()
 	 */
 	@Override
-	public void deleteEssay() {
-		// TODO Auto-generated method stub
-		
+	public void deleteEssay(int id) {
+		baseProcess(new Executable<Essay, Integer>() {
+
+			@Override
+			public Essay execute(Session session, Integer toExecute) {
+				Essay essay = session.load(Essay.class, id);
+				session.delete(essay);
+				return essay;
+			}
+		}, id);
 	}
 
 }
