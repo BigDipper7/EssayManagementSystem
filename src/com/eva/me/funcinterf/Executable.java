@@ -10,6 +10,6 @@ import org.hibernate.Session;
  *
  */
 @FunctionalInterface
-public interface Executable<T, F> {
-	public T execute(Session session, F toExecute);
+public interface Executable<R, T> {
+	public R execute(Session session, T toExecute);
 }

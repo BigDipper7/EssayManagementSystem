@@ -14,10 +14,10 @@ import com.eva.me.util.HibernateUtil;
  *
  */
 public class BaseDAO {
-	protected <T, F> T baseProcess(Executable<T, F> executable, F toExecute) {
+	protected <R, T> R baseProcess(Executable<R, T> executable,final T toExecute) {
 		Transaction trans = null;
 		Session session = null;
-		T result = null;
+		R result = null;
 		
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
