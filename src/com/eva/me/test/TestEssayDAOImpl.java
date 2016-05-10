@@ -39,12 +39,17 @@ public class TestEssayDAOImpl {
 		Log.i("================Begin GetEssay==========================");
 	}
 	
+	@Test
 	public void testDeleteEssay() {
-		new EssayDAOImpl().deleteEssay(1);
+		new EssayDAOImpl().deleteEssay(8);
 		Log.d("delete 1");
 	}
 	
+	@Test
 	public void testUpdateEssay() {
 		Log.d("update");
+		Essay essay = new EssayDAOImpl().getEssayById(1);
+		essay.author = "new author2";
+		new EssayDAOImpl().updateEssay(essay);
 	}
 }
