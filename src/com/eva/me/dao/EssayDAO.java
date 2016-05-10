@@ -26,9 +26,9 @@ public interface EssayDAO {
 	 * READ
 	 * @return
 	 */
-	public Essay getEssayById(long id);
+	public Essay getEssayById(int id);
 	
-	public void updateEssay();
+	public void updateEssay(Essay essay);
 	
-	public void deleteEssay();
+	public void deleteEssay(int id);
 }
