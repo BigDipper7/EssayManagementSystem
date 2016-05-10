@@ -62,4 +62,11 @@ public class Essay {
 		this.author = author;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format("Essay[\n id=%d,\n title=<%s>,\t author=\"%s\",\n content={\n%s\n},\n ]\n", id, title, author, content);
+	}
 }
