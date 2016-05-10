@@ -7,6 +7,10 @@ Using Tech:
 - Log by log4j
 - Maven Build
 
+# Version 1.1.0
+Milestone: now all done, integreted with ORM Framwork hibernate 5.0.1 and MySQL  
+and SpringMVC 4.2.5, it is now a well-done basic framework for J2EE Project using  
+hibernate and SpringMVC  
 # Version 1.0.2
 Milestone: now add some basic directories and just fix the entire hierachy
 # Version 1.0.1
