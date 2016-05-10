@@ -8,9 +8,23 @@ package com.eva.me.model;
  *
  */
 public class Essay {
+	public int id;
 	public String content;
 	public String title;
 	public String author;
+	
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 	/**
 	 * @return the content
 	 */
@@ -48,4 +62,11 @@ public class Essay {
 		this.author = author;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format("Essay[\n id=%d,\n title=<%s>,\t author=\"%s\",\n content={\n%s\n},\n ]\n", id, title, author, content);
+	}
 }

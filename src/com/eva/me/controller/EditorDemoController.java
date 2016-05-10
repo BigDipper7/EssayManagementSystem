@@ -3,6 +3,9 @@
  */
 package com.eva.me.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.objenesis.instantiator.basic.NewInstanceInstantiator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eva.me.dao.UserDAOImpl;
 import com.eva.me.model.Essay;
+import com.eva.me.model.User;
+import com.eva.me.service.EssayService;
+import com.eva.me.service.UserService;
 import com.eva.me.util.Log;
 
 /**
@@ -35,7 +42,17 @@ public class EditorDemoController {
 		modelMap.addAttribute("title", essay.getTitle());
 		modelMap.addAttribute("author", essay.getAuthor());
 		modelMap.addAttribute("content", essay.getContent());
-		
+		new EssayService().createEssay(essay);
 		return "DemoPres";
+	}
+	
+	@RequestMapping(path={"/users/list"}, method=RequestMethod.GET)
+	public ModelAndView retrieveDBUser() {
+		List<User> users = new ArrayList<User>();
+		
+		users = new UserService().getAllUsers();
+		Log.i(users);
+		
+		return new ModelAndView("UsersList", "users", users==null?new ArrayList<User>():users);
 	}
 }
