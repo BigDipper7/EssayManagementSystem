@@ -19,6 +19,32 @@ public class User implements Serializable{
 	private int id;
 	private String username;
 	private String password;
+	private String email;
+	private String salt;
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	/**
+	 * @return the salt
+	 */
+	public String getSalt() {
+		return salt;
+	}
+	/**
+	 * @param salt the salt to set
+	 */
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
 	/**
 	 * @return the id
 	 */
