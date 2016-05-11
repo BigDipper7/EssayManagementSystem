@@ -13,19 +13,19 @@
 		<caption>Results:</caption>
 		<tr>
 			<td>Id</td>
-			<td>${id}</td>
+			<td>${user.id}</td>
 		</tr>
 		<tr>
 			<td>Username</td>
-			<td>${username}</td>
+			<td>${user.username}</td>
 		</tr>
 		<tr>
 			<td>Password</td>
-			<td>${password}</td>
+			<td>${user.password}</td>
 		</tr>
 		<tr>
 			<td>Email</td>
-			<td>${email}</td>
+			<td>${user.email}</td>
 		</tr>
 	</table>
 </body>

@@ -28,17 +28,19 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String handleLoginAction(@ModelAttribute User user, ModelMap modelMap) {
+	public ModelAndView handleLoginAction(@ModelAttribute User user, ModelMap modelMap) {
 		User resUser = new UserService().loginUser(user);
 		if (resUser == null) {
-			return "redirect:login";
+//			return "redirect:login";
+			return new ModelAndView("Login", "User", new User());
 		}
 		
-		modelMap.addAttribute("id", resUser.getId());
-		modelMap.addAttribute("username", resUser.getUsername());
-		modelMap.addAttribute("password", resUser.getPassword());
-		modelMap.addAttribute("email", resUser.getEmail());
+//		modelMap.addAttribute("id", resUser.getId());
+//		modelMap.addAttribute("username", resUser.getUsername());
+//		modelMap.addAttribute("password", resUser.getPassword());
+//		modelMap.addAttribute("email", resUser.getEmail());
 		
-		return "Main";
+//		return "Main";
+		return new ModelAndView("Main", "user", resUser);
 	}
 }
