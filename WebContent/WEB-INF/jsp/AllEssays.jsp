@@ -37,7 +37,7 @@
 					<td>${ essay.content }</td>
 					<td>${ essay.title }</td>
 					<td>${ essay.author }</td>
-					<td><a href="#">Edit</a></td>
+					<td><a href="${ pageContext.request.contextPath }/update/${ essay.id }">Edit</a></td>
 					<td><a class="delete" href="${ pageContext.request.contextPath }/delete/${ essay.id }">Delete</a></td>
 				</tr>
 			</c:forEach>

@@ -36,11 +36,13 @@ public class EditorDemoController {
 	}
 	
 
-	@RequestMapping(path={"/update/${ id }"}, method=RequestMethod.GET)
-	public String updateEssay(@PathVariable("id") Integer id, ModelMap modelMap) {
+	@RequestMapping(path={"/update/{ id }"}, method=RequestMethod.GET)
+	public ModelAndView updateEssay(@PathVariable("id") Integer id, ModelMap modelMap) {
 		Essay essayToUpdate = new EssayDAOImpl().getEssayById(id);
-		modelMap.addAttribute("essay", essayToUpdate);
-		return "CKEditorDemo";
+//		modelMap.addAttribute("essay", essayToUpdate);
+//		return "CKEditorDemo";
+
+		return new ModelAndView("CKEditorDemo", "essay", essayToUpdate);
 	}
 	
 	@RequestMapping(path={"/deamon"}, method=RequestMethod.POST)
@@ -53,6 +55,14 @@ public class EditorDemoController {
 		modelMap.addAttribute("content", essay.getContent());
 		new EssayService().createEssay(essay);
 		return "DemoPres";
+	}
+	
+
+	@RequestMapping(path={"/update/{ id }"}, method=RequestMethod.POST)
+	public String handleUpdateEssayAction(@PathVariable("id") Integer id, ModelMap modelMap) {
+		Essay essayToUpdate = new EssayDAOImpl().getEssayById(id);
+		modelMap.addAttribute("essay", essayToUpdate);
+		return "CKEditorDemo";
 	}
 	
 	@RequestMapping(path={"/users/list"}, method=RequestMethod.GET)
