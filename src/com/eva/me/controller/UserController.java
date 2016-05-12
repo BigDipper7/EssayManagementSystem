@@ -117,7 +117,7 @@ public class UserController {
 		List<Essay> allEssays = new EssayDAOImpl().getAllEssayList();
 		new EssayDAOImpl().deleteEssay(id);
 		
-		return isLogin(request)? "AllEssays" : "redirect:login";
+		return isLogin(request)? "redirect:/all" : "redirect:login";
 	}
 		
 	
