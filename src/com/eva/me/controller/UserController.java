@@ -38,7 +38,7 @@ public class UserController {
 		if (isLogin(request)) {
 			Log.i("===========has logged on=====================");
 			Log.i(request.getSession().getAttribute(Config.SESSION_KEY_USER));
-			return "redirect:main";
+			return "redirect:/main";
 		}
 //		if (user == null) {
 //			Log.e("user is null~");
@@ -77,7 +77,7 @@ public class UserController {
 //		modelMap.addAttribute(Config.SESSION_KEY_USER,resUser);
 		session.setAttribute(Config.SESSION_KEY_USER, resUser);
 		
-		return "redirect:main";
+		return "redirect:/main";
 //		return new ModelAndView("Main", "user", resUser);
 	}
 	
@@ -96,12 +96,12 @@ public class UserController {
 		//List<String> errorMsgs = new ArrayList<String>();
 		//errorMsgs.add("µÇ³ö³É¹¦£¡");
 		//modelMap.addAttribute("Errors", errorMsgs);
-		return "redirect:login";
+		return "redirect:/login";
 	}
 
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public String showMainPage(HttpServletRequest request, ModelMap modelMap) {
-		return isLogin(request)? "Main" : "redirect:login";
+		return isLogin(request)? "Main" : "redirect:/login";
 	}
 
 	@RequestMapping(value="/all", method=RequestMethod.GET)
@@ -109,7 +109,7 @@ public class UserController {
 		List<Essay> allEssays = new EssayDAOImpl().getAllEssayList();
 		modelMap.addAttribute("Essays",allEssays);
 		
-		return isLogin(request)? "AllEssays" : "redirect:login";
+		return isLogin(request)? "AllEssays" : "redirect:/login";
 	}
 	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
@@ -117,7 +117,7 @@ public class UserController {
 		List<Essay> allEssays = new EssayDAOImpl().getAllEssayList();
 		new EssayDAOImpl().deleteEssay(id);
 		
-		return isLogin(request)? "redirect:/all" : "redirect:login";
+		return isLogin(request)? "redirect:/all" : "redirect:/login";
 	}
 		
 	
