@@ -10,10 +10,12 @@ import org.springframework.objenesis.instantiator.basic.NewInstanceInstantiator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eva.me.dao.EssayDAOImpl;
 import com.eva.me.dao.UserDAOImpl;
 import com.eva.me.model.Essay;
 import com.eva.me.model.User;
@@ -33,8 +35,15 @@ public class EditorDemoController {
 		return new ModelAndView("CKEditorDemo", "essay", new Essay());
 	}
 	
+
+	@RequestMapping(path={"/update/${ id }"}, method=RequestMethod.GET)
+	public String updateEssay(@PathVariable("id") Integer id, ModelMap modelMap) {
+		Essay essayToUpdate = new EssayDAOImpl().getEssayById(id);
+		modelMap.addAttribute("essay", essayToUpdate);
+		return "CKEditorDemo";
+	}
 	
-	@RequestMapping(path={"/handle"}, method=RequestMethod.POST)
+	@RequestMapping(path={"/deamon"}, method=RequestMethod.POST)
 	public String getAllPostData(@ModelAttribute Essay essay, ModelMap modelMap) {
 		Log.i("handle post data...");
 		Log.i(modelMap);
