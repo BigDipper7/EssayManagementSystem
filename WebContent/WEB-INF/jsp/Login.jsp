@@ -20,7 +20,7 @@
 		<table style="width: 90%">
 			<tr>
 				<td><form:label path="username">Username:</form:label></td>
-				<td><form:input path="username"/></td>
+				<td><form:input path="username" placeholder="User Name"/></td>
 			</tr>
 			<tr>
 				<td><form:label path="password">Password:</form:label></td>

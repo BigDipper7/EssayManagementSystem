@@ -31,7 +31,7 @@ public class UserController {
 //			user = new User();
 //		}
 		User user = new User();
-		user.setUsername("this is new username");
+//		user.setUsername("this is new username");
 //		return new ModelAndView("Login", "User", user);
 		modelMap.addAttribute("User",user);
 		return "Login";
