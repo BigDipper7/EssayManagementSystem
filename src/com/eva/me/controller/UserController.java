@@ -32,8 +32,7 @@ public class UserController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String showLoginPage(HttpServletRequest request, ModelMap modelMap) {
-		HttpSession session = request.getSession(false);
-		if (session !=null && session.getAttribute(Config.SESSION_KEY_USER) != null) {
+		if (isLogin(request)) {
 			Log.i("===========has logged on=====================");
 			Log.i(request.getSession().getAttribute(Config.SESSION_KEY_USER));
 			return "redirect:main";
@@ -98,7 +97,12 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/main", method=RequestMethod.GET)
-	public String showMainPage(ModelMap modelMap) {
-		return "Main";
+	public String showMainPage(HttpServletRequest request, ModelMap modelMap) {
+		return isLogin(request)? "Main" : "redirect:login";
+	}
+	
+	public boolean isLogin(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		return session!=null && session.getAttribute(Config.SESSION_KEY_USER) != null;
 	}
 }
