@@ -59,9 +59,8 @@ public class EditorDemoController {
 	
 
 	@RequestMapping(path={"/update/{id}"}, method=RequestMethod.POST)
-	public String handleUpdateEssayAction(@PathVariable("id") Integer id, ModelMap modelMap) {
-		Essay essayToUpdate = new EssayDAOImpl().getEssayById(id);
-		modelMap.addAttribute("essay", essayToUpdate);
+	public String handleUpdateEssayAction(@PathVariable("id") Integer id, ModelMap modelMap, @ModelAttribute Essay essay){
+		new EssayDAOImpl().updateEssay(essay);
 		return "CKEditorDemo";
 	}
 	

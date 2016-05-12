@@ -3,7 +3,9 @@
  */
 package com.eva.me.dao;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.eva.me.funcinterf.Executable;
@@ -17,10 +19,17 @@ public class BaseDAO {
 	protected <R, T> R baseProcess(Executable<R, T> executable,final T toExecute) {
 		Transaction trans = null;
 		Session session = null;
+		SessionFactory sessionFactory = null;
 		R result = null;
 		
 		try {
-			session = HibernateUtil.getSessionFactory().openSession();
+			sessionFactory = HibernateUtil.getSessionFactory();
+			try {
+				session = sessionFactory.getCurrentSession();
+			} catch (HibernateException ex) {
+				session = sessionFactory.openSession();
+			}
+			
 			trans = session.beginTransaction();
 			
 			//executable blocks

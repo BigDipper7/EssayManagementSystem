@@ -3,11 +3,13 @@
  */
 package com.eva.me.model;
 
+import java.io.Serializable;
+
 /**
  * @author phoen_000
  *
  */
-public class Essay {
+public class Essay implements Serializable{
 	public int id;
 	public String content;
 	public String title;
