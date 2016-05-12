@@ -12,11 +12,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eva.me.dao.EssayDAOImpl;
+import com.eva.me.model.Essay;
 import com.eva.me.model.User;
 import com.eva.me.service.UserService;
 import com.eva.me.util.Log;
@@ -100,6 +103,23 @@ public class UserController {
 	public String showMainPage(HttpServletRequest request, ModelMap modelMap) {
 		return isLogin(request)? "Main" : "redirect:login";
 	}
+
+	@RequestMapping(value="/all", method=RequestMethod.GET)
+	public String showAllEssayPage(HttpServletRequest request, ModelMap modelMap) {
+		List<Essay> allEssays = new EssayDAOImpl().getAllEssayList();
+		modelMap.addAttribute("Essays",allEssays);
+		
+		return isLogin(request)? "AllEssays" : "redirect:login";
+	}
+	
+	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
+	public String deleteEssayById(HttpServletRequest request, @PathVariable("id") Integer id, ModelMap modelMap) {
+		List<Essay> allEssays = new EssayDAOImpl().getAllEssayList();
+		new EssayDAOImpl().deleteEssay(id);
+		
+		return isLogin(request)? "AllEssays" : "redirect:login";
+	}
+		
 	
 	public boolean isLogin(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
