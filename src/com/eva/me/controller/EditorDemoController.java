@@ -36,7 +36,7 @@ public class EditorDemoController {
 	}
 	
 
-	@RequestMapping(path={"/update/{ id }"}, method=RequestMethod.GET)
+	@RequestMapping(path={"/update/{id}"}, method=RequestMethod.GET)
 	public ModelAndView updateEssay(@PathVariable("id") Integer id, ModelMap modelMap) {
 		Essay essayToUpdate = new EssayDAOImpl().getEssayById(id);
 //		modelMap.addAttribute("essay", essayToUpdate);
@@ -58,7 +58,7 @@ public class EditorDemoController {
 	}
 	
 
-	@RequestMapping(path={"/update/{ id }"}, method=RequestMethod.POST)
+	@RequestMapping(path={"/update/{id}"}, method=RequestMethod.POST)
 	public String handleUpdateEssayAction(@PathVariable("id") Integer id, ModelMap modelMap) {
 		Essay essayToUpdate = new EssayDAOImpl().getEssayById(id);
 		modelMap.addAttribute("essay", essayToUpdate);
