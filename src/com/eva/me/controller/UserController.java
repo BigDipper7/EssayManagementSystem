@@ -6,26 +6,38 @@ package com.eva.me.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eva.me.model.User;
 import com.eva.me.service.UserService;
 import com.eva.me.util.Log;
+import com.eva.me.util.Config;
 
 /**
  * @author phoen_000
  *
  */
 @Controller
+//@SessionAttributes(Config.SESSION_KEY_USER)
 public class UserController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String showLoginPage(ModelMap modelMap) {
+	public String showLoginPage(HttpServletRequest request, ModelMap modelMap) {
+		HttpSession session = request.getSession(false);
+		if (session !=null && session.getAttribute(Config.SESSION_KEY_USER) != null) {
+			Log.i("===========has logged on=====================");
+			Log.i(request.getSession().getAttribute(Config.SESSION_KEY_USER));
+			return "redirect:main";
+		}
 //		if (user == null) {
 //			Log.e("user is null~");
 //			user = new User();
@@ -38,7 +50,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String handleLoginAction(@ModelAttribute User user, ModelMap modelMap) {
+	public String handleLoginAction(HttpServletRequest request,@ModelAttribute User user, ModelMap modelMap) {
 		User resUser = new UserService().loginUser(user);
 		if (resUser == null) {
 //			user.setUsername("Wrong!!");
@@ -57,8 +69,36 @@ public class UserController {
 //		modelMap.addAttribute("password", resUser.getPassword());
 //		modelMap.addAttribute("email", resUser.getEmail());
 		
-		modelMap.addAttribute("user",resUser);
-		return "Main";
+//		final String sid = request.getSession(true).getId();
+//		Log.w("===========handleLoginAction session : sid="+sid);
+		HttpSession session = request.getSession(true);
+//		modelMap.addAttribute(Config.SESSION_KEY_USER,resUser);
+		session.setAttribute(Config.SESSION_KEY_USER, resUser);
+		
+		return "redirect:main";
 //		return new ModelAndView("Main", "user", resUser);
+	}
+	
+	@RequestMapping(value="/logout", method=RequestMethod.POST)
+	public String handleLogoutAction(HttpServletRequest request, ModelMap modelMap) {
+		//TODO: do not know session sid always changing,
+		//		request.getSession().setAttribute(Config.SESSION_USER_KEY, null);
+//		request.getSession().removeAttribute(Config.SESSION_USER_KEY);
+		HttpSession session = request.getSession(false);
+		String sid = session.getId();
+		Log.w("===========handleLogoutAction session : sid="+sid);
+		session.invalidate();
+//		session.
+		
+		//TODO: add redirect pass parameters
+		//List<String> errorMsgs = new ArrayList<String>();
+		//errorMsgs.add("µÇ³ö³É¹¦£¡");
+		//modelMap.addAttribute("Errors", errorMsgs);
+		return "redirect:login";
+	}
+
+	@RequestMapping(value="/main", method=RequestMethod.GET)
+	public String showMainPage(ModelMap modelMap) {
+		return "Main";
 	}
 }
