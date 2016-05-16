@@ -10,6 +10,10 @@ import java.io.Serializable;
  *
  */
 public class Essay implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5513669056614415050L;
 	public int id;
 	public String content;
 	public String title;
