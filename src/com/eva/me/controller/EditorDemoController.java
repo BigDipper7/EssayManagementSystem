@@ -3,6 +3,7 @@
  */
 package com.eva.me.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,14 @@ public class EditorDemoController {
 //		modelMap.addAttribute("essay", essayToUpdate);
 //		return "CKEditorDemo";
 		Log.e("essay origin:"+(Object)essayToUpdate.hashCode());
+//		String title = essayToUpdate.getTitle();
+//		try {
+//			String newTitle = new String(title.getBytes("UTF-8"), "ISO-8859-1");
+//			Log.e("==========================="+newTitle);
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		return new ModelAndView("CKEditorDemo", "essay", essayToUpdate);
 	}
 	
