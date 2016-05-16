@@ -66,7 +66,8 @@ public class EditorDemoController {
 			return "redirect:/all";
 		}
 		essay.setId(id);
-		new EssayService().updateEssay(essay);
+//		new EssayService().updateEssay(essay);
+		new EssayDAOImpl().updateEssay(essay);
 		return "redirect:/all";
 	}
 	
