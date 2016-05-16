@@ -41,7 +41,7 @@ public class EditorDemoController {
 		Essay essayToUpdate = new EssayDAOImpl().getEssayById(id);
 //		modelMap.addAttribute("essay", essayToUpdate);
 //		return "CKEditorDemo";
-
+		Log.e("essay origin:"+(Object)essayToUpdate.hashCode());
 		return new ModelAndView("CKEditorDemo", "essay", essayToUpdate);
 	}
 	
@@ -60,8 +60,14 @@ public class EditorDemoController {
 
 	@RequestMapping(path={"/update/{id}"}, method=RequestMethod.POST)
 	public String handleUpdateEssayAction(@PathVariable("id") Integer id, ModelMap modelMap, @ModelAttribute Essay essay){
-		new EssayDAOImpl().updateEssay(essay);
-		return "CKEditorDemo";
+//		Log.e("essay after:"+(Object)essay.hashCode());
+		if (essay==null) {
+			Log.e("===============NULLLLLLLL===========================");
+			return "redirect:/all";
+		}
+		essay.setId(id);
+		new EssayService().updateEssay(essay);
+		return "redirect:/all";
 	}
 	
 	@RequestMapping(path={"/users/list"}, method=RequestMethod.GET)
