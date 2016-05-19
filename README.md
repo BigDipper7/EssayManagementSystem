@@ -7,6 +7,8 @@ Using Tech:
 - Log by log4j
 - Maven Build
 
+# VERSION 1.1.1
+Milestone: fix bug, internal error and add encoding order
 # Version 1.1.0
 Milestone: now all done, integreted with ORM Framwork hibernate 5.0.1 and MySQL  
 and SpringMVC 4.2.5, it is now a well-done basic framework for J2EE Project using  
