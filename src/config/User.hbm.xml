@@ -4,11 +4,13 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
  
 <hibernate-mapping>
-    <class name="com.eva.me.model.User" table="test">
+    <class name="com.eva.me.model.User" table="user">
         <id name="id" type="int" column="id">
             <generator class="native" />
         </id>
         <property name="username" column="username" type="string" />
         <property name="password" column="password" type="string" />
+        <property name="email" column="email" type="string" />
+        <property name="salt" column="salt" type="string" />
     </class>
 </hibernate-mapping>

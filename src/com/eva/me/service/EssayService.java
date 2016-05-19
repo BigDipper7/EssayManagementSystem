@@ -30,5 +30,17 @@ public class EssayService {
 //		session.getTransaction().commit();
 		return id;
 	}
-
+	
+	public void updateEssay(Essay essay) {
+		EssayDAOImpl daoImpl = new EssayDAOImpl();
+		Log.e("===========Origin essay\n"+essay+"\n\n");
+		Essay essayOrigin = daoImpl.getEssayById(essay.getId());
+		Log.e("===========New essay\n"+essayOrigin+"\n\n");
+		
+		essayOrigin.setAuthor(essay.getAuthor());
+		essayOrigin.setContent(essay.getContent());
+		essayOrigin.setTitle(essay.getTitle());
+		
+		daoImpl.updateEssay(essayOrigin);
+	}
 }

@@ -12,9 +12,18 @@ import com.eva.me.model.User;
  *
  */
 public interface UserDAO {
+//	/**
+//	 * list all users
+//	 * @return
+//	 */
+//	public List<User> list(); 
+	
+	
 	/**
-	 * list all users
+	 * get specified user by userName
+	 * @param userName
 	 * @return
 	 */
-	public List<User> list(); 
+	public User getUserByUserName(String userName);
+	
 }

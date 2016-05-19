@@ -5,9 +5,12 @@ package com.eva.me.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
+import com.eva.me.funcinterf.Executable;
 import com.eva.me.model.User;
 import com.eva.me.util.HibernateUtil;
 import com.eva.me.util.Log;
@@ -16,25 +19,50 @@ import com.eva.me.util.Log;
  * @author phoen_000
  *
  */
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl extends BaseDAO implements UserDAO {
 
 	/* (non-Javadoc)
-	 * @see com.eva.me.dao.UserDAO#list()
+	 * @see com.eva.me.dao.UserDAO#getUserByUserName(java.lang.String)
 	 */
 	@Override
-	@Transactional
-	public List<User> list() {
-		Log.i("get all users...");
-		Session session = HibernateUtil.getSessionFactory().openSession();
+	public User getUserByUserName(String userName) {
+		if (StringUtils.isEmpty(userName)) {
+			return null;
+		}
 		
-		session.beginTransaction();
-		
-		List<User> resuUsers = null;
-		String sql = "SELECT * FROM test;";
-		resuUsers = (List<User>)session.createQuery(sql).list();
-		
-		session.getTransaction().commit();
-		return resuUsers;
+		return baseProcess(new Executable<User, String>() {
+
+			@Override
+			public User execute(Session session, String toExecute) {
+				final String hql = "from User where username = :username";
+				Query query = session.createQuery(hql);
+				query.setString("username", userName);
+				return (User) query.uniqueResult();
+			}
+		}, userName);
 	}
+
+	
+	
+	
+	
+//	/* (non-Javadoc)
+//	 * @see com.eva.me.dao.UserDAO#list()
+//	 */
+//	@Override
+//	@Transactional
+//	public List<User> list() {
+//		Log.i("get all users...");
+//		Session session = HibernateUtil.getSessionFactory().openSession();
+//		
+//		session.beginTransaction();
+//		
+//		List<User> resuUsers = null;
+//		String sql = "SELECT * FROM test;";
+//		resuUsers = (List<User>)session.createQuery(sql).list();
+//		
+//		session.getTransaction().commit();
+//		return resuUsers;
+//	}
 
 }

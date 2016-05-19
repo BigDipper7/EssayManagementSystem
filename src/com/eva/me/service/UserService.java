@@ -9,6 +9,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.eva.me.dao.UserDAOImpl;
 import com.eva.me.model.User;
 import com.eva.me.util.HibernateUtil;
 import com.eva.me.util.Log;
@@ -67,5 +68,13 @@ public class UserService {
 		
 		session.getTransaction().commit();
 		
+	}
+	
+	public User loginUser(final User user) {
+		String curUsrNam = user.getUsername();
+		String curUsePsd = user.getPassword();
+		
+		User result = new UserDAOImpl().getUserByUserName(curUsrNam);
+		return (result==null || !result.getPassword().equals(curUsePsd))?null:result;
 	}
 }
