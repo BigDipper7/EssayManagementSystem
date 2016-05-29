@@ -7,6 +7,9 @@ Using Tech:
 - Log by log4j
 - Maven Build
 
+# VERSION 1.3.0
+Milestone: fix bug, change xsd check from 3.0 to 4.0, add jackson dependence, add  
+SpringMVC REST json api, add relevant example
 # VERSION 1.1.1
 Milestone: fix bug, internal error and add encoding order
 # Version 1.1.0
