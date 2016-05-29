@@ -31,6 +31,7 @@
 	<properties>
 		<hibernate.version>5.1.0.Final</hibernate.version>
 		<springmvc.version>4.2.5.RELEASE</springmvc.version>
+		<jackson.version>2.7.4</jackson.version>
 	</properties>
 
 	<dependencies>
@@ -78,6 +79,27 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
+		<!-- jackson -->
+		<!-- http://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+		<!-- http://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-annotations</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+		<!-- http://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.7.4</version>
+		</dependency>
+		
 		
 
 	</dependencies>
