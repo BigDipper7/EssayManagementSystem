@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -118,6 +119,15 @@ public class UserController {
 		new EssayDAOImpl().deleteEssay(id);
 		
 		return isLogin(request)? "redirect:/all" : "redirect:/login";
+	}
+	
+//	@Deprecated
+	@RequestMapping(value="/json/deprecated", method=RequestMethod.GET,headers="Accept= application/json", produces="application/json")
+	public @ResponseBody List<Essay> showJSONData(HttpServletRequest request, ModelMap modelMap) {
+//		User curUser = (User) request.getSession().getAttribute(Config.SESSION_KEY_USER);
+		List<Essay> essays = new ArrayList<>();
+		essays = new EssayDAOImpl().getAllEssayList();
+		return essays;
 	}
 		
 	

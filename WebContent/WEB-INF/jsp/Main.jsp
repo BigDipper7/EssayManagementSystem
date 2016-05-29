@@ -44,7 +44,7 @@
 	
 	<a href="${ pageContext.request.contextPath }/deamon">语料录入</a> <br/>
 	<a href="${ pageContext.request.contextPath }/all">语料列表</a> <br/>
-	<a href="${ pageContext.request.contextPath }/deamon">录入数据界面</a> <br/>
+	<a href="${ pageContext.request.contextPath }/json">JSON</a> <br/>
 	
 	
 	<hr/>
