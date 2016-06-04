@@ -3,6 +3,8 @@ package com.eva.me.controller;
  * 
  */
 
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.eva.me.dao.EssayDAOImpl;
 import com.eva.me.model.Essay;
+import com.eva.me.util.Log;
 
 /**
  * @author violi
@@ -22,7 +25,7 @@ import com.eva.me.model.Essay;
  */
 @Controller
 //@EnableWebMvc
-//@RequestMapping(value="/json2")
+@RequestMapping(value="/json")
 public class JSONController {
 	@RequestMapping(value="/t", method=RequestMethod.GET, headers="Accept=application/json", produces="application/text")
 //	@RequestMapping
@@ -47,5 +50,31 @@ public class JSONController {
 	public @ResponseBody List<Essay> getEssayList3(HttpServletRequest request) {
 		List<Essay> list = new EssayDAOImpl().getAllEssayList();
 		return list;
+	}
+	
+	@RequestMapping(value="/query")
+	public @ResponseBody Test getTestByQuery(HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Test test = new Test();
+
+		String uid = request.getParameter("uid");
+		String qatxt = request.getParameter("qatxt");
+		Log.i("=========get params: uid:"+uid+"|qatxt:"+qatxt+"|");
+		test.uid = uid;
+		test.question = qatxt;
+		List<Essay> list = new EssayDAOImpl().getAllEssayList();
+		test.answers = list;
+		return test;
+	}
+	
+	class Test{
+		public String uid = "uid";
+		public String question = "";
+		public List<Essay> answers = new ArrayList<>();
 	}
 }
