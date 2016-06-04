@@ -82,7 +82,7 @@ public class UserController {
 //		return new ModelAndView("Main", "user", resUser);
 	}
 	
-	@RequestMapping(value="/logout", method=RequestMethod.POST)
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String handleLogoutAction(HttpServletRequest request, ModelMap modelMap) {
 		//TODO: do not know session sid always changing,
 		//		request.getSession().setAttribute(Config.SESSION_USER_KEY, null);
