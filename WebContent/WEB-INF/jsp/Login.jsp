@@ -71,7 +71,7 @@
 							
                             <fieldset>
                                 <div class="form-group">
-                                    <form:input path="username" class="form-control" placeholder="E-mail" name="email"/>
+                                    <form:input path="username" class="form-control" placeholder="Username" name="email"/>
                                 </div>
                                 <div class="form-group">
                                     <form:password path="password" class="form-control" placeholder="Password" name="password"/>
