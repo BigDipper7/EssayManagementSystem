@@ -95,28 +95,16 @@
                         <li>
                             <a href="#">Notifications</a>
                         </li>
-                        <li>
-                            <a href="#">Typography</a>
-                        </li>
-                        <li>
-                            <a href="#">Typography</a>
-                        </li>
-                        <li>
-                            <a href="#">Typography</a>
-                        </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-sitemap fa-fw"></i> Tests<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">Second Level Item</a>
+                            <a href="#">JSON Test</a>
                         </li>
-                        <li>
-                            <a href="#">Second Level Item</a>
-                        </li>
-                        <li>
+                        <!-- <li>
                             <a href="#">Third Level <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
@@ -133,7 +121,7 @@
                                 </li>
                             </ul>
                             <!-- /.nav-third-level -->
-                        </li>
+                        <!--</li>-->
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
