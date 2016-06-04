@@ -32,6 +32,7 @@
 		<hibernate.version>5.1.0.Final</hibernate.version>
 		<springmvc.version>4.2.5.RELEASE</springmvc.version>
 		<jackson.version>2.7.4</jackson.version>
+        <lucene.version>4.4.0</lucene.version>
 	</properties>
 
 	<dependencies>
@@ -100,7 +101,34 @@
 		    <version>${jackson.version}</version>
 		</dependency>
 		
-		
+		<!--lucene-->
+	    <dependency>
+	        <groupId>org.apache.lucene</groupId>
+	        <artifactId>lucene-core</artifactId>
+	        <version>${lucene.version}</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.apache.lucene</groupId>
+	        <artifactId>lucene-queryparser</artifactId>
+	        <version>${lucene.version}</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.apache.lucene</groupId>
+	        <artifactId>lucene-analyzers-common</artifactId>
+	        <version>${lucene.version}</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.apache.lucene</groupId>
+	        <artifactId>lucene-queries</artifactId>
+	        <version>${lucene.version}</version>
+	    </dependency>
+	    
+        <!--json-->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
 
 	</dependencies>
 
