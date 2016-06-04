@@ -33,16 +33,27 @@
     <script src="<c:url value="/resources/js/main.js" />"></script> -->
     
 <body>
-	<c:if test="${ Errors!=null }">
+	<!--<c:if test="${ Errors!=null }">
 		<c:forEach items="${ Errors }" var="error">
 			<font color="red"><c:out value="${ error }"></c:out></font>
 		</c:forEach>
-	</c:if>	
+	</c:if>	-->
 	
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
+                	
+                	<c:if test="${ Errors!=null }">
+						<c:forEach items="${ Errors }" var="error">
+							<font color="red"></font>
+							<div class="alert alert-danger alert-dismissable">
+						       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						       <c:out value="${ error }"></c:out>
+							</div>
+						</c:forEach>
+					</c:if>	
+                    
                     <div class="panel-heading">
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
