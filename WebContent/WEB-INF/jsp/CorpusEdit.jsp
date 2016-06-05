@@ -28,13 +28,13 @@
 
             <div class="panel panel-default">
               <div class="panel-heading">
-                Default Panel
+                语料编辑表单
               </div>
               <div class="panel-body">
                 <form role="form">
                   <div class="form-group">
                     <label>Input Corpus Item ID:</label>
-                    <input class="form-control" placeholder="Enter ID"/>
+                    <input class="form-control" placeholder="Enter ID..."/>
                   </div>
                   <hr/>
                   <button type="reset" class="btn btn-default">Reset</button>

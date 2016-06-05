@@ -67,6 +67,8 @@
 												<input type="file"/>
 											</div>
 
+											<hr/>
+
 											<div class="form-group">
 												<input type="reset" class="btn btn-default" value="Reset"/>
 												<input type="submit" class="btn btn-success" value="Submit"/>
