@@ -22,6 +22,7 @@ import com.eva.me.model.Essay;
 import com.eva.me.model.User;
 import com.eva.me.service.EssayService;
 import com.eva.me.service.UserService;
+import com.eva.me.util.EssayUtil;
 import com.eva.me.util.Log;
 
 /**
@@ -63,6 +64,15 @@ public class EditorDemoController {
 		modelMap.addAttribute("author", essay.getAuthor());
 		modelMap.addAttribute("content", essay.getContent());
 		new EssayService().createEssay(essay);
+		
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				System.out.println("new thread:"+Thread.currentThread().getName());
+				EssayUtil.saveAndIndex(essay);
+			}
+		}).start();
 		return "DemoPres";
 	}
 	
