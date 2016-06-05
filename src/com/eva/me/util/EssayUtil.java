@@ -12,6 +12,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import com.eva.me.dao.EssayDAOImpl;
+import com.eva.me.lucene.LuceneIndex;
 import com.eva.me.model.Essay;
 import com.eva.me.model.QAPair;
 import com.google.gson.Gson;
@@ -22,6 +23,8 @@ import com.google.gson.Gson;
  */
 public class EssayUtil {
 	public static void saveAndIndex(Essay essay) {
+		
+		//get json by essay
 		String question = essay.getTitle();
 		String answer = essay.getContent();
 		
@@ -38,6 +41,9 @@ public class EssayUtil {
 		question = decode(question);
 		answer = decode(answer);
 		System.out.println("question:"+question+"ans:"+answer);
+		answer = answer.replace("<p>", "");
+		answer = answer.replace("</p>", "");
+		answer = answer.replace("\r\n", "");
 		
 		QAPair temp = new QAPair(question,answer);
 		Gson gson = new Gson();
@@ -45,9 +51,20 @@ public class EssayUtil {
 //		String tempJson = question+answer;
 		Log.i("=============json: "+tempJson);
 		
+		
+		// store json file
 		final String fileName = md5(question+answer);
 		Log.i("resMD========================"+fileName);
-		final String finalPath = "d://"+fileName+".txt";
+
+		String finalPath = LuceneIndex.fileDirectoryPath + File.separator;
+		
+		File f = new File(finalPath);
+		if (!f.exists()) {
+			f.mkdirs();
+		}
+		finalPath+=fileName+".txt";
+		
+		System.out.println("filepath:"+finalPath);
 		try {
 			File fout = new File(finalPath);
 			if (!fout.exists()) {
@@ -62,6 +79,9 @@ public class EssayUtil {
 			e.printStackTrace();
 		}
 		
+		// add index
+		LuceneIndex lIndex = new LuceneIndex();
+		lIndex.addIndex(finalPath);
 	}
 	
 	public static String md5(String str){  
