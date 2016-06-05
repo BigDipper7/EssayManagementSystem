@@ -3,9 +3,13 @@
  */
 package com.eva.me.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.loader.plan.exec.process.spi.ReturnReader;
 import org.springframework.objenesis.instantiator.basic.NewInstanceInstantiator;
@@ -20,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.eva.me.dao.EssayDAOImpl;
 import com.eva.me.dao.UserDAOImpl;
 import com.eva.me.lucene.LuceneIndex;
+import com.eva.me.lucene.SingleQaFileOperate;
 import com.eva.me.model.Essay;
 import com.eva.me.model.User;
 import com.eva.me.service.EssayService;
@@ -124,6 +129,33 @@ public class EditorDemoController {
 	
 	@RequestMapping(path="/word/segment", method=RequestMethod.GET)
 	public String getWordSegmentationPage() {
+		return "WordSegmentation";
+	}
+	
+	@RequestMapping(path="/word/segment", method=RequestMethod.POST)
+	public String getWordSegmentationResultPage(ModelMap map, HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String sent = request.getParameter("sentence");
+		Log.i("===============sentence is "+sent);
+		Vector<String> res = null;
+		try {
+			res = SingleQaFileOperate.getSinleQaFileOperate().segmentWord(sent);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Log.i("====print ===================");
+		Log.i(res);
+		String result = "";
+		for (String string : res) {
+			result+="/"+string;
+		}
+		map.addAttribute("result", result);
 		return "WordSegmentation";
 	}
 }

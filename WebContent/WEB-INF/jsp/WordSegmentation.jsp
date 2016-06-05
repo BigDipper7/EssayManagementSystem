@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
 <jsp:include page="universal/Header.jsp"></jsp:include>
@@ -31,15 +32,17 @@
                 句子分词表单
               </div>
               <div class="panel-body">
-                <form role="form">
+                <form role="form" method="POST">
                   <div class="form-group">
                     <label>Input Sentence:</label>
-                    <input class="form-control" placeholder="Enter sentence..."/>
+                    <input name="sentence" class="form-control" placeholder="Enter sentence..."/>
                   </div>
                   <hr/>
                   <button type="reset" class="btn btn-default">Reset</button>
                   <button type="submit" class="btn btn-info">Submit</button>
                 </form>
+                
+                <label>${ result }</label>
               </div>
               <%-- <div class="panel-footer">
               Panel Footer
