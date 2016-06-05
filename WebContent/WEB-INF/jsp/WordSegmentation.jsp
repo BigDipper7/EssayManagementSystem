@@ -22,6 +22,30 @@
   				<!-- /.col-lg-12 -->
   			</div>
   			<!-- /.row -->
+
+        <div class="row">
+          <div class="col-lg-12">
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                句子分词表单
+              </div>
+              <div class="panel-body">
+                <form role="form">
+                  <div class="form-group">
+                    <label>Input Sentence:</label>
+                    <input class="form-control" placeholder="Enter sentence..."/>
+                  </div>
+                  <hr/>
+                  <button type="reset" class="btn btn-default">Reset</button>
+                  <button type="submit" class="btn btn-info">Submit</button>
+                </form>
+              </div>
+              <%-- <div class="panel-footer">
+              Panel Footer
+            </div> --%>
+          </div>
+
 		</div>
 	</div>
 
