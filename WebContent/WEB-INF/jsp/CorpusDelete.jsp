@@ -21,6 +21,30 @@
   				<!-- /.col-lg-12 -->
   			</div>
   			<!-- /.row -->
+
+        <div class="row">
+          <div class="col-lg-12">
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                语料删除表单
+              </div>
+              <div class="panel-body">
+                <form role="form">
+                  <div class="form-group">
+                    <label>Input Corpus Item ID:</label>
+                    <input class="form-control" placeholder="Enter ID..."/>
+                  </div>
+                  <hr/>
+                  <button type="reset" class="btn btn-default">Reset</button>
+                  <button type="submit" class="btn btn-danger">Delete Now !</button>
+                </form>
+              </div>
+              <%-- <div class="panel-footer">
+              Panel Footer
+            </div> --%>
+          </div>
+
 		</div>
 	</div>
 
