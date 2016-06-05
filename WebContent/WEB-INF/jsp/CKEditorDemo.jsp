@@ -30,7 +30,7 @@
 				<div class="col-lg-12">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							语料录入表单
+							语料录入表单
 						</div>
 						<div class="panel-body">
 							<div class="row">
@@ -57,9 +57,9 @@
 												<select class="form-control">
 													<option>无</option>
 													<option>电子报税</option>
-													<option>报税</option>
+													<option>证书</option>
 													<option>软件错误</option>
-													<option>金税三期</option>
+													<option>金税三期/option>
 												</select>
 											</div>
 											<div class="form-group">
