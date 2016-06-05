@@ -7,6 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.loader.plan.exec.process.spi.ReturnReader;
 import org.springframework.objenesis.instantiator.basic.NewInstanceInstantiator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -107,5 +108,22 @@ public class EditorDemoController {
 		luceneIndex.reBuildIndex();
 		Log.d("all done");
 		return "redirect:/main";
+	}
+
+	@RequestMapping(path="/corpus/delete", method=RequestMethod.GET)
+	public String getCorpusDeletePage() {
+		
+		return "CorpusDelete";
+	}
+	
+	@RequestMapping(path="/corpus/edit", method=RequestMethod.GET)
+	public String getCorpusEditPage() {
+		
+		return "CorpusEdit";
+	}
+	
+	@RequestMapping(path="/word/segment", method=RequestMethod.GET)
+	public String getWordSegmentationPage() {
+		return "WordSegmentation";
 	}
 }
