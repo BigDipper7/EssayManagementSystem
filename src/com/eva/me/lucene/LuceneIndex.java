@@ -14,6 +14,8 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
+import com.eva.me.model.QAPairAdv;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -49,8 +51,10 @@ public class LuceneIndex {
             System.err.println("read the properties file is error...");
             e.printStackTrace();
         }
-        fileDirectoryPath = classpath  + properties.getProperty("faqfolder");
-        indexDirectoryPath = classpath  + properties.getProperty("indexfolder");
+//        fileDirectoryPath = classpath  + properties.getProperty("faqfolder");
+        fileDirectoryPath = "d://test//document";
+//        indexDirectoryPath = classpath  + properties.getProperty("indexfolder");
+        indexDirectoryPath = "d://test//index";
         System.out.println("fileDirectoryPath:"+fileDirectoryPath+"|\nindexDirectoryPath:"+indexDirectoryPath);
         qaFileOperate = SingleQaFileOperate.getSinleQaFileOperate();
     }
@@ -67,10 +71,10 @@ public class LuceneIndex {
         System.out.println("start rebuild...");
         //a.reBuildIndex();
         System.out.println("start search...");
-//        a.search("二维码发票可以网上认证吗", 10);
         a.addIndex("C:\\Users\\violi\\Desktop\\毕设\\Search\\Search\\src\\main\\resources\\document\\allFaq\\00aba82892252b502cabc9db11982fa5.txt");
         System.out.println("add index success...");
-//        a.reBuildIndex();
+        a.reBuildIndex();
+        a.search("二维码发票可以网上认证吗", 10);
         a.search("远程认证", 10);
     }
 
@@ -243,5 +247,49 @@ public class LuceneIndex {
         }
 
         return docList;
+    }
+    
+    public Vector<QAPairAdv> searchOrigin(String sentence, int topN)
+            throws IOException {
+
+        //Directory
+        Directory indexDirectory = FSDirectory.open(new File(indexDirectoryPath));
+        //indexreader
+        IndexReader indexReader = DirectoryReader.open(indexDirectory);
+        //indexsearcher
+        IndexSearcher indexSearcher = new IndexSearcher(indexReader);
+
+        QueryParser queryParser = new QueryParser(Version.LUCENE_44, "question", new IKAnalyzer(true));
+        Query query = null;
+        try {
+            query = queryParser.parse(sentence);
+        } catch (ParseException e) {
+            System.err.println("query sentence:" + sentence + " is error...");
+            e.printStackTrace();
+        }
+
+        ScoreDoc[] hits = null;
+        try {
+            hits = indexSearcher.search(query, null, topN).scoreDocs;
+        } catch (IOException e) {
+            System.err.println("doc get error...");
+            e.printStackTrace();
+        }
+        System.out.println("hits len:"+hits.length);
+
+        //print doc
+        Vector<QAPairAdv> qapList = new Vector<QAPairAdv>();
+        for (int i = 0; i < hits.length; i++) {
+            Document doc = indexSearcher.doc(hits[i].doc);
+            float scor = hits[i].score;
+            QAPairAdv qapa = new QAPairAdv(doc, scor);
+            
+            qapList.add(qapa);
+            System.out.println("\nid:"+doc.get("ID")
+            +"\nquestion:"+ doc.get("question") 
+            +"\nscore:"+ hits[i].score);
+        }
+
+        return qapList;
     }
 }

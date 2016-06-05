@@ -3,9 +3,11 @@ package com.eva.me.controller;
  * 
  */
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,7 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.eva.me.dao.EssayDAOImpl;
+import com.eva.me.lucene.LuceneIndex;
 import com.eva.me.model.Essay;
+import com.eva.me.model.QAPair;
+import com.eva.me.model.QAPairAdv;
 import com.eva.me.util.Log;
 
 /**
@@ -67,7 +72,23 @@ public class JSONController {
 		Log.i("=========get params: uid:"+uid+"|qatxt:"+qatxt+"|");
 		test.uid = uid;
 		test.question = qatxt;
-		List<Essay> list = new EssayDAOImpl().getAllEssayList();
+//		List<Essay> list = new EssayDAOImpl().getAllEssayList();
+		List<QAs> list = new ArrayList<>();
+		final int topN = 3;
+		Vector<QAPairAdv> res = null;
+		try {
+			res = new LuceneIndex().searchOrigin(qatxt, topN);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (QAPairAdv qaPairAdv : res) {
+			QAs tQAs = new QAs();
+			tQAs.qus = qaPairAdv.doc.get("question");
+			tQAs.ans = qaPairAdv.doc.get("answer");
+			tQAs.sco = qaPairAdv.score;
+			list.add(tQAs);
+		}
 		test.answers = list;
 		return test;
 	}
@@ -75,6 +96,13 @@ public class JSONController {
 	class Test{
 		public String uid = "uid";
 		public String question = "";
-		public List<Essay> answers = new ArrayList<>();
+//		public List<Essay> answers = new ArrayList<>();
+		public List<QAs> answers = new ArrayList<>();
+	}
+	
+	class QAs {
+		public String qus;
+		public String ans;
+		public float sco;
 	}
 }

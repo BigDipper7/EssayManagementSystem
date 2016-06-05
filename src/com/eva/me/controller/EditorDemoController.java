@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.eva.me.dao.EssayDAOImpl;
 import com.eva.me.dao.UserDAOImpl;
+import com.eva.me.lucene.LuceneIndex;
 import com.eva.me.model.Essay;
 import com.eva.me.model.User;
 import com.eva.me.service.EssayService;
@@ -98,5 +99,13 @@ public class EditorDemoController {
 		Log.i(users);
 		
 		return new ModelAndView("UsersList", "users", users==null?new ArrayList<User>():users);
+	}
+	
+	@RequestMapping(path={"/index/rebuild"}, method=RequestMethod.GET)
+	public String rebuildAllIndex() {
+		LuceneIndex luceneIndex = new LuceneIndex();
+		luceneIndex.reBuildIndex();
+		Log.d("all done");
+		return "redirect:/main";
 	}
 }
