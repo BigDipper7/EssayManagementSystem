@@ -32,7 +32,7 @@ public class LuceneIndex {
     static String classpath = null;
     static QaFileOperate qaFileOperate = null;
 
-    static String fileDirectoryPath = "";
+    public static String fileDirectoryPath = "";
     static String indexDirectoryPath = "";
 
 
@@ -68,9 +68,9 @@ public class LuceneIndex {
         //a.reBuildIndex();
         System.out.println("start search...");
 //        a.search("二维码发票可以网上认证吗", 10);
-//        a.addIndex("C:\\Users\\violi\\Desktop\\毕设\\Search\\Search\\src\\main\\resources\\document\\allFaq\\00aba82892252b502cabc9db11982fa5.txt");
+        a.addIndex("C:\\Users\\violi\\Desktop\\毕设\\Search\\Search\\src\\main\\resources\\document\\allFaq\\00aba82892252b502cabc9db11982fa5.txt");
         System.out.println("add index success...");
-        a.reBuildIndex();
+//        a.reBuildIndex();
         a.search("远程认证", 10);
     }
 
