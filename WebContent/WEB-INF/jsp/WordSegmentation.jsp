@@ -42,7 +42,23 @@
                   <button type="submit" class="btn btn-info">Submit</button>
                 </form>
                 
-                <label>${ result }</label>
+              </div>
+              <%-- <div class="panel-footer">
+              Panel Footer
+            </div> --%>
+          </div>
+
+
+        <div class="row">
+          <div class="col-lg-12">
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                句子分词结果
+              </div>
+              <div class="panel-body">
+                
+                <h1>${ result }</h1>
               </div>
               <%-- <div class="panel-footer">
               Panel Footer
