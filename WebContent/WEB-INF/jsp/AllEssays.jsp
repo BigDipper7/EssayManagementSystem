@@ -44,7 +44,7 @@
                 <thead>
                   <tr>
                     <td>#</td>
-                    <td>Corpus Id</td>
+                    <td>Corpus ID</td>
                     <td>Title</td>
                     <td>Content</td>
                     <td>Author</td>
