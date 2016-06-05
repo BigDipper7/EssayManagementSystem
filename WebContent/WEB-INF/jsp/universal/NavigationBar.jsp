@@ -67,10 +67,10 @@
                             <a href="${pageContext.request.contextPath}/deamon">Add Corpus</a>
                         </li>
                         <li>
-                            <a href="#">Delete Corpus</a>
+                            <a href="${pageContext.request.contextPath}/corpus/delete">Delete Corpus</a>
                         </li>
                         <li>
-                            <a href="#">Update Corpus</a>
+                            <a href="${pageContext.request.contextPath}/corpus/edit">Update Corpus</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -87,7 +87,7 @@
                     <a href="#"><i class="fa fa-wrench fa-fw"></i> Word<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">Word Segmentation</a>
+                            <a href="${pageContext.request.contextPath}/word/segment">Word Segmentation</a>
                         </li>
                         <li>
                             <a href="#">Buttons</a>
