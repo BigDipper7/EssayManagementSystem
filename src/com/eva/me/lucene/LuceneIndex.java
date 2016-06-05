@@ -67,10 +67,11 @@ public class LuceneIndex {
         System.out.println("start rebuild...");
         //a.reBuildIndex();
         System.out.println("start search...");
-        a.search("二维码发票可以网上认证吗", 10);
-        a.addIndex("C:\\Users\\violi\\Desktop\\毕设\\Search\\Search\\src\\main\\resources\\document\\allFaq\\00aba82892252b502cabc9db11982fa5.txt");
-        a.search("远程认证", 10);
+//        a.search("二维码发票可以网上认证吗", 10);
+//        a.addIndex("C:\\Users\\violi\\Desktop\\毕设\\Search\\Search\\src\\main\\resources\\document\\allFaq\\00aba82892252b502cabc9db11982fa5.txt");
         System.out.println("add index success...");
+        a.reBuildIndex();
+        a.search("远程认证", 10);
     }
 
     /**
@@ -103,6 +104,8 @@ public class LuceneIndex {
             doc.add(new Field("answer", qaFileOperate.getFileContentOfTag(file, "answer"), TextField.TYPE_STORED));
             //doc.add(new TextField("question",new FileReader(file)));
             iw.addDocument(doc);
+            
+            qaFileOperate.copyFile(file, fileDirectoryPath);
         } else {
             System.out.println("while indexing, it is not a file...");
         }
@@ -227,14 +230,16 @@ public class LuceneIndex {
             System.err.println("doc get error...");
             e.printStackTrace();
         }
-        System.out.println(hits.length);
+        System.out.println("hits len:"+hits.length);
 
         //print doc
         Vector<Document> docList = new Vector<Document>();
         for (int i = 0; i < hits.length; i++) {
             Document doc = indexSearcher.doc(hits[i].doc);
             docList.add(doc);
-            System.out.println(doc.get("ID") + doc.get("question") + hits[i].score);
+            System.out.println("\nid:"+doc.get("ID")
+            +"\nquestion:"+ doc.get("question") 
+            +"\nscore:"+ hits[i].score);
         }
 
         return docList;

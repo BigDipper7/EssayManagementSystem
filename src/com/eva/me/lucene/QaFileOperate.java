@@ -3,6 +3,8 @@ package com.eva.me.lucene;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
@@ -64,6 +66,62 @@ public class QaFileOperate {
 		}
 	}
 
+	/**
+	 * copy file from target to des
+	 * @param targetFilePath
+	 * @param desFilePath
+	 */
+	public void copyFile(File targetFile, String desFilePath) {
+		FileInputStream fin = null;
+		FileOutputStream fout = null;
+		try {
+			fin = new FileInputStream(targetFile);
+			final String desFilePathWhole = desFilePath+File.separator+targetFile.getName();
+			File fdir = new File(desFilePath);
+			if (!fdir.exists()) {
+				fdir.mkdirs();
+			}
+			File fo = new File(desFilePathWhole);
+			if (!fo.exists()) {
+				fo.createNewFile();
+			}else{
+				System.err.println("目标文件存在，请检查："+desFilePathWhole);
+				return;
+			}
+			fout = new FileOutputStream(fo);
+			
+			int in = fin.read();
+			while (in != -1) {
+				fout.write(in);
+				in = fin.read();
+			}
+			System.out.println("Copy from:"+targetFile.getAbsolutePath()+"\n to:"+desFilePathWhole+"\n Success!");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if (fin!=null) {
+				try {
+					fin.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			if (fout!=null) {
+				try {
+					fout.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
 	/**
 	 * @param file
@@ -141,5 +199,14 @@ public class QaFileOperate {
 	public static void main(String[] args) throws IOException {
 		QaFileOperate a = new QaFileOperate();
 		System.out.println(a.segmentWord("马尔科夫模型"));
+//		a.addIndex("C:\\Users\\violi\\Desktop\\毕设\\Search\\Search\\src\\main\\resources\\document\\allFaq\\00aba82892252b502cabc9db11982fa5.txt");
+        QaFileOperate qaFileOperate = SingleQaFileOperate.getSinleQaFileOperate();
+        System.out.println(qaFileOperate.getFileContent(new File("C:\\Users\\violi\\Desktop\\毕设\\Search\\Search\\src\\main\\resources\\document\\allFaq\\00aba82892252b502cabc9db11982fa5.txt")));
+        System.out.println(qaFileOperate.getFileContentOfTag(
+        		new File("C:\\Users\\violi\\Desktop\\毕设\\Search\\Search\\src\\main\\resources\\document\\allFaq\\00aba82892252b502cabc9db11982fa5.txt")
+        		, "question"));
+        
+        System.out.println(qaFileOperate.getFileContent(new File("C:\\Users\\violi\\Desktop\\毕设\\Search\\Search\\src\\main\\resources\\document\\allFaq\\00aba82892252b502cabc9db11982fa5.txt")));
+        
 	}
 }
