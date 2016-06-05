@@ -6,45 +6,61 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Test Editor</title>
-<script src="//cdn.ckeditor.com/4.5.8/full/ckeditor.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>语料录入界面</title>
+	<script src="//cdn.ckeditor.com/4.5.8/full/ckeditor.js"></script>
+
+  <jsp:include page="universal/Header.jsp"></jsp:include>
+
 </head>
 <body>
-	<form:form commandName="essay" method="POST" action="" accept-charset="ISO-8859-1">
-		<input id="hidtitle" type="hidden" value="${ essay.title }"/>
-		<input id="hidauthor" type="hidden" value="${ essay.author }"/>
-		<table style="width: 90%">
-			<tr>
-				<td><form:label path="title">Title:</form:label></td>
-				<td><form:input id="title" type="text" path="title" placeholder="${ essay.title }"/></td>
-			</tr>
-			<tr>
-				<td><form:label path="author">Author:</form:label></td>
-				<td><form:input id="author" path="author"/></td>
-			</tr>
-			<tr>
-				<td><form:label path="content">Content:</form:label></td>
-				<td><form:textarea path="content" rows="23" cols="34" id="editor" /></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="Submit"/></td>
-				<td></td>
-			</tr>
-		</table>
-	</form:form>
+
+	<div id="wrapper">
+		<jsp:include page="universal/NavigationBar.jsp"></jsp:include>
+		<div id="page-wrapper">
+			
+			<form:form commandName="essay" method="POST" action="" accept-charset="ISO-8859-1">
+				<input id="hidtitle" type="hidden" value="${ essay.title }"/>
+				<input id="hidauthor" type="hidden" value="${ essay.author }"/>
+				<table style="width: 90%">
+					<tr>
+						<td><form:label path="title">Title:</form:label></td>
+						<td><form:input id="title" type="text" path="title" placeholder="${ essay.title }"/></td>
+					</tr>
+					<tr>
+						<td><form:label path="author">Author:</form:label></td>
+						<td><form:input id="author" path="author"/></td>
+					</tr>
+					<tr>
+						<td><form:label path="content">Content:</form:label></td>
+						<td><form:textarea path="content" rows="23" cols="34" id="editor" /></td>
+					</tr>
+					<tr>
+						<td><input type="submit" value="Submit"/></td>
+						<td></td>
+					</tr>
+				</table>
+			</form:form>
+
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+	<!-- /#wrapper -->
 
 	<script>
 		// Replace the <textarea id="editor1"> with a CKEditor
 		// instance, using default configuration.
 		CKEDITOR.replace('editor');
 	</script>
-	
+
 	<script type="text/javascript">
 		// reset value for input tag
 		document.getElementById('title').value = document.getElementById('hidtitle').value;
 		document.getElementById('author').value = document.getElementById('hidauthor').value;
-		
+
 	</script>
+
+	<jsp:include page="universal/Footer.jsp"></jsp:include>
+
 </body>
 </html>
