@@ -87,7 +87,7 @@
                     <a href="#"><i class="fa fa-wrench fa-fw"></i> Word<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">Cut Words</a>
+                            <a href="#">Word Segmentation</a>
                         </li>
                         <li>
                             <a href="#">Buttons</a>
