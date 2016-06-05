@@ -61,7 +61,7 @@
                     <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Corpus Management<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">All Corpus</a>
+                            <a href="${pageContext.request.contextPath}/all">All Corpus</a>
                         </li>
                         <li>
                             <a href="${pageContext.request.contextPath}/deamon">Add Corpus</a>
