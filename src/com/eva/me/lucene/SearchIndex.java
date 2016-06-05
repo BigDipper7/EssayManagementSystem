@@ -44,7 +44,7 @@ public class SearchIndex {
 	}
 	public static void main(String[] args){
 		SearchIndex si = new SearchIndex();
-		Vector<String> res = si.search("鎬庝箞寮�鍙戠エ", 10);
+		Vector<String> res = si.search("如何操作", 10);
 		for(int i=0;i<res.size();i++){
 			System.out.println(res.get(i));
 		}

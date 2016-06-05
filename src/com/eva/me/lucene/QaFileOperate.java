@@ -140,6 +140,6 @@ public class QaFileOperate {
 
 	public static void main(String[] args) throws IOException {
 		QaFileOperate a = new QaFileOperate();
-		System.out.println(a.segmentWord("椹皵绉戝か妯″瀷"));
+		System.out.println(a.segmentWord("马尔科夫模型"));
 	}
 }

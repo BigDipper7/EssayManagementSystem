@@ -39,6 +39,7 @@ public class LuceneIndex {
     static {
         properties = new Properties();
         classpath = LuceneIndex.class.getClassLoader().getResource("").getPath();
+        System.out.println("classpath:"+classpath);
         try {
             properties.load(new FileInputStream(classpath + "/proper.properties"));
         } catch (FileNotFoundException e) {
@@ -48,8 +49,9 @@ public class LuceneIndex {
             System.err.println("read the properties file is error...");
             e.printStackTrace();
         }
-        fileDirectoryPath = classpath + "/" + properties.getProperty("faqfolder");
-        indexDirectoryPath = classpath + "/" + properties.getProperty("indexfolder");
+        fileDirectoryPath = classpath  + properties.getProperty("faqfolder");
+        indexDirectoryPath = classpath  + properties.getProperty("indexfolder");
+        System.out.println("fileDirectoryPath:"+fileDirectoryPath+"|\nindexDirectoryPath:"+indexDirectoryPath);
         qaFileOperate = SingleQaFileOperate.getSinleQaFileOperate();
     }
 
@@ -65,9 +67,10 @@ public class LuceneIndex {
         System.out.println("start rebuild...");
         //a.reBuildIndex();
         System.out.println("start search...");
-        a.search("濡備綍鎿嶄綔", 10);
-        a.addIndex("C:\\Users\\xing\\IdeaProjects\\Search\\src\\main\\resources\\test_document\\00ddd116845d668392a9b238f48f54a9.txt");
-        a.search("鎵弿鎶ラ敊鎬庝箞鍔�", 10);
+        a.search("二维码发票可以网上认证吗", 10);
+        a.addIndex("C:\\Users\\violi\\Desktop\\毕设\\Search\\Search\\src\\main\\resources\\document\\allFaq\\00aba82892252b502cabc9db11982fa5.txt");
+        a.search("远程认证", 10);
+        System.out.println("add index success...");
     }
 
     /**
