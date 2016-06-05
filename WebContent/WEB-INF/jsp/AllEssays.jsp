@@ -18,6 +18,9 @@
 <!-- DataTables Responsive CSS -->
 <link href="<c:url value="/bower_components/datatables-responsive/css/dataTables.responsive.css"/>" rel="stylesheet">
 
+<%-- <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script> --%>
+
 </head>
 <body>
 
@@ -40,10 +43,10 @@
               <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
-                    <td>No.</td>
+                    <td>#</td>
                     <td>Corpus Id</td>
-                    <td>Content</td>
                     <td>Title</td>
+                    <td>Content</td>
                     <td>Author</td>
                     <td colspan="2">Operation</td>
                   </tr>
@@ -63,18 +66,18 @@
 
                       <tr
                         <c:if test="${ status.count%2==1}">
-                          class = "odd gradeA"
+                          class = "odd"
                         </c:if>
 
                         <c:if test="${ status.count%2==0}">
-                          class = "even gradeA"
+                          class = "even"
                         </c:if>
 
                         >
                         <td>${ status.count }</td>
                         <td>${ essay.id }</td>
-                        <td>${ essay.content }</td>
                         <td>${ essay.title }</td>
+                        <td>${ essay.content }</td>
                         <td>${ essay.author }</td>
                         <td><a href="${ pageContext.request.contextPath }/update/${ essay.id }">Edit</a></td>
                         <td><a class="delete" href="${ pageContext.request.contextPath }/delete/${ essay.id }">Delete</a></td>
@@ -92,37 +95,6 @@
 
           </div>
           <!-- /.col-lg-12 -->
-
-          <%-- <table bordercolor="black" border="1">
-            <caption>Results:</caption>
-
-            <tr>
-              <td>Id</td>
-              <td>Content</td>
-              <td>Title</td>
-              <td>Author</td>
-              <td colspan="2">Operation</td>
-            </tr>
-
-            <c:if test="${ empty Essays }">
-              <tr>
-                <td>No data!</td>
-              </tr>
-            </c:if>
-
-            <c:if test="${ !empty Essays }">
-              <c:forEach items="${ Essays }" var="essay">
-                <tr>
-                  <td>${ essay.id }</td>
-                  <td>${ essay.content }</td>
-                  <td>${ essay.title }</td>
-                  <td>${ essay.author }</td>
-                  <td><a href="${ pageContext.request.contextPath }/update/${ essay.id }">Edit</a></td>
-                  <td><a class="delete" href="${ pageContext.request.contextPath }/delete/${ essay.id }">Delete</a></td>
-                </tr>
-              </c:forEach>
-            </c:if>
-          </table> --%>
 
         </div>
         <!-- /.row -->
