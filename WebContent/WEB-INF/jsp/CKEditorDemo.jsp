@@ -18,29 +18,70 @@
 	<div id="wrapper">
 		<jsp:include page="universal/NavigationBar.jsp"></jsp:include>
 		<div id="page-wrapper">
-			
-			<form:form commandName="essay" method="POST" action="" accept-charset="ISO-8859-1">
-				<input id="hidtitle" type="hidden" value="${ essay.title }"/>
-				<input id="hidauthor" type="hidden" value="${ essay.author }"/>
-				<table style="width: 90%">
-					<tr>
-						<td><form:label path="title">Title:</form:label></td>
-						<td><form:input id="title" type="text" path="title" placeholder="${ essay.title }"/></td>
-					</tr>
-					<tr>
-						<td><form:label path="author">Author:</form:label></td>
-						<td><form:input id="author" path="author"/></td>
-					</tr>
-					<tr>
-						<td><form:label path="content">Content:</form:label></td>
-						<td><form:textarea path="content" rows="23" cols="34" id="editor" /></td>
-					</tr>
-					<tr>
-						<td><input type="submit" value="Submit"/></td>
-						<td></td>
-					</tr>
-				</table>
-			</form:form>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">语料录入</h1>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							语料录入表单
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<form:form role="form" commandName="essay" method="POST" action="" accept-charset="ISO-8859-1">
+										<div class="form-group">
+											<input id="hidtitle" type="hidden" value="${ essay.title }"/>
+											<input id="hidauthor" type="hidden" value="${ essay.author }"/>
+
+											<div class="form-group">
+												<form:label path="title">Title:</form:label>
+												<form:input class="form-control" id="title" type="text" path="title" placeholder="Enter title here."/>
+											</div>
+											<div class="form-group">
+												<form:label path="author">Author:</form:label>
+												<form:input class="form-control" id="author" path="author" placeholder="${auth_user.username}" value="${auth_user.username}"/>
+											</div>
+											<div class="form-group">
+												<form:label path="content">Content:</form:label>
+												<form:textarea path="content" rows="23" cols="34" id="editor" />
+											</div>
+											<div class="form-group">
+												<label>Choose Corpus Type:</label>
+												<select class="form-control">
+													<option>无</option>
+													<option>电子报税</option>
+													<option>报税</option>
+													<option>软件错误</option>
+													<option>金税三期</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Appendix(Files):</label>
+												<input type="file"/>
+											</div>
+
+											<div class="form-group">
+												<input type="reset" class="btn btn-default" value="Reset"/>
+												<input type="submit" class="btn btn-success" value="Submit"/>
+											</div>
+
+										</div>
+									</form:form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
 
 		</div>
 		<!-- /#page-wrapper -->
