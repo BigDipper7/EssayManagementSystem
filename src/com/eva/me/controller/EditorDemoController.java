@@ -153,7 +153,7 @@ public class EditorDemoController {
 		Log.i(res);
 		String result = "";
 		for (String string : res) {
-			result+="/"+string;
+			result+=result.equals("")?string:" / "+string;
 		}
 		map.addAttribute("result", result);
 		return "WordSegmentation";
