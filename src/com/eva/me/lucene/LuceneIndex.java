@@ -52,9 +52,11 @@ public class LuceneIndex {
             e.printStackTrace();
         }
 //        fileDirectoryPath = classpath  + properties.getProperty("faqfolder");
-        fileDirectoryPath = "d://test//document";
+//        fileDirectoryPath = "d://test//document";
+        fileDirectoryPath = properties.getProperty("faqfolder");
 //        indexDirectoryPath = classpath  + properties.getProperty("indexfolder");
-        indexDirectoryPath = "d://test//index";
+//        indexDirectoryPath = "d://test//index";
+        indexDirectoryPath = properties.getProperty("indexfolder");
         System.out.println("fileDirectoryPath:"+fileDirectoryPath+"|\nindexDirectoryPath:"+indexDirectoryPath);
         qaFileOperate = SingleQaFileOperate.getSinleQaFileOperate();
     }
