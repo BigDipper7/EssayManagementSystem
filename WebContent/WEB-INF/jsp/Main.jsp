@@ -20,48 +20,59 @@
 
         <div class="row">
           <div class="col-lg-12">
-            <h1 class="page-header">早上好，${auth_user.username}</h1>
+            <h1 class="page-header">下午好，${auth_user.username}</h1>
           </div>
           <!-- /.col-lg-12 -->
         </div>
 
         <div class="row">
-          <table bordercolor="black" border="1" style="width:100%">
-            <caption>Results:</caption>
-            <tr>
-              <td>Id</td>
-              <td>${auth_user.id}</td>
-            </tr>
-            <tr>
-              <td>Username</td>
-              <td>${auth_user.username}</td>
-            </tr>
-            <tr>
-              <td>Password</td>
-              <td>${auth_user.password}</td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td>${auth_user.email}</td>
-            </tr>
-          </table>
+          <div class="col-lg-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                User Info
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Key</th>
+                        <th>Value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>User ID</td>
+                        <td>${auth_user.id}</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Username</td>
+                        <td>${auth_user.username}</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Email</td>
+                        <td>${auth_user.email}</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Last Login Time</td>
+                        <td>2016-06-06 11:16:52 +08:00</td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>My IP</td>
+                        <td>180.160.19.166</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
-          <br>
-            <br>
-              <form:form method="POST" action="${pageContext.request.contextPath}/logout">
-                <input type="submit" value="退出登陆"/>
-              </form:form>
+            </div>
 
-              <hr/>
-
-              <h1>功能列表：</h1>
-
-              <a href="${ pageContext.request.contextPath }/deamon">语料录入</a> <br/>
-              <a href="${ pageContext.request.contextPath }/all">语料列表</a> <br/>
-              <a href="${ pageContext.request.contextPath }/json">JSON</a> <br/>
-
-
-              <hr/>
         </div>
 
 
