@@ -48,7 +48,7 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 	 * @see com.eva.me.dao.UserDAO#getAllUsers()
 	 */
 	@Override
-	public List<User> getAllUsers() {
+	public List<User> getAllUsersList() {
 		return baseProcess(new Executable<List<User>, Void>() {
 
 			@Override
