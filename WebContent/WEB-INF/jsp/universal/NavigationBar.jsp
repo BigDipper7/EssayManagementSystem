@@ -119,6 +119,9 @@
                         <li>
                             <a href="${pageContext.request.contextPath}/index/rebuild">Rebuild All Index</a>
                         </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/admin/showusrs">Get All Users</a>
+                        </li>
                         <!-- <li>
                             <a href="#">Third Level <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
