@@ -26,4 +26,9 @@ public interface UserDAO {
 	 */
 	public User getUserByUserName(String userName);
 	
+	/**
+	 * get all users
+	 * @return
+	 */
+	public List<User> getAllUsers();
 }
