@@ -127,6 +127,12 @@ public class EditorDemoController {
 		return "CorpusEdit";
 	}
 	
+	@RequestMapping(path="/corpus/search", method=RequestMethod.GET)
+	public String getCorpusSearchPage() {
+		
+		return "CorpusSearch";
+	}
+	
 	@RequestMapping(path="/word/segment", method=RequestMethod.GET)
 	public String getWordSegmentationPage() {
 		return "WordSegmentation";
