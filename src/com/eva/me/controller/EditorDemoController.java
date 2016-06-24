@@ -21,11 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eva.me.controller.JSONController.QAs;
 import com.eva.me.dao.EssayDAOImpl;
 import com.eva.me.dao.UserDAOImpl;
 import com.eva.me.lucene.LuceneIndex;
 import com.eva.me.lucene.SingleQaFileOperate;
 import com.eva.me.model.Essay;
+import com.eva.me.model.QAPairAdv;
 import com.eva.me.model.User;
 import com.eva.me.service.EssayService;
 import com.eva.me.service.UserService;
@@ -132,6 +134,45 @@ public class EditorDemoController {
 		
 		return "CorpusSearch";
 	}
+	
+	@RequestMapping(path="/corpus/search", method=RequestMethod.POST)
+	public String getCorpusSearchResultPage(ModelMap map, HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String qatxt = request.getParameter("question");
+		Log.i("===============question is "+qatxt);
+		
+		List<QAs> list = new ArrayList<>();
+		final int topN = 10;
+		Vector<QAPairAdv> res = null;
+		try {
+			res = new LuceneIndex().searchOrigin(qatxt, topN);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (QAPairAdv qaPairAdv : res) {
+			QAs tQAs = new QAs();
+			tQAs.qus = qaPairAdv.doc.get("question");
+			tQAs.ans = qaPairAdv.doc.get("answer");
+			tQAs.sco = qaPairAdv.score;
+			list.add(tQAs);
+		}
+		
+		map.addAttribute("result", list);
+		return "CorpusSearch";
+	}	
+
+	class QAs {
+		public String qus;
+		public String ans;
+		public float sco;
+	}
+	
 	
 	@RequestMapping(path="/word/segment", method=RequestMethod.GET)
 	public String getWordSegmentationPage() {
