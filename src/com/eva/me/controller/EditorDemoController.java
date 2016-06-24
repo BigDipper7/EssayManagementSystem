@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.eva.me.controller.JSONController.QAs;
 import com.eva.me.dao.EssayDAOImpl;
 import com.eva.me.dao.UserDAOImpl;
 import com.eva.me.lucene.LuceneIndex;
@@ -29,6 +28,7 @@ import com.eva.me.lucene.SingleQaFileOperate;
 import com.eva.me.model.Essay;
 import com.eva.me.model.QAPairAdv;
 import com.eva.me.model.User;
+import com.eva.me.model.QAs;
 import com.eva.me.service.EssayService;
 import com.eva.me.service.UserService;
 import com.eva.me.util.EssayUtil;
@@ -172,11 +172,11 @@ public class EditorDemoController {
 		return "CorpusSearch";
 	}	
 
-	class QAs {
-		public String qus;
-		public String ans;
-		public float sco;
-	}
+//	class QAs {
+//		public String qus;
+//		public String ans;
+//		public float sco;
+//	}
 	
 	
 	@RequestMapping(path="/word/segment", method=RequestMethod.GET)

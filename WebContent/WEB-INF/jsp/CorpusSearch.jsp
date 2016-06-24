@@ -8,6 +8,17 @@
 <title>Search Corpus</title>
 
 <jsp:include page="universal/Header.jsp"></jsp:include>
+
+
+<!-- DataTables CSS -->
+<link href="<c:url value="/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css"/>" rel="stylesheet">
+
+<!-- DataTables Responsive CSS -->
+<link href="<c:url value="/bower_components/datatables-responsive/css/dataTables.responsive.css"/>" rel="stylesheet">
+
+<%-- <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script> --%>
+
 </head>
 <body>
 
@@ -58,7 +69,54 @@
               </div>
               <div class="panel-body">
                 
-                <h1>${ result }</h1>
+            <div class="dataTable_wrapper">
+              <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                  <tr>
+                    <td>#</td>
+                    <td>Question</td>
+                    <td>Answer</td>
+                    <td>Score</td>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <c:if test="${ empty result }">
+                    <tr>
+                      <td>No data!</td>
+                    </tr>
+                  </c:if>
+
+                  <c:if test="${ !empty result }">
+                    <c:forEach items="${ result }" var="user" varStatus="status" begin="1" step="1">
+                      <c:if test="${ status.count%2==1}">
+                      </c:if>
+
+                      <tr
+                        <c:if test="${ status.count%2==1}">
+                          class = "odd"
+                        </c:if>
+
+                        <c:if test="${ status.count%2==0}">
+                          class = "even"
+                        </c:if>
+
+                        >
+                        <td>${ status.count }</td>
+                        <td>${ user.qus }</td>
+                        <td>${ user.ans }</td>
+                        <td>${ user.sco }</td>
+                      </tr>
+                    </c:forEach>
+                  </c:if>
+
+              </tbody>
+            </table>
+          </div>
+
+
+
+            <!-- /.table-responsive -->
               </div>
               <%-- <div class="panel-footer">
               Panel Footer
@@ -70,5 +128,19 @@
 
 
   	<jsp:include page="universal/Footer.jsp"></jsp:include>
+  	
+  	
+    <!-- DataTables JavaScript -->
+    <script src="<c:url value="/bower_components/datatables/media/js/jquery.dataTables.min.js"/>"></script>
+    <script src="<c:url value="/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"/>"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true
+        });
+    });
+    </script>
 </body>
 </html>
