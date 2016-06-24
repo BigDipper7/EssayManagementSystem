@@ -35,7 +35,7 @@
                 <form role="form" method="POST">
                   <div class="form-group">
                     <label>Input Your Question:</label>
-                    <input name="questioin" class="form-control" placeholder="Enter Your Question..."/>
+                    <input name="question" class="form-control" placeholder="Enter Your Question..."/>
                   </div>
                   <hr/>
                   <button type="reset" class="btn btn-default">Reset</button>

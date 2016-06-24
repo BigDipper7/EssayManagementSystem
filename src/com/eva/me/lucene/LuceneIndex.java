@@ -71,7 +71,7 @@ public class LuceneIndex {
     public static void main(String[] ag) throws IOException {
         LuceneIndex a = new LuceneIndex();
         System.out.println("start rebuild...");
-        //a.reBuildIndex();
+        a.reBuildIndex();
         System.out.println("start search...");
         a.addIndex("C:\\Users\\violi\\Desktop\\毕设\\Search\\Search\\src\\main\\resources\\document\\allFaq\\00aba82892252b502cabc9db11982fa5.txt");
         System.out.println("add index success...");
