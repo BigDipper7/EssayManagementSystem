@@ -155,6 +155,11 @@ public class EditorDemoController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		if (res==null) {
+			return "CorpusSearch";
+		}
+		
 		for (QAPairAdv qaPairAdv : res) {
 			QAs tQAs = new QAs();
 			tQAs.qus = qaPairAdv.doc.get("question");
