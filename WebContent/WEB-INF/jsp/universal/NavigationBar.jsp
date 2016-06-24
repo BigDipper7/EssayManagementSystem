@@ -89,7 +89,7 @@
                     <a href="#"><i class="fa fa-user-md fa-fw"></i> Users<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">All User List</a>
+                            <a href="${pageContext.request.contextPath}/admin/showusrs">All User List</a>
                         </li>
                         <li>
                             <a href="#">Manage User</a>
