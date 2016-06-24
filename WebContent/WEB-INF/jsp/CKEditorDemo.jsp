@@ -59,7 +59,7 @@
 													<option>电子报税</option>
 													<option>证书</option>
 													<option>软件错误</option>
-													<option>金税三期/option>
+													<option>金税三期</option>
 												</select>
 											</div>
 											<div class="form-group">
