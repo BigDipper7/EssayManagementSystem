@@ -72,6 +72,9 @@
                         <li>
                             <a href="${pageContext.request.contextPath}/corpus/edit">Update Corpus</a>
                         </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/corpus/search">Search Corpus</a>
+                        </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
