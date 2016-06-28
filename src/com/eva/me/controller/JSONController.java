@@ -69,6 +69,8 @@ public class JSONController {
 
 		String uid = request.getParameter("uid");
 		String qatxt = request.getParameter("qatxt");
+//		String count = request.getParameter("count");
+		
 		Log.i("=========get params: uid:"+uid+"|qatxt:"+qatxt+"|");
 		test.uid = uid;
 		test.question = qatxt;
