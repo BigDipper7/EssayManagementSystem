@@ -11,7 +11,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/main">Corpus Management System</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/main">语料库管理系统</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -23,12 +23,12 @@
                 <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                <li><a href="#"><i class="fa fa-user fa-fw"></i> 用户资料</a>
                 </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                <li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="${pageContext.request.contextPath}/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                <li><a href="${pageContext.request.contextPath}/logout"><i class="fa fa-sign-out fa-fw"></i> 登出</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->
@@ -54,26 +54,26 @@
                 </li>
 
                 <li>
-                    <a href="${pageContext.request.contextPath}/main"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    <a href="${pageContext.request.contextPath}/main"><i class="fa fa-dashboard fa-fw"></i> 控制板</a>
                 </li>
 
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Corpus Management<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 语料管理<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="${pageContext.request.contextPath}/all">All Corpus</a>
+                            <a href="${pageContext.request.contextPath}/all">所有语料</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/deamon">Add Corpus</a>
+                            <a href="${pageContext.request.contextPath}/deamon">增加语料</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/corpus/delete">Delete Corpus</a>
+                            <a href="${pageContext.request.contextPath}/corpus/delete">删除语料</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/corpus/edit">Update Corpus</a>
+                            <a href="${pageContext.request.contextPath}/corpus/edit">更新语料</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/corpus/search">Search Corpus</a>
+                            <a href="${pageContext.request.contextPath}/corpus/search">搜索语料</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -86,44 +86,44 @@
                     <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
                 </li> -->
                 <li>
-                    <a href="#"><i class="fa fa-user-md fa-fw"></i> Users<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-user-md fa-fw"></i> 用户<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="${pageContext.request.contextPath}/admin/showusrs">All User List</a>
+                            <a href="${pageContext.request.contextPath}/admin/showusrs">所有用户列表</a>
                         </li>
                         <li>
-                            <a href="#">Manage User</a>
+                            <a href="#">管理用户</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
 
                 <li>
-                    <a href="#"><i class="fa fa-wrench fa-fw"></i> Word<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-wrench fa-fw"></i> 词<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="${pageContext.request.contextPath}/word/segment">Word Segmentation</a>
+                            <a href="${pageContext.request.contextPath}/word/segment">分词</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#">Buttons</a>
                         </li>
                         <li>
                             <a href="#">Notifications</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-sitemap fa-fw"></i> Tests<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-sitemap fa-fw"></i> 测试选项<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="#">JSON Test</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/index/rebuild">Rebuild All Index</a>
+                            <a href="${pageContext.request.contextPath}/index/rebuild">重建所有索引</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/admin/showusrs">Get All Users</a>
+                            <a href="${pageContext.request.contextPath}/admin/showusrs">所有用户</a>
                         </li>
                         <!-- <li>
                             <a href="#">Third Level <span class="fa arrow"></span></a>
@@ -147,13 +147,13 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-users fa-fw"></i> Me<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-users fa-fw"></i> 我<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">User Profile</a>
+                            <a href="#">用户资料</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/logout">Logout</a>
+                            <a href="${pageContext.request.contextPath}/logout">登出</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

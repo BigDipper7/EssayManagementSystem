@@ -34,7 +34,7 @@
 					</c:if>	
                     
                     <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
+                        <h3 class="panel-title">请登录</h3>
                     </div>
                     <div class="panel-body">
 						<form:form role="form" method="POST" action="${pageContext.request.contextPath}/login" commandName="User">
@@ -78,11 +78,11 @@
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                        <input name="remember" type="checkbox" value="Remember Me">记住我
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <input type="submit" class="btn btn-lg btn-success btn-block" value="Login" />
+                                <input type="submit" class="btn btn-lg btn-success btn-block" value="登陆" />
                             </fieldset>
                              
 						</form:form>
