@@ -121,6 +121,16 @@ public class JSONController {
 	
 	@RequestMapping(value="/allCorpus")
 	public @ResponseBody AjaxAllEssayResult getAjaxAllEssayList(HttpServletRequest request) {
+		
+		String paramStart = request.getParameter("start");
+		String paramLength = request.getParameter("length");
+		String paramSearchTxt = request.getParameter("search[value]");
+		
+		Log.i("========= Retrieve Parameter =========");
+		Log.i("==== paramStart: ["+paramStart+"]");
+		Log.i("==== paramLength: ["+paramLength+"]");
+		Log.i("==== paramSearchTxt: ["+paramSearchTxt+"]");
+		
 		List<Essay> list = new EssayDAOImpl().getAllEssayList();
 		
 		AjaxAllEssayResult result = new AjaxAllEssayResult();
