@@ -139,13 +139,15 @@ public class JSONController {
 		
 		EssayDAOImpl impl = new EssayDAOImpl();
 		List<Essay> list = null;
+		long count, countFlt = 0;
 		if (StringUtils.isEmpty(paramSearchTxt)) {
 			Log.i("paramTxt is empty");
 			list = impl.getEssayListWithLimit(start, length);
 		}else {
 			list = impl.getEssayListWithLimit(start, length, EssayUtil.encode(paramSearchTxt));
+			countFlt = impl.getAllCount(paramSearchTxt);
 		}
-		long count = impl.getAllCount();
+		count = impl.getAllCount();
 		
 		AjaxAllEssayResult result = new AjaxAllEssayResult();
 		
@@ -164,7 +166,7 @@ public class JSONController {
 		
 		result.data = list;
 		result.recordsTotal = (int) count;
-		result.recordsFiltered = (int) (StringUtils.isEmpty(paramSearchTxt)? count: list.size());
+		result.recordsFiltered = (int) (StringUtils.isEmpty(paramSearchTxt)? count: countFlt);
 		
 		
 		return result;
