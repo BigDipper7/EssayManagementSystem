@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.eva.me.controller;
 
@@ -40,12 +40,32 @@ import com.eva.me.util.Log;
  */
 @Controller
 public class EditorDemoController {
-	
+
 	@RequestMapping(path={"/deamon"}, method=RequestMethod.GET)
 	public ModelAndView getCKEditorDemoPage() {
 		return new ModelAndView("CKEditorDemo", "essay", new Essay());
 	}
-	
+
+	@RequestMapping(path={"/deamon"}, method=RequestMethod.POST)
+	public String getAllPostData(@ModelAttribute Essay essay, ModelMap modelMap) {
+		Log.i("handle post data...");
+		Log.i(modelMap);
+
+		modelMap.addAttribute("title", essay.getTitle());
+		modelMap.addAttribute("author", essay.getAuthor());
+		modelMap.addAttribute("content", essay.getContent());
+		new EssayService().createEssay(essay);
+
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				System.out.println("new thread:"+Thread.currentThread().getName());
+				EssayUtil.saveAndIndex(essay);
+			}
+		}).start();
+		return "DemoPres";
+	}
 
 	@RequestMapping(path={"/update/{id}"}, method=RequestMethod.GET)
 	public ModelAndView updateEssay(@PathVariable("id") Integer id, ModelMap modelMap) {
@@ -61,30 +81,9 @@ public class EditorDemoController {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+
 		return new ModelAndView("CKEditorDemo", "essay", essayToUpdate);
 	}
-	
-	@RequestMapping(path={"/deamon"}, method=RequestMethod.POST)
-	public String getAllPostData(@ModelAttribute Essay essay, ModelMap modelMap) {
-		Log.i("handle post data...");
-		Log.i(modelMap);
-		
-		modelMap.addAttribute("title", essay.getTitle());
-		modelMap.addAttribute("author", essay.getAuthor());
-		modelMap.addAttribute("content", essay.getContent());
-		new EssayService().createEssay(essay);
-		
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				System.out.println("new thread:"+Thread.currentThread().getName());
-				EssayUtil.saveAndIndex(essay);
-			}
-		}).start();
-		return "DemoPres";
-	}
-	
 
 	@RequestMapping(path={"/update/{id}"}, method=RequestMethod.POST)
 	public String handleUpdateEssayAction(@PathVariable("id") Integer id, ModelMap modelMap, @ModelAttribute Essay essay){
@@ -98,17 +97,17 @@ public class EditorDemoController {
 		new EssayDAOImpl().updateEssay(essay);
 		return "redirect:/all";
 	}
-	
+
 	@RequestMapping(path={"/users/list"}, method=RequestMethod.GET)
 	public ModelAndView retrieveDBUser() {
 		List<User> users = new ArrayList<User>();
-		
+
 		users = new UserService().getAllUsers();
 		Log.i(users);
-		
+
 		return new ModelAndView("UsersList", "users", users==null?new ArrayList<User>():users);
 	}
-	
+
 	@RequestMapping(path={"/index/rebuild"}, method=RequestMethod.GET)
 	public String rebuildAllIndex() {
 		LuceneIndex luceneIndex = new LuceneIndex();
@@ -119,22 +118,22 @@ public class EditorDemoController {
 
 	@RequestMapping(path="/corpus/delete", method=RequestMethod.GET)
 	public String getCorpusDeletePage() {
-		
+
 		return "CorpusDelete";
 	}
-	
+
 	@RequestMapping(path="/corpus/edit", method=RequestMethod.GET)
 	public String getCorpusEditPage() {
-		
+
 		return "CorpusEdit";
 	}
-	
+
 	@RequestMapping(path="/corpus/search", method=RequestMethod.GET)
 	public String getCorpusSearchPage() {
-		
+
 		return "CorpusSearch";
 	}
-	
+
 	@RequestMapping(path="/corpus/search", method=RequestMethod.POST)
 	public String getCorpusSearchResultPage(ModelMap map, HttpServletRequest request) {
 		try {
@@ -145,7 +144,7 @@ public class EditorDemoController {
 		}
 		String qatxt = request.getParameter("question");
 		Log.i("===============question is "+qatxt);
-		
+
 		List<QAs> list = new ArrayList<>();
 		final int topN = 10;
 		Vector<QAPairAdv> res = null;
@@ -155,11 +154,11 @@ public class EditorDemoController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		if (res==null) {
 			return "CorpusSearch";
 		}
-		
+
 		for (QAPairAdv qaPairAdv : res) {
 			QAs tQAs = new QAs();
 			tQAs.qus = qaPairAdv.doc.get("question");
@@ -167,23 +166,23 @@ public class EditorDemoController {
 			tQAs.sco = qaPairAdv.score;
 			list.add(tQAs);
 		}
-		
+
 		map.addAttribute("result", list);
 		return "CorpusSearch";
-	}	
+	}
 
 //	class QAs {
 //		public String qus;
 //		public String ans;
 //		public float sco;
 //	}
-	
-	
+
+
 	@RequestMapping(path="/word/segment", method=RequestMethod.GET)
 	public String getWordSegmentationPage() {
 		return "WordSegmentation";
 	}
-	
+
 	@RequestMapping(path="/word/segment", method=RequestMethod.POST)
 	public String getWordSegmentationResultPage(ModelMap map, HttpServletRequest request) {
 		try {
