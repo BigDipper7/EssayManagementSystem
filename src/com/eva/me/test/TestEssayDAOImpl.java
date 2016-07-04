@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import com.eva.me.dao.EssayDAOImpl;
 import com.eva.me.model.Essay;
+import com.eva.me.util.EssayUtil;
 import com.eva.me.util.Log;
 
 /**
@@ -63,11 +64,11 @@ public class TestEssayDAOImpl {
 	@Test
 	public void testGetLimitEssaysWithSearchtxt() {
 		Log.i("================Begin testGetLimitEssays==========================");
-		List<Essay> list = new EssayDAOImpl().getEssayListWithLimit(1, 100, "¹þ");
+		List<Essay> list = new EssayDAOImpl().getEssayListWithLimit(1, 100, "a");
 		Log.i("----------------Lists 1->10----------------------");
 		Log.i(list);
 		Log.i("----------------Lists----------------------");
-		List<Essay> list2 = new EssayDAOImpl().getEssayListWithLimit(1, 3, "¹þ");
+		List<Essay> list2 = new EssayDAOImpl().getEssayListWithLimit(1, 3, EssayUtil.encode("¹þ"));
 		Log.i("----------------Lists 1->3----------------------");
 		Log.i(list2);
 		Log.i("----------------Lists----------------------");
