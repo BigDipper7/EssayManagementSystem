@@ -40,6 +40,14 @@ public class TestEssayDAOImpl {
 		Log.i("----------------Lists 1->3----------------------");
 		Log.i(list2);
 		Log.i("----------------Lists----------------------");
+		List<Essay> list3 = new EssayDAOImpl().getEssayListWithLimit(-1, 3);
+		Log.i("----------------Lists -1->3----------------------");
+		Log.i(list3);
+		Log.i("----------------Lists----------------------");
+		List<Essay> list4 = new EssayDAOImpl().getEssayListWithLimit(1, -3);
+		Log.i("----------------Lists 1->-3----------------------");
+		Log.i(list4);
+		Log.i("----------------Lists----------------------");
 		Log.i("================End testGetLimitEssays==========================");
 	}
 	
