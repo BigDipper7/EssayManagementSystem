@@ -164,7 +164,7 @@ public class JSONController {
 		
 		result.data = list;
 		result.recordsTotal = (int) count;
-		result.recordsFiltered = (int) count;
+		result.recordsFiltered = (int) (StringUtils.isEmpty(paramSearchTxt)? count: list.size());
 		
 		
 		return result;
