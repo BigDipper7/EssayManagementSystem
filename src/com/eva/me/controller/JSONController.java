@@ -134,8 +134,9 @@ public class JSONController {
 		int start = Integer.parseInt(paramStart);
 		int length = Integer.parseInt(paramLength);
 		
-		
-		List<Essay> list = new EssayDAOImpl().getEssayListWithLimit(start, length);
+		EssayDAOImpl impl = new EssayDAOImpl();
+		List<Essay> list = impl.getEssayListWithLimit(start, length);
+		long count = impl.getAllCount();
 		
 		AjaxAllEssayResult result = new AjaxAllEssayResult();
 		
@@ -151,9 +152,11 @@ public class JSONController {
 //			temp.add(essay.author);
 //			result.data.add(temp);
 //		}
+		
 		result.data = list;
-		result.recordsTotal = list.size();
-		result.recordsFiltered = list.size();
+		result.recordsTotal = (int) count;
+		result.recordsFiltered = (int) count;
+		
 		
 		return result;
 	}
