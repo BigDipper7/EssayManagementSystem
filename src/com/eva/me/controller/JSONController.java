@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.lucene.queryparser.surround.query.SrndPrefixQuery;
 import org.apache.tomcat.websocket.WsRemoteEndpointAsync;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +26,7 @@ import com.eva.me.model.Essay;
 import com.eva.me.model.QAPair;
 import com.eva.me.model.QAPairAdv;
 import com.eva.me.util.Log;
+
 
 /**
  * @author violi
@@ -135,7 +137,13 @@ public class JSONController {
 		int length = Integer.parseInt(paramLength);
 		
 		EssayDAOImpl impl = new EssayDAOImpl();
-		List<Essay> list = impl.getEssayListWithLimit(start, length);
+		List<Essay> list = null;
+		if (StringUtils.isEmpty(paramSearchTxt)) {
+			Log.i("paramTxt is empty");
+			list = impl.getEssayListWithLimit(start, length);
+		}else {
+			list = impl.getEssayListWithLimit(start, length, paramSearchTxt);
+		}
 		long count = impl.getAllCount();
 		
 		AjaxAllEssayResult result = new AjaxAllEssayResult();
