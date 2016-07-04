@@ -114,6 +114,9 @@ public class JSONController {
 	
 	class AjaxAllEssayResult {
 		public List<Essay> data = new ArrayList<>();
+		public int recordsTotal = 0;
+		public int recordsFiltered = 0;
+		
 	}
 	
 	@RequestMapping(value="/allCorpus")
@@ -135,6 +138,8 @@ public class JSONController {
 //			result.data.add(temp);
 //		}
 		result.data = list;
+		result.recordsTotal = list.size();
+		result.recordsFiltered = list.size();
 		
 		return result;
 	}
