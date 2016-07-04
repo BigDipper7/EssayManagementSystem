@@ -61,12 +61,15 @@
                     <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 语料管理<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="${pageContext.request.contextPath}/all">所有语料</a>
+                            <a href="${pageContext.request.contextPath}/all">所有语料及管理</a>
                         </li>
                         <li>
                             <a href="${pageContext.request.contextPath}/deamon">增加语料</a>
                         </li>
                         <li>
+                            <a href="${pageContext.request.contextPath}/#">语料统计</a>
+                        </li>
+                        <!-- <li>
                             <a href="${pageContext.request.contextPath}/corpus/delete">删除语料</a>
                         </li>
                         <li>
@@ -74,7 +77,7 @@
                         </li>
                         <li>
                             <a href="${pageContext.request.contextPath}/corpus/search">搜索语料</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
@@ -89,41 +92,49 @@
                     <a href="#"><i class="fa fa-user-md fa-fw"></i> 用户<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="${pageContext.request.contextPath}/admin/showusrs">所有用户列表</a>
+                            <a href="${pageContext.request.contextPath}/admin/showusrs">所有用户及管理</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#">管理用户</a>
-                        </li>
+                        </li>-->
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
 
                 <li>
-                    <a href="#"><i class="fa fa-wrench fa-fw"></i> 词<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-wrench fa-fw"></i> 词典管理<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="${pageContext.request.contextPath}/word/segment">分词</a>
-                        </li>
-                        <!-- <li>
-                            <a href="#">Buttons</a>
+                            <a href="${pageContext.request.contextPath}/#">常用词查询</a>
                         </li>
                         <li>
-                            <a href="#">Notifications</a>
-                        </li> -->
+                            <a href="${pageContext.request.contextPath}/#">自定义词典管理</a>
+                        </li>
+                        
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                
                 <li>
-                    <a href="#"><i class="fa fa-sitemap fa-fw"></i> 测试选项<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-sitemap fa-fw"></i> API展示<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li>
+                        <!-- li>
                             <a href="#">JSON Test</a>
                         </li>
                         <li>
                             <a href="${pageContext.request.contextPath}/index/rebuild">重建所有索引</a>
+                        </li> -->
+                        <!-- <li>
+                            <a href="${pageContext.request.contextPath}/admin/showusrs">所有用户</a>
+                        </li> -->
+                        <li>
+                            <a href="${pageContext.request.contextPath}/word/segment">分词</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/admin/showusrs">所有用户</a>
+                            <a href="${pageContext.request.contextPath}/corpus/search">帮助API展示</a>
+                        </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/#">搜索API展示</a>
                         </li>
                         <!-- <li>
                             <a href="#">Third Level <span class="fa arrow"></span></a>
@@ -146,6 +157,8 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                
+                
                 <li>
                     <a href="#"><i class="fa fa-users fa-fw"></i> 我<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
