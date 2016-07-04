@@ -28,6 +28,20 @@ public class TestEssayDAOImpl {
 		Log.i("----------------Lists----------------------");
 		Log.i("================End GetAllEssay==========================");
 	}
+
+	@Test
+	public void testGetLimitEssays() {
+		Log.i("================Begin testGetLimitEssays==========================");
+		List<Essay> list = new EssayDAOImpl().getEssayListWithLimit(1, 100);
+		Log.i("----------------Lists 1->10----------------------");
+		Log.i(list);
+		Log.i("----------------Lists----------------------");
+		List<Essay> list2 = new EssayDAOImpl().getEssayListWithLimit(1, 3);
+		Log.i("----------------Lists 1->3----------------------");
+		Log.i(list2);
+		Log.i("----------------Lists----------------------");
+		Log.i("================End testGetLimitEssays==========================");
+	}
 	
 	@Test
 	public void testGetEssay() {
