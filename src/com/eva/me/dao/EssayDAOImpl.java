@@ -7,9 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.catalina.ant.FindLeaksTask;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.SimpleExpression;
 
 import com.eva.me.funcinterf.Executable;
 import com.eva.me.model.Essay;
@@ -79,13 +84,13 @@ public class EssayDAOImpl extends BaseDAO implements EssayDAO{
 	 */
 	@Override
 	public List<Essay> getEssayListWithLimit(int start, int length) {
-		Map<String, Integer> params = new HashMap<>();
-		params.put("start", start);
-		params.put("length", length);
-		return baseProcess(new Executable< List<Essay>, Map<String,Integer> >() {
+//		Map<String, Integer> params = new HashMap<>();
+//		params.put("start", start);
+//		params.put("length", length);
+		return baseProcess(new Executable< List<Essay>, Void >() {
 
 			@Override
-			public List<Essay> execute(Session session, Map<String, Integer> toExecute) {
+			public List<Essay> execute(Session session, Void toExecute) {
 				final String hql = "from Essay";
 				Query query = session.createQuery(hql);
 				query.setFirstResult(start);
@@ -94,7 +99,42 @@ public class EssayDAOImpl extends BaseDAO implements EssayDAO{
 				
 				return res;
 			}
-		}, params);
+		}, null);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.eva.me.dao.EssayDAO#getEssayListWithLimit(int, int, java.lang.String)
+	 */
+	@Override
+	public List<Essay> getEssayListWithLimit(int start, int length, String searchTxt) {
+//		Map<String, Object> params = new HashMap<>();
+//		params.put("start", start);
+//		params.put("length", length);
+//		params.put("searchTxt", searchTxt);
+		
+		return baseProcess(new Executable< List<Essay>, Void >() {
+
+			@Override
+			public List<Essay> execute(Session session, Void toExecute) {
+				Criteria criteria = session.createCriteria(Essay.class);
+				criteria.setFirstResult(start);
+				criteria.setMaxResults(length);
+
+				SimpleExpression likeId = Restrictions.like("id", searchTxt, MatchMode.ANYWHERE);
+				SimpleExpression likeContent = Restrictions.like("content", searchTxt, MatchMode.ANYWHERE);
+				SimpleExpression likeTitle = Restrictions.like("title", searchTxt, MatchMode.ANYWHERE);
+				SimpleExpression likeAuthor = Restrictions.like("author", searchTxt, MatchMode.ANYWHERE);
+				criteria.add(
+						Restrictions.disjunction().add(likeId)
+							.add(likeContent)
+							.add(likeTitle)
+							.add(likeAuthor));
+				
+				List<Essay> res = criteria.list();
+				
+				return res;
+			}
+		}, null);
 	}
 
 	/* (non-Javadoc)

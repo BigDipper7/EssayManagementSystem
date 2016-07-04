@@ -5,6 +5,8 @@ package com.eva.me.dao;
 
 import java.util.List;
 
+import org.apache.catalina.ant.FindLeaksTask;
+
 import com.eva.me.model.Essay;
 
 /**
@@ -22,7 +24,7 @@ public interface EssayDAO {
 	 * @return
 	 */
 	public List<Essay> getAllEssayList();
-	
+
 	/**
 	 * GET Essay List with limit(start, length)
 	 * @param start
@@ -30,6 +32,15 @@ public interface EssayDAO {
 	 * @return
 	 */
 	public List<Essay> getEssayListWithLimit(final int start, final int length);
+	
+	/**
+	 * GET Essay List with limit(start, length, searchTet)
+	 * @param start
+	 * @param length
+	 * @param searchTxt
+	 * @return
+	 */
+	public List<Essay> getEssayListWithLimit(final int start, final int length, final String searchTxt);
 	
 	/**
 	 * get all essay list count, get the real count with all lists
