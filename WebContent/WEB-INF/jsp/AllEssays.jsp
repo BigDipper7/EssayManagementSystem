@@ -13,13 +13,12 @@
 <jsp:include page="universal/Header.jsp"></jsp:include>
 
 <!-- DataTables CSS -->
-<link href="<c:url value="/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css"/>" rel="stylesheet">
+<!-- <link href="<c:url value="/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css"/>" rel="stylesheet">-->
 
 <!-- DataTables Responsive CSS -->
-<link href="<c:url value="/bower_components/datatables-responsive/css/dataTables.responsive.css"/>" rel="stylesheet">
-
-<%-- <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
-<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script> --%>
+<!-- <link href="<c:url value="/bower_components/datatables-responsive/css/dataTables.responsive.css"/>" rel="stylesheet">-->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"/>
+ 
 
 </head>
 <body>
@@ -48,11 +47,13 @@
                     <td>Title</td>
                     <td>Content</td>
                     <td>Author</td>
-                    <td colspan="2">Operation</td>
+                    <td></td>
+                    <td></td>
                   </tr>
                 </thead>
                 <tbody>
 
+				<!-- 
                   <c:if test="${ empty Essays }">
                     <tr>
                       <td>No data!</td>
@@ -84,7 +85,7 @@
                       </tr>
                     </c:forEach>
                   </c:if>
-
+ -->
               </tbody>
             </table>
           </div>
@@ -105,15 +106,44 @@
   	<jsp:include page="universal/Footer.jsp"></jsp:include>
 
     <!-- DataTables JavaScript -->
-    <script src="<c:url value="/bower_components/datatables/media/js/jquery.dataTables.min.js"/>"></script>
-    <script src="<c:url value="/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"/>"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <!--<script src="<c:url value="/bower_components/datatables/media/js/jquery.dataTables.min.js"/>"></script>
+    <script src="<c:url value="/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"/>"></script>-->
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
+    	$('#dataTables-example').DataTable( {
+
+	        "processing": true,
+	        "serverSide": true,
+	        "bSort": false,
+	        "ajax": "/json/allCorpus",
+	        "columns": [
+   		        { "data": "id" },
+   		        { "data": "id" },
+		        { "data": "title" },
+		        { "data": "content" },
+		        { "data": "author" },
+	            {
+					"targets": 0,
+					"data": "id",
+					"render": function ( data, type, full, meta ) {
+					  return '<a  href="${ pageContext.request.contextPath }/update/'+data+'">更新</a>';
+					}
+	            },
+	            {
+					"targets":0,
+					"data": "id",
+					"render": function(data, type, full, meta) {
+					    return '<a  href="${ pageContext.request.contextPath }/delete/'+data+'">删除</a>';    
+	            }
+	           }
+	    	]
+	        
+    	});
     });
     </script>
 </body>

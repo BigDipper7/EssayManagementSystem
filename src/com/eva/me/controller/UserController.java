@@ -107,8 +107,8 @@ public class UserController {
 
 	@RequestMapping(value="/all", method=RequestMethod.GET)
 	public String showAllEssayPage(HttpServletRequest request, ModelMap modelMap) {
-		List<Essay> allEssays = new EssayDAOImpl().getAllEssayList();
-		modelMap.addAttribute("Essays",allEssays);
+//		List<Essay> allEssays = new EssayDAOImpl().getAllEssayList();
+//		modelMap.addAttribute("Essays",allEssays);
 		
 		return isLogin(request)? "AllEssays" : "redirect:/login";
 	}

@@ -11,6 +11,8 @@ import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.lucene.queryparser.surround.query.SrndPrefixQuery;
+import org.apache.tomcat.websocket.WsRemoteEndpointAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -107,4 +109,34 @@ public class JSONController {
 		public String ans;
 		public float sco;
 	}
+	
+	
+	
+	class AjaxAllEssayResult {
+		public List<Essay> data = new ArrayList<>();
+	}
+	
+	@RequestMapping(value="/allCorpus")
+	public @ResponseBody AjaxAllEssayResult getAjaxAllEssayList(HttpServletRequest request) {
+		List<Essay> list = new EssayDAOImpl().getAllEssayList();
+		
+		AjaxAllEssayResult result = new AjaxAllEssayResult();
+		
+		if (list == null) {
+			return result;
+		}
+		
+//		for (Essay essay : list) {
+//			List<String> temp = new ArrayList<>();
+//			temp.add(essay.id+"");
+//			temp.add(essay.title);
+//			temp.add(essay.content);
+//			temp.add(essay.author);
+//			result.data.add(temp);
+//		}
+		result.data = list;
+		
+		return result;
+	}
+	
 }
