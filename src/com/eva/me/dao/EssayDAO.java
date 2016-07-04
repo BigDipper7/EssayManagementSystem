@@ -49,6 +49,12 @@ public interface EssayDAO {
 	public long getAllCount();
 	
 	/**
+	 * get all essay list count, get the real count with all lists
+	 * @return
+	 */
+	public long getAllCount(final String searchTxt);
+	
+	/**
 	 * READ
 	 * @return
 	 */

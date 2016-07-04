@@ -13,6 +13,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
 
@@ -207,6 +209,48 @@ public class EssayDAOImpl extends BaseDAO implements EssayDAO{
 				long result = (long) session.createQuery(hql).uniqueResult();
 				
 				return result;
+			}
+		}, null);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.eva.me.dao.EssayDAO#getAllCount(java.lang.String)
+	 */
+	@Override
+	public long getAllCount(String searchTxt) {
+		
+		return baseProcess(new Executable<Long, Void>() {
+
+			@Override
+			public Long execute(Session session, Void toExecute) {
+				Criteria criteria = session.createCriteria(Essay.class);
+				
+				SimpleExpression likeContent = Restrictions.like("content", searchTxt, MatchMode.ANYWHERE);
+				SimpleExpression likeTitle = Restrictions.like("title", searchTxt, MatchMode.ANYWHERE);
+				SimpleExpression likeAuthor = Restrictions.like("author", searchTxt, MatchMode.ANYWHERE);
+				try {
+					int idLike = Integer.parseInt(searchTxt);
+					Log.i("==== idlike:"+idLike);
+
+					SimpleExpression likeId = Restrictions.like("id", searchTxt, MatchMode.ANYWHERE);
+					Restrictions.disjunction().add(likeId);
+					
+				} catch (Exception e) {
+					Log.w("Search Text["+searchTxt+"] is not need to search in ids");
+//					e.printStackTrace();
+				}
+				
+				criteria.add(
+						Restrictions.disjunction().add(likeContent)
+							.add(likeTitle)
+							.add(likeAuthor));
+				criteria.setProjection(Projections.rowCount());
+				
+				
+				long res = (long) criteria.uniqueResult();
+				Log.d("=================Filter count====================");
+				Log.d(res);
+				return res;
 			}
 		}, null);
 	}
