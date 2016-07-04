@@ -131,7 +131,11 @@ public class JSONController {
 		Log.i("==== paramLength: ["+paramLength+"]");
 		Log.i("==== paramSearchTxt: ["+paramSearchTxt+"]");
 		
-		List<Essay> list = new EssayDAOImpl().getAllEssayList();
+		int start = Integer.parseInt(paramStart);
+		int length = Integer.parseInt(paramLength);
+		
+		
+		List<Essay> list = new EssayDAOImpl().getEssayListWithLimit(start, length);
 		
 		AjaxAllEssayResult result = new AjaxAllEssayResult();
 		
