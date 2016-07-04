@@ -52,6 +52,15 @@ public class TestEssayDAOImpl {
 	}
 	
 	@Test
+	public void testGetCountMeth() {
+		Log.i("================Begin testGetCountMeth==========================");
+		long count = new EssayDAOImpl().getAllCount();
+		Log.i("===All Essay Count is --> "+count);
+		Log.i("================End testGetCountMeth==========================");
+		
+	}
+	
+	@Test
 	public void testGetEssay() {
 		Log.i("================Begin GetEssay==========================");
 		Essay essay = new EssayDAOImpl().getEssayById(1);

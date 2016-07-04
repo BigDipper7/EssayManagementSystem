@@ -32,6 +32,12 @@ public interface EssayDAO {
 	public List<Essay> getEssayListWithLimit(final int start, final int length);
 	
 	/**
+	 * get all essay list count, get the real count with all lists
+	 * @return
+	 */
+	public long getAllCount();
+	
+	/**
 	 * READ
 	 * @return
 	 */

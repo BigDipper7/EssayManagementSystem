@@ -142,4 +142,22 @@ public class EssayDAOImpl extends BaseDAO implements EssayDAO{
 		}, id);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.eva.me.dao.EssayDAO#getAllCount()
+	 */
+	@Override
+	public long getAllCount() {
+		return baseProcess(new Executable<Long, Void>() {
+
+			@Override
+			public Long execute(Session session, Void toExecute) {
+				
+				final String hql = "select count(*) from Essay";
+				long result = (long) session.createQuery(hql).uniqueResult();
+				
+				return result;
+			}
+		}, null);
+	}
+
 }
