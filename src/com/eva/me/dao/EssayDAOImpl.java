@@ -3,14 +3,18 @@
  */
 package com.eva.me.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.eva.me.funcinterf.Executable;
 import com.eva.me.model.Essay;
 import com.eva.me.util.HibernateUtil;
+import com.mysql.cj.fabric.xmlrpc.base.Params;
 
 /**
  * @author phoen_000
@@ -68,6 +72,29 @@ public class EssayDAOImpl extends BaseDAO implements EssayDAO{
 				return result;
 			}
 		}, null);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.eva.me.dao.EssayDAO#getEssayListWithLimit(int, int)
+	 */
+	@Override
+	public List<Essay> getEssayListWithLimit(int start, int length) {
+		Map<String, Integer> params = new HashMap<>();
+		params.put("start", start);
+		params.put("length", length);
+		return baseProcess(new Executable< List<Essay>, Map<String,Integer> >() {
+
+			@Override
+			public List<Essay> execute(Session session, Map<String, Integer> toExecute) {
+				final String hql = "from Essay";
+				Query query = session.createQuery(hql);
+				query.setFirstResult(start);
+				query.setMaxResults(length);
+				List<Essay> res = query.list();
+				
+				return res;
+			}
+		}, params);
 	}
 
 	/* (non-Javadoc)

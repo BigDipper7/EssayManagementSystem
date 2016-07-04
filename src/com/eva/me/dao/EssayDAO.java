@@ -22,6 +22,15 @@ public interface EssayDAO {
 	 * @return
 	 */
 	public List<Essay> getAllEssayList();
+	
+	/**
+	 * GET Essay List with limit(start, length)
+	 * @param start
+	 * @param length
+	 * @return
+	 */
+	public List<Essay> getEssayListWithLimit(final int start, final int length);
+	
 	/**
 	 * READ
 	 * @return
