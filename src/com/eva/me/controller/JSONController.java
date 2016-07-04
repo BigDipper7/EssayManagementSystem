@@ -25,6 +25,7 @@ import com.eva.me.lucene.LuceneIndex;
 import com.eva.me.model.Essay;
 import com.eva.me.model.QAPair;
 import com.eva.me.model.QAPairAdv;
+import com.eva.me.util.EssayUtil;
 import com.eva.me.util.Log;
 
 
@@ -142,7 +143,7 @@ public class JSONController {
 			Log.i("paramTxt is empty");
 			list = impl.getEssayListWithLimit(start, length);
 		}else {
-			list = impl.getEssayListWithLimit(start, length, paramSearchTxt);
+			list = impl.getEssayListWithLimit(start, length, EssayUtil.encode(paramSearchTxt));
 		}
 		long count = impl.getAllCount();
 		
