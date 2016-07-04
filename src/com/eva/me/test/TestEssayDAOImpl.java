@@ -60,9 +60,23 @@ public class TestEssayDAOImpl {
 		Log.i("================End testGetCountMeth==========================");
 		
 	}
-	
+
 	@Test
 	public void testGetLimitEssaysWithSearchtxt() {
+		Log.i("================Begin testGetLimitEssays==========================");
+		Log.i("----------------count 1->3----------------------");
+		Log.i("================Begin testGetCountMeth==========================");
+		long count = new EssayDAOImpl().getAllCount(EssayUtil.encode("¹þ"));
+		Log.i("===All Essay '¹þ' Count is --> "+count);
+		long count2 = new EssayDAOImpl().getAllCount(EssayUtil.encode("a"));
+		Log.i("===All Essay ¡®a¡¯ Count is --> "+count2);
+		
+		Log.i("================End testGetCountMeth==========================");
+		Log.i("================End testGetLimitEssays==========================");
+	}
+	
+	@Test
+	public void testGetCountWithLimitEssaysWithSearchtxt() {
 		Log.i("================Begin testGetLimitEssays==========================");
 		List<Essay> list = new EssayDAOImpl().getEssayListWithLimit(1, 100, "a");
 		Log.i("----------------Lists 1->10----------------------");
