@@ -145,7 +145,7 @@ public class JSONController {
 			list = impl.getEssayListWithLimit(start, length);
 		}else {
 			list = impl.getEssayListWithLimit(start, length, EssayUtil.encode(paramSearchTxt));
-			countFlt = impl.getAllCount(paramSearchTxt);
+			countFlt = impl.getAllCount(EssayUtil.encode(paramSearchTxt));
 		}
 		count = impl.getAllCount();
 		
