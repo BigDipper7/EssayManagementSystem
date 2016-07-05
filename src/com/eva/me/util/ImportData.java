@@ -30,7 +30,14 @@ public class ImportData {
 		    while ((line = br.readLine()) != null) {
 		       // process the line. 
 //		    	line = new String(line.getBytes("GB2312"), "UTF-8");
-		    	String[] qas = line.split("\t");
+		    	String[] qas = line.split("\t",2);
+		    	if (qas.length !=2) {
+		    		System.err.println("======================ERR============================");
+		    		System.err.println(line);
+		    		System.err.println("======================ERR============================");
+		    		System.in.read();
+					continue;
+				}
 		    	System.out.println(qas[0]+" --- "+qas[1]+"\n\n");
 		    	Essay essay = new Essay();
 		    	essay.title = qas[0];
