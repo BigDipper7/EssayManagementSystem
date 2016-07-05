@@ -120,7 +120,7 @@
 	        "processing": true,
 	        "serverSide": true,
 	        "bSort": false,
-	        "ajax": "/json/allCorpus",
+	        "ajax": "${pageContext.request.contextPath}/json/allCorpus",
 	        "columns": [
    		        { "data": "id" },
    		        { "data": "id" },
