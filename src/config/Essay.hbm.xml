@@ -11,5 +11,6 @@
         <property name="content" column="content" type="string" />
         <property name="title" column="title" type="string" />
         <property name="author" column="author" type="string" />
+        <property name="category" column="category" type="string" />
     </class>
 </hibernate-mapping>

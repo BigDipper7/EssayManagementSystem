@@ -18,7 +18,20 @@ public class Essay implements Serializable{
 	public String content;
 	public String title;
 	public String author;
+	public String category;
 	
+	/**
+	 * @return the category
+	 */
+	public String getCategory() {
+		return category;
+	}
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	/**
 	 * @return the id
 	 */
