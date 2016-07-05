@@ -64,7 +64,7 @@ public class EditorDemoController {
 				EssayUtil.saveAndIndex(essay);
 			}
 		}).start();
-		return "DemoPres";
+		return "redirect:/all";
 	}
 
 	@RequestMapping(path={"/update/{id}"}, method=RequestMethod.GET)
