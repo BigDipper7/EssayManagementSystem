@@ -142,7 +142,7 @@
 		   	    //4.发送请求 
 		   	    xmlHttpRequest.send(null); 
 		        alert('删除成功！');
-		        window.location.reload();
+		        window.location = "${ pageContext.request.contextPath }/all";
 		    }else{  
 		        //alert('不删除！');
 		    }  
