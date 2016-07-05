@@ -28,7 +28,7 @@ public class EssayUtil {
 		String question = essay.getTitle();
 		String answer = essay.getContent();
 		
-		System.out.println("question:"+question+"ans:"+answer);
+		System.out.println("question:"+question+"\nans:"+answer);
 //		try {
 //			question = new String(question.getBytes(), "UTF-8");
 //			answer = new String(answer.getBytes("iso8859-1"),"GB2312");
@@ -49,12 +49,12 @@ public class EssayUtil {
 		Gson gson = new Gson();
 		String tempJson = gson.toJson(temp);
 //		String tempJson = question+answer;
-		Log.i("=============json: "+tempJson);
+		Log.i("=============json:===="+tempJson);
 		
 		
 		// store json file
 		final String fileName = md5(question+answer);
-		Log.i("resMD========================"+fileName);
+		Log.i("========== MD5 =============="+fileName);
 
 		String finalPath = LuceneIndex.fileDirectoryPath + File.separator;
 		
