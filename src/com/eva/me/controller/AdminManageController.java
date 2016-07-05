@@ -19,6 +19,8 @@ import com.eva.me.dao.UserDAOImpl;
 import com.eva.me.model.Essay;
 import com.eva.me.model.User;
 import com.eva.me.util.Config;
+import com.eva.me.util.EssayUtil;
+import com.eva.me.util.Log;
 
 /**
  * @author violi
@@ -35,7 +37,18 @@ public class AdminManageController {
 		
 		return isLogin(request)? "AllUsers" : "redirect:/login";
 	}
-	
+
+	@RequestMapping(path={"/persist"}, method=RequestMethod.GET)
+	public String persistAllDBInFiles() {
+		List<Essay> allEssays = new EssayDAOImpl().getAllEssayList();
+		for (Essay essay : allEssays) {
+			Log.i("===save essay====");
+			Log.i(essay);
+			EssayUtil.saveAndIndex(essay);
+			Log.i("===save essay success====");
+		}
+		return null;
+	}
 	
 	public boolean isLogin(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
