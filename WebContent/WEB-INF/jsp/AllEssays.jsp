@@ -111,7 +111,43 @@
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
     <!--<script src="<c:url value="/bower_components/datatables/media/js/jquery.dataTables.min.js"/>"></script>
     <script src="<c:url value="/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"/>"></script>-->
-
+	
+	<!-- confirm btn -->
+	<script type="text/javascript">
+		var xmlHttpRequest;	
+		
+		//XmlHttpRequest对象 
+		function createXmlHttpRequest(){    
+		    if(window.ActiveXObject){ //如果是IE浏览器    
+		        return new ActiveXObject("Microsoft.XMLHTTP");    
+		    }else if(window.XMLHttpRequest){ //非IE浏览器    
+		        return new XMLHttpRequest();    
+		    }
+		}
+		
+		function show_confirm(id){  
+		    var result = confirm('是否删除！');  
+		    if(result){
+		   	    var url = "${ pageContext.request.contextPath }/delete/"+id;       
+		   	            
+		   	    //1.创建XMLHttpRequest组建    
+		   	    xmlHttpRequest = createXmlHttpRequest();    
+		   	        
+		   	    //2.设置回调函数    
+		   	    xmlHttpRequest.onreadystatechange;
+		   	        
+		   	    //3.初始化XMLHttpRequest组建    
+		   	    xmlHttpRequest.open("GET",url,true);
+		   	        
+		   	    //4.发送请求 
+		   	    xmlHttpRequest.send(null); 
+		        alert('删除成功！');
+		        window.location.reload();
+		    }else{  
+		        //alert('不删除！');
+		    }  
+		} 
+	</script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
@@ -120,6 +156,7 @@
 	        "processing": true,
 	        "serverSide": true,
 	        "bSort": false,
+	        "bStateSave": true,
 	        "ajax": "${pageContext.request.contextPath}/json/allCorpus",
 	        "columns": [
    		        { "data": "id" },
@@ -138,7 +175,7 @@
 					"targets":0,
 					"data": "id",
 					"render": function(data, type, full, meta) {
-					    return '<a  href="${ pageContext.request.contextPath }/delete/'+data+'">删除</a>';    
+					    return '<a  href="javascript:show_confirm('+data+')">删除</a>';    
 	            }
 	           }
 	    	]
