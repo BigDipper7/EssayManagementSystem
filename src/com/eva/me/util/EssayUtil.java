@@ -29,14 +29,14 @@ public class EssayUtil {
 		String answer = essay.getContent();
 		
 		System.out.println("question:"+question+"ans:"+answer);
-		try {
-			question = new String(question.getBytes(), "UTF-8");
-			answer = new String(answer.getBytes("iso8859-1"),"GB2312");
-			System.out.println("question:"+question+"ans:"+answer);
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+//		try {
+//			question = new String(question.getBytes(), "UTF-8");
+//			answer = new String(answer.getBytes("iso8859-1"),"GB2312");
+//			System.out.println("question:"+question+"ans:"+answer);
+//		} catch (UnsupportedEncodingException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 
 		question = decode(question);
 		answer = decode(answer);

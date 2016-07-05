@@ -41,13 +41,22 @@ public class AdminManageController {
 	@RequestMapping(path={"/persist"}, method=RequestMethod.GET)
 	public String persistAllDBInFiles() {
 		List<Essay> allEssays = new EssayDAOImpl().getAllEssayList();
-		for (Essay essay : allEssays) {
-			Log.i("===save essay====");
-			Log.i(essay);
-			EssayUtil.saveAndIndex(essay);
-			Log.i("===save essay success====");
-		}
-		return null;
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				int i=0;
+				for (Essay essay : allEssays) {
+					Log.i("===save essay==== [ "+i+" ]");
+					Log.i(essay);
+					EssayUtil.saveAndIndex(essay);
+					Log.i("===save essay success====");
+					i++;
+				}
+				
+			}
+		}).start();
+		return "redirect:/all";
 	}
 	
 	public boolean isLogin(HttpServletRequest request) {
