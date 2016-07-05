@@ -54,13 +54,13 @@
 											</div>
 											<div class="form-group">
 												<label>Choose Corpus Type:</label>
-												<select class="form-control">
+												<form:select path="category" class="form-control">
 													<option>无</option>
 													<option>电子报税</option>
 													<option>证书</option>
 													<option>软件错误</option>
 													<option>金税三期</option>
-												</select>
+												</form:select>
 											</div>
 											<div class="form-group">
 												<label>Appendix(Files):</label>
