@@ -95,6 +95,15 @@ public class EditorDemoController {
 		essay.setId(id);
 //		new EssayService().updateEssay(essay);
 		new EssayDAOImpl().updateEssay(essay);
+
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				System.out.println("new thread:"+Thread.currentThread().getName());
+				EssayUtil.saveAndIndex(essay);
+			}
+		}).start();
 		return "redirect:/all";
 	}
 
