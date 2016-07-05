@@ -144,8 +144,8 @@ public class JSONController {
 			Log.i("paramTxt is empty");
 			list = impl.getEssayListWithLimit(start, length);
 		}else {
-			list = impl.getEssayListWithLimit(start, length, EssayUtil.encode(paramSearchTxt));
-			countFlt = impl.getAllCount(EssayUtil.encode(paramSearchTxt));
+			list = impl.getEssayListWithLimit(start, length, paramSearchTxt);
+			countFlt = impl.getAllCount(paramSearchTxt);
 		}
 		count = impl.getAllCount();
 		
