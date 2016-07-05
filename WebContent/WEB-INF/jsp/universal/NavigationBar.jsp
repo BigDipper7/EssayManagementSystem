@@ -162,7 +162,7 @@
                     <a href="#"><i class="fa fa-align-justify fa-fw"></i> 其他设置<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">重建索引</a>
+                            <a href="${pageContext.request.contextPath}/index/rebuild">重建索引</a>
                         </li>
                         <li>
                             <a href="#">属性值设置</a>
