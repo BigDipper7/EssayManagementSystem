@@ -5,6 +5,7 @@ package com.eva.me.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +45,9 @@ public class AdminManageController {
 	}
 
 	@RequestMapping(path={"/persist"}, method=RequestMethod.GET)
-	public String persistAllDBInFiles() {
+	public String persistAllDBInFiles(ModelMap modelMap) {
+		List<String> infoMsgs = new ArrayList<>();
+		
 		List<Essay> allEssays = new EssayDAOImpl().getAllEssayList();
 //		new Thread(new Runnable() {
 //			
@@ -65,11 +68,14 @@ public class AdminManageController {
 		try {
 			FileUtil.delete(new File(LuceneIndex.fileDirectoryPath));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return "Main";
 		}
 		ExportData.exportListToFS(allEssays);
-		return "redirect:/all";
+		
+		infoMsgs.add("数据导出成功");
+		modelMap.addAttribute("Infos", infoMsgs);
+		return "Main";
 	}
 	
 	public boolean isLogin(HttpServletRequest request) {
