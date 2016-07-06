@@ -36,9 +36,8 @@ public class ExportData {
 		//get json by essay
 		String question = essay.getTitle();
 		String answer = essay.getContent();
-		
-		System.out.println("question:"+question+"\nans:"+answer);
 
+		System.out.println("question:"+question+"\nans:"+answer);
 		question = EssayUtil.decode(question);
 		answer = EssayUtil.decode(answer);
 		answer = answer.replace("<p>", "");
@@ -46,13 +45,14 @@ public class ExportData {
 		answer = answer.replace("\r\n", "");
 		System.out.println("question:"+question+"\nans:"+answer);
 
+		
 		//generate file content
 		final String prefix = "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><head><title>Search</title></head><body><div class=\"q\">";
 		final String middle = "<br></div><br><div class=\"a\">";
 		final String end = "</div></body></html>";
-		
 		String fileContent = prefix + question + middle + answer + end;
 		Log.i("=============html:====\n"+fileContent);
+		
 		
 		// generate file path
 		// store json file
@@ -63,7 +63,7 @@ public class ExportData {
 		if (!f.exists()) {
 			f.mkdirs();
 		}
-		fileName += "_"+getCurrTimStr();
+		fileName += "_"+TimeUtil.getCurrTimStr();
 		finalPath+=fileName+".html";
 		System.out.println("filepath:"+finalPath);
 		
@@ -96,18 +96,6 @@ public class ExportData {
 		}
 	}
 	
-	public static String getCurrTimStr() {
-		Date today;
-		String output;
-		SimpleDateFormat formatter;
-		String pattern = "yyyy_MM_dd__hh_mm_ss_SSS";
-
-		formatter = new SimpleDateFormat(pattern);
-		today = new Date();
-		output = formatter.format(today);
-//		System.out.println(pattern + " " + output);
-		return output;
-	}
 	public static void main(String[] args) {
 		List<Essay> list = new EssayDAOImpl().getAllEssayList();
 		int i=0;
