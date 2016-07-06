@@ -126,6 +126,7 @@ public class LuceneIndex {
         try {
             iw.deleteDocuments(new Term("ID", file.getName()));
         } catch (IOException e) {
+        	Log.e("[Add Index] delete index error: [ID]:"+file.getName());
             e.printStackTrace();
         }
         //start add index
