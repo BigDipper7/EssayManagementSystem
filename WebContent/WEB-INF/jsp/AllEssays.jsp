@@ -134,19 +134,26 @@
 		   	    xmlHttpRequest = createXmlHttpRequest();    
 		   	        
 		   	    //2.设置回调函数    
-		   	    xmlHttpRequest.onreadystatechange;
+		   	    xmlHttpRequest.onreadystatechange = del_callback;
 		   	        
 		   	    //3.初始化XMLHttpRequest组建    
 		   	    xmlHttpRequest.open("GET",url,true);
 		   	        
 		   	    //4.发送请求 
 		   	    xmlHttpRequest.send(null); 
-		        alert('删除成功！');
-		        window.location = "${ pageContext.request.contextPath }/all";
+		       	//alert('删除成功！');
+		        //window.location = "${ pageContext.request.contextPath }/all";
 		    }else{  
 		        //alert('不删除！');
 		    }  
 		} 
+		
+		function del_callback() {
+	        if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
+		        window.location = "${ pageContext.request.contextPath }/all";
+		        alert('删除成功！');
+	        }
+		}
 	</script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
