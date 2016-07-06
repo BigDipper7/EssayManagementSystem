@@ -70,7 +70,7 @@
                             <a href="${pageContext.request.contextPath}/#">语料统计</a>
                         </li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/admin/persist">语料导出</a>
+                            <a href="javascript:show_exp_btn_confirm()">语料导出</a>
                         </li>
                         <!-- <li>
                             <a href="${pageContext.request.contextPath}/corpus/delete">删除语料</a>
@@ -192,3 +192,47 @@
     </div>
     <!-- /.navbar-static-side -->
 </nav>
+
+
+<!-- export btn confirm btn -->
+<script type="text/javascript">
+	var xmlHttpRequest;	
+	
+	//XmlHttpRequest对象 
+	function createXmlHttpRequest(){    
+	    if(window.ActiveXObject){ //如果是IE浏览器    
+	        return new ActiveXObject("Microsoft.XMLHTTP");    
+	    }else if(window.XMLHttpRequest){ //非IE浏览器    
+	        return new XMLHttpRequest();    
+	    }
+	}
+	
+	function show_exp_btn_confirm(){  
+	    var result = confirm('是否导出所有数据，导出时会清空以前文档，建议不要进行其他操作！');  
+	    if(result){
+	   	    var url = "${ pageContext.request.contextPath }/admin/persist";       
+	   	            
+	   	    //1.创建XMLHttpRequest组建    
+	   	    xmlHttpRequest = createXmlHttpRequest();    
+	   	        
+	   	    //2.设置回调函数    
+	   	    xmlHttpRequest.onreadystatechange = exp_callback;
+	   	        
+	   	    //3.初始化XMLHttpRequest组建    
+	   	    xmlHttpRequest.open("GET",url,true);
+	   	        
+	   	    //4.发送请求 
+	   	    xmlHttpRequest.send(null); 
+	        
+	        //window.location = "${ pageContext.request.contextPath }/all";
+	    }else{  
+	        //alert('不删除！');
+	    }  
+	} 
+	
+	function exp_callback() {
+        if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
+	   	    alert('导出成功！');
+        }
+	}
+</script>
