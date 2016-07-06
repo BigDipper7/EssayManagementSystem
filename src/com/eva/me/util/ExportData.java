@@ -96,8 +96,7 @@ public class ExportData {
 		}
 	}
 	
-	public static void main(String[] args) {
-		List<Essay> list = new EssayDAOImpl().getAllEssayList();
+	public static void exportListToFS(List<Essay> list) {
 		int i=0;
 		for (Essay essay : list) {
 			Log.i(String.format("----------Begin Essay [%d]---------------------------", i++));
@@ -113,6 +112,11 @@ public class ExportData {
 				}
 			}
 		}
+	}
+	
+	public static void main(String[] args) {
+		List<Essay> list = new EssayDAOImpl().getAllEssayList();
+		exportListToFS(list);
 	}
 
 }
