@@ -69,6 +69,9 @@
                         <li>
                             <a href="${pageContext.request.contextPath}/#">语料统计</a>
                         </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/admin/persist">语料导出</a>
+                        </li>
                         <!-- <li>
                             <a href="${pageContext.request.contextPath}/corpus/delete">删除语料</a>
                         </li>
