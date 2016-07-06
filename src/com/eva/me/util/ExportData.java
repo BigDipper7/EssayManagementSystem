@@ -3,27 +3,15 @@
  */
 package com.eva.me.util;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
-
 import com.eva.me.dao.EssayDAOImpl;
 import com.eva.me.lucene.LuceneIndex;
 import com.eva.me.model.Essay;
-import com.eva.me.model.QAPair;
-import com.google.gson.Gson;
 
 /**
  * @author violi
@@ -82,18 +70,7 @@ public class ExportData {
 //		LuceneIndex lIndex = new LuceneIndex();
 //		lIndex.addIndex(finalPath);
 		
-		File file = new File(finalPath);
-		try {
-			file.createNewFile();
-			Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
-			try { 
-			    out.write(fileContent);
-			} finally { 
-			    out.close();
-			} 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		FileUtil.writeUTF8(finalPath, fileContent);
 	}
 	
 	public static void exportListToFS(List<Essay> list) {
