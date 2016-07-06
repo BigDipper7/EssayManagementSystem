@@ -4,6 +4,7 @@
 package com.eva.me.util;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,6 +20,7 @@ import com.eva.me.model.Essay;
  */
 public class ExportData {
 	private static Map<String, List<Integer>> nameIdMapping = new HashMap<>();
+	
 	public static void saveAndIndex(Essay essay) {
 		//pre process content in file
 		//get json by essay
@@ -93,6 +95,12 @@ public class ExportData {
 	
 	public static void main(String[] args) {
 		List<Essay> list = new EssayDAOImpl().getAllEssayList();
+		try {
+			FileUtil.delete(new File(LuceneIndex.fileDirectoryPath));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		exportListToFS(list);
 	}
 
