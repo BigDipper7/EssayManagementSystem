@@ -106,7 +106,7 @@ public class LuceneIndex {
             //doc.add(new TextField("question",new FileReader(file)));
             iw.addDocument(doc);
             
-            qaFileOperate.copyFile(file, fileDirectoryPath);
+//            qaFileOperate.copyFile(file, fileDirectoryPath);
         } else {
             System.out.println("while indexing, it is not a file...");
         }
