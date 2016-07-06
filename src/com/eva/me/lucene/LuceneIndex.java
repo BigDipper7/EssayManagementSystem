@@ -15,6 +15,7 @@ import org.apache.lucene.util.Version;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.eva.me.model.QAPairAdv;
+import com.eva.me.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,6 +39,7 @@ public class LuceneIndex {
     static String indexDirectoryPath = "";
 
 
+    //init path from properties
     static {
         properties = new Properties();
         classpath = LuceneIndex.class.getClassLoader().getResource("").getPath();
@@ -61,24 +63,16 @@ public class LuceneIndex {
         qaFileOperate = SingleQaFileOperate.getSinleQaFileOperate();
     }
 
+    //constructor
+    public LuceneIndex(){
+    	
+    }
+    
     public LuceneIndex(String fileDirectoryPath, String indexDirectoryPath){
         this.fileDirectoryPath = fileDirectoryPath;
         this.indexDirectoryPath = indexDirectoryPath;
     }
-
-    public LuceneIndex(){}
-
-    public static void main(String[] ag) throws IOException {
-        LuceneIndex a = new LuceneIndex();
-        System.out.println("start rebuild...");
-        a.reBuildIndex();
-        System.out.println("start search...");
-        a.addIndex("C:\\Users\\violi\\Desktop\\毕设\\Search\\Search\\src\\main\\resources\\document\\allFaq\\00aba82892252b502cabc9db11982fa5.txt");
-        System.out.println("add index success...");
-        a.reBuildIndex();
-        a.search("二维码发票可以网上认证吗", 10);
-        a.search("远程认证", 10);
-    }
+    
 
     /**
      * @param indexDir(the index dir position)
@@ -100,11 +94,12 @@ public class LuceneIndex {
      */
     public void index(IndexWriter iw, File file) throws IOException {
         if (file.isFile()) {
-            System.out.println("current file is " + file.getName());
+        	Log.i("[Index] begin indexing file: "+ file.getPath());
+//            System.out.println("current file is " + file.getName());
             Document doc = new Document();
-            String question = qaFileOperate.getFileContentOfTag(file, "question");
-            String answer = qaFileOperate.getFileContentOfTag(file, "answer");
-            //doc.add(new TextField("ID", file.getName(), Field.Store.YES, Field.Index.ANALYZED));
+//            String question = qaFileOperate.getFileContentOfTag(file, "question");
+//            String answer = qaFileOperate.getFileContentOfTag(file, "answer");
+            //doc.add (new TextField("ID", file.getName(), Field.Store.YES, Field.Index.ANALYZED));
             doc.add(new Field("ID", file.getName().toString(), TextField.TYPE_STORED));
             doc.add(new Field("question", qaFileOperate.getFileContentOfTag(file, "question"), TextField.TYPE_STORED));
             doc.add(new Field("answer", qaFileOperate.getFileContentOfTag(file, "answer"), TextField.TYPE_STORED));
@@ -293,5 +288,18 @@ public class LuceneIndex {
         }
 
         return qapList;
+    }
+    
+    //main function
+    public static void main(String[] ag) throws IOException {
+    	LuceneIndex a = new LuceneIndex();
+    	System.out.println("start rebuild...");
+    	a.reBuildIndex();
+    	System.out.println("start search...");
+    	a.addIndex("C:\\Users\\violi\\Desktop\\毕设\\Search\\Search\\src\\main\\resources\\document\\allFaq\\00aba82892252b502cabc9db11982fa5.txt");
+    	System.out.println("add index success...");
+    	a.reBuildIndex();
+    	a.search("二维码发票可以网上认证吗", 10);
+    	a.search("远程认证", 10);
     }
 }
