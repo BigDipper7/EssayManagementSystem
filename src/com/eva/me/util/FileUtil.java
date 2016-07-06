@@ -3,8 +3,12 @@
  */
 package com.eva.me.util;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 
 /**
  * @author violi
@@ -51,5 +55,24 @@ public class FileUtil {
 			file.delete();
 			System.out.println("File is deleted : " + file.getAbsolutePath());
 		}
+	}
+
+	public static void write(final String filePath, final String content, final String charset) {
+		File file = new File(filePath);
+		try {
+			file.createNewFile();
+			Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), charset));
+			try { 
+			    out.write(content);
+			} finally { 
+			    out.close();
+			} 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void writeUTF8(final String filePath, final String content) {
+		FileUtil.write(filePath, content, "UTF-8");
 	}
 }
