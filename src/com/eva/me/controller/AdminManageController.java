@@ -3,6 +3,8 @@
  */
 package com.eva.me.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,10 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.eva.me.dao.EssayDAOImpl;
 import com.eva.me.dao.UserDAOImpl;
+import com.eva.me.lucene.LuceneIndex;
 import com.eva.me.model.Essay;
 import com.eva.me.model.User;
 import com.eva.me.util.Config;
 import com.eva.me.util.EssayUtil;
+import com.eva.me.util.ExportData;
+import com.eva.me.util.FileUtil;
 import com.eva.me.util.Log;
 
 /**
@@ -41,21 +46,29 @@ public class AdminManageController {
 	@RequestMapping(path={"/persist"}, method=RequestMethod.GET)
 	public String persistAllDBInFiles() {
 		List<Essay> allEssays = new EssayDAOImpl().getAllEssayList();
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				int i=0;
-				for (Essay essay : allEssays) {
-					Log.i("===save essay==== [ "+i+" ]");
-					Log.i(essay);
-					EssayUtil.saveAndIndex(essay);
-					Log.i("===save essay success====");
-					i++;
-				}
-				
-			}
-		}).start();
+//		new Thread(new Runnable() {
+//			
+//			@Override
+//			public void run() {
+//				int i=0;
+//				for (Essay essay : allEssays) {
+//					Log.i("===save essay==== [ "+i+" ]");
+//					Log.i(essay);
+//					EssayUtil.saveAndIndex(essay);
+//					Log.i("===save essay success====");
+//					i++;
+//				}
+//				
+//			}
+//		}).start();
+
+		try {
+			FileUtil.delete(new File(LuceneIndex.fileDirectoryPath));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ExportData.exportListToFS(allEssays);
 		return "redirect:/all";
 	}
 	
