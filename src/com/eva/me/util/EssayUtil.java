@@ -29,14 +29,6 @@ public class EssayUtil {
 		String answer = essay.getContent();
 		
 		System.out.println("question:"+question+"\nans:"+answer);
-//		try {
-//			question = new String(question.getBytes(), "UTF-8");
-//			answer = new String(answer.getBytes("iso8859-1"),"GB2312");
-//			System.out.println("question:"+question+"ans:"+answer);
-//		} catch (UnsupportedEncodingException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
 
 		question = decode(question);
 		answer = decode(answer);
@@ -50,7 +42,6 @@ public class EssayUtil {
 		String tempJson = gson.toJson(temp);
 //		String tempJson = question+answer;
 		Log.i("=============json:===="+tempJson);
-		
 		
 		// store json file
 		final String fileName = md5(question+answer);
@@ -68,20 +59,37 @@ public class EssayUtil {
 		try {
 			File fout = new File(finalPath);
 			if (!fout.exists()) {
-					fout.createNewFile();
+				fout.createNewFile();
 			}
 			FileOutputStream outputStream = new FileOutputStream(fout);
 			outputStream.write(tempJson.getBytes());
 			outputStream.flush();
 			outputStream.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		// add index
 		LuceneIndex lIndex = new LuceneIndex();
 		lIndex.addIndex(finalPath);
+		
+//		final String prefix = "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><head><title>Search</title></head><body><div class=\"q\">";
+//		final String middle = "<br></div><br><div class=\"a\">";
+//		final String end = "</div></body></html>";
+//		tempJson = prefix + question + middle + answer + end;
+//		Log.i("=============html:===="+tempJson);
+//
+//		File file = new File(finalPath);
+//		try {
+//			file.createNewFile();
+//			FileOutputStream outputStream = new FileOutputStream(file);
+//			outputStream.write(tempJson.getBytes());
+//			outputStream.flush();
+//			outputStream.close();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
 	}
 	
 	public static String md5(String str){  
