@@ -3,16 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- Bootstrap Core CSS -->
-<link href="<c:url value="/bower_components/bootstrap/dist/css/bootstrap.min.css" />" rel="stylesheet">
+<link href="<c:url value="/css/uni_sb_admin_framework/bootstrap.min.css" />" rel="stylesheet">
 
 <!-- MetisMenu CSS -->
-<link href="<c:url value="/bower_components/metisMenu/dist/metisMenu.min.css" />" rel="stylesheet">
+<link href="<c:url value="/css/uni_sb_admin_framework/metisMenu.min.css" />" rel="stylesheet">
 
 <!-- Custom CSS -->
 <link href="<c:url value="/css/sb-admin-2.css" />" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="<c:url value="/bower_components/font-awesome/css/font-awesome.min.css" />" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/uni_sb_admin_framework/font-awesome.min.css" />" rel="stylesheet" type="text/css">
 
 <!-- Morris Charts CSS -->
 <!-- <link href="<c:url value="/bower_components/morrisjs/morris.css" />" rel="stylesheet"> -->
