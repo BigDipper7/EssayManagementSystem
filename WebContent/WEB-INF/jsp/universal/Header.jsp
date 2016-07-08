@@ -12,7 +12,8 @@
 <link href="<c:url value="/css/sb-admin-2.css" />" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="<c:url value="/css/uni_sb_admin_framework/font-awesome.min.css" />" rel="stylesheet" type="text/css">
+<!-- <link href="<c:url value="/css/uni_sb_admin_framework/font-awesome.min.css" />" rel="stylesheet" type="text/css"> -->
+<link href="<c:url value="/css/uni_sb_admin_framework/font-awesome.css" />" rel="stylesheet" type="text/css">
 
 <!-- Morris Charts CSS -->
 <!-- <link href="<c:url value="/bower_components/morrisjs/morris.css" />" rel="stylesheet"> -->
