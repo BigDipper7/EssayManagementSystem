@@ -33,12 +33,16 @@ public class ExportData {
 		answer = answer.replace("<p>", "");
 		answer = answer.replace("</p>", "");
 		answer = answer.replace("\r\n", "");
+		if(answer.endsWith("<br>"))
+			answer = answer.substring(0, answer.length()-4);
+		if(question.endsWith("<br>"))
+			question = question.substring(0, question.length()-4);
 		System.out.println("question:"+question+"\nans:"+answer);
 
 		
 		//generate file content
 		final String prefix = "<html><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><head><title>Search</title></head><body><div class=\"q\">";
-		final String middle = "<br></div><br><div class=\"a\">";
+		final String middle = "</div><br><div class=\"a\">";
 		final String end = "</div></body></html>";
 		String fileContent = prefix + question + middle + answer + end;
 		Log.i("=============html:====\n"+fileContent);
@@ -94,14 +98,19 @@ public class ExportData {
 	}
 	
 	public static void main(String[] args) {
-		List<Essay> list = new EssayDAOImpl().getAllEssayList();
+//		List<Essay> list = new EssayDAOImpl().getAllEssayList();
 		try {
 			FileUtil.delete(new File(LuceneIndex.fileDirectoryPath));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		exportListToFS(list);
+//		exportListToFS(list);
+		Essay e = new Essay();
+		e.content = "啊哈哈啥事<br>";
+		e.title = "是的么<br>";
+				
+		saveAndIndex(e);
 	}
 
 }
