@@ -15,10 +15,10 @@
 <link href="<c:url value="/bower_components/font-awesome/css/font-awesome.min.css" />" rel="stylesheet" type="text/css">
 
 <!-- Morris Charts CSS -->
-<link href="<c:url value="/bower_components/morrisjs/morris.css" />" rel="stylesheet">
+<!-- <link href="<c:url value="/bower_components/morrisjs/morris.css" />" rel="stylesheet"> -->
 
 <!-- Timeline CSS -->
-<link href="<c:url value="/dist/css/timeline.css" />" rel="stylesheet">
+<!-- no use <link href="<c:url value="/dist/css/timeline.css" />" rel="stylesheet">-->
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
