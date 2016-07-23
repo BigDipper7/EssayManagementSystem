@@ -24,6 +24,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/violi/workspace/EssayManagementSystem/config/IKAnalyzer2012FF_u1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ViolinSolo/Documents/GitHub/EssayManagementSystem/config/IKAnalyzer2012FF_u1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
