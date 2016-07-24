@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.eva.me.util.Log;
+
 /**
  * @author ViolinSolo
  *
@@ -40,7 +42,8 @@ public class FileUploadController {
             try {
                 fileName = file.getOriginalFilename();
                 if (!fileName.endsWith(".xls") && !fileName.endsWith(".xlsx")) {
-                	infoMsgs.add("Upload File Invalid, file type not support, Excel Only!");
+                	Log.e("Upload File Invalid, file type not support, Excel Only!");
+                	infoMsgs.add("上传文件格式错误，仅支持 Excel！");
             		modelMap.addAttribute("Infos", infoMsgs);
 					return "DataImEx";
 				}
@@ -50,16 +53,19 @@ public class FileUploadController {
                 buffStream.write(bytes);
                 buffStream.close();
                 
-                infoMsgs.add("You have successfully uploaded " + fileName);
+                Log.i("You have successfully uploaded " + fileName);
+                infoMsgs.add("上传成功！  文件名： " + fileName);
         		modelMap.addAttribute("Infos", infoMsgs);
                 return "DataImEx";
             } catch (Exception e) {
-            	infoMsgs.add("You failed to upload " + fileName + ": " + e.getMessage());
+            	Log.e("You failed to upload " + fileName + ": " + e.getMessage());
+            	infoMsgs.add("上传失败， 文件名：  " + fileName + "，错误原因： " + e.getMessage());
         		modelMap.addAttribute("Infos", infoMsgs);
                 return "DataImEx";
             }
         } else {
-        	infoMsgs.add("Unable to upload. Check if file is empty.");
+        	Log.e("Unable to upload. Check if file is empty.");
+        	infoMsgs.add("上传失败，请检查是否成功选择文件");
     		modelMap.addAttribute("Infos", infoMsgs);
             return "DataImEx";
         }
