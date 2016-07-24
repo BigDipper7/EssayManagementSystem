@@ -27,9 +27,9 @@
 				<div class="col-lg-12">
 
 					<div class="panel panel-default">
-						<div class="panel-heading"> Excel 导出</div>
+						<div class="panel-heading">Excel 导出</div>
 						<div class="panel-body">
-						
+
 							<label>将所有结果导出到 Excel</label>
 
 							<form role="form" method="POST">
@@ -47,23 +47,30 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading"> Excel 导入</div>
+						<div class="panel-heading">Excel 导入</div>
 						<div class="panel-body">
-							
-							<label>将  Excel 中数据导入数据库，注意，并不会进行覆盖，增量导入，如有重复，手动删除</label>
-							
-							<hr/>
-							
-							<label>文件上传：（仅支持excel）</label>
-							
-							<form role="form" method="POST" action="upload" enctype="multipart/form-data">
-						       
-								<input id="file-id" type="file" name="file" />
-								<br/>
-								<input type="submit" class="btn btn-info" value="Upload"/>
-						       
+
+							<label>将 Excel 中数据导入数据库，注意，并不会进行覆盖，增量导入，如有重复，手动删除</label>
+
+							<hr />
+
+							<form role="form" method="POST" action="singleSave"
+								enctype="multipart/form-data">
+
+								<div class="form-group">
+									<label>Input Excel Description:</label>
+									<input name="desc" class="form-control" placeholder="Enter description..." />
+								</div>
+
+								<div class="form-group">
+									<label>文件上传：（仅支持excel）</label>
+									<input id="file" type="file" name="file" />
+								</div>
+
+								<br /> <input type="submit" class="btn btn-info" value="Upload" />
+
 							</form>
-							
+
 						</div>
 						<%-- <div class="panel-footer">
 					              Panel Footer
