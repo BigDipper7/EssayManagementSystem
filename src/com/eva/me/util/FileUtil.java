@@ -75,4 +75,28 @@ public class FileUtil {
 	public static void writeUTF8(final String filePath, final String content) {
 		FileUtil.write(filePath, content, "UTF-8");
 	}
+	
+	private static FileOutputStream getOutputStreamWithFilenameTimestamp(final String suffix) throws IOException {
+		//mk dir
+		final String filePath = "d:\\test";
+		File f = new File(filePath);
+		if (!f.exists()) {
+			f.mkdirs();
+		}
+		
+		final String finalPath = filePath + File.pathSeparator + TimeUtil.getCurrTimStr() + suffix;
+		Log.i("cur file path: "+finalPath);
+		//mk file 
+		f = new File(finalPath);
+		if (!f.exists()) {
+			f.createNewFile();//generate exception
+		}
+		
+		FileOutputStream fos = new FileOutputStream(f);
+		return fos;
+	}
+	
+	public static FileOutputStream getXLSFOS() throws IOException {
+		return getOutputStreamWithFilenameTimestamp(".xls");
+	}
 }

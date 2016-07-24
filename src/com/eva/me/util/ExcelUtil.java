@@ -8,12 +8,19 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.taglibs.standard.lang.jstl.NullLiteral;
 import org.hibernate.result.Output;
+
+import com.eva.me.dao.EssayDAOImpl;
+import com.eva.me.model.Essay;
+import com.sun.org.apache.regexp.internal.recompile;
+
 
 
 /**
@@ -21,6 +28,68 @@ import org.hibernate.result.Output;
  *
  */
 public class ExcelUtil {
+	
+	public static void exportDBtoFSXLS(List<Essay> allEssays) {
+		allEssays = new EssayDAOImpl().getAllEssayList();
+		
+		HSSFWorkbook workbook = new HSSFWorkbook();
+		HSSFSheet sheet = workbook.createSheet("问答列表");
+		
+		//init titles:
+		final int titleOffset = 1;
+		HSSFRow rowTitle = sheet.createRow(0);
+		rowTitle.createCell(0).setCellValue("#ID");
+		rowTitle.createCell(1).setCellValue("问题");
+		rowTitle.createCell(2).setCellValue("答案");
+		
+		int i = 0;
+		for (Essay essay : allEssays) {
+			//for loop to get each essay
+			int id = essay.getId();
+			String question = essay.getTitle();
+			String answer = essay.getContent();
+			
+			//pre-process of String question and answer
+			System.out.println(String.format("[%d] id:%d \nquestion:%s \nanswer:%s", i, id, question, answer));
+			
+			//new row, init cell
+			HSSFRow row = sheet.createRow(i + titleOffset);
+			row.getCell(0).setCellValue(id);
+			row.getCell(1).setCellValue(question);
+			row.getCell(2).setCellValue(answer);
+			
+			System.out.println("finish row:"+i);
+			//index to count:
+			i++;
+		}
+		
+		
+		// write all memory xls data to 
+		FileOutputStream fos = null;
+		try {
+			
+			fos = FileUtil.getXLSFOS();
+			
+			workbook.write(fos);
+			
+			fos.flush();
+			
+		} catch (IOException e) {
+			System.err.println("create file error in XLS init stage...");
+			e.printStackTrace();
+		}finally {
+			try {
+				if (fos!=null) {
+					fos.close();
+				}
+			} catch (IOException e) {
+				System.err.println("FOS close error in XLS init stage...");
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("====== begin generate excel ========");
 		
