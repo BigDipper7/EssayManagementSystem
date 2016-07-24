@@ -28,13 +28,31 @@ import com.eva.me.util.Log;
  */
 @Controller
 public class FileUploadController {
-	
+
 	@RequestMapping(value="/dataImEx", method=RequestMethod.GET)
 	public String getDataImportExportPage() {
 		return "DataImEx";
 	}
 	
-
+	
+	@RequestMapping(value="/dataExportExcel", method=RequestMethod.POST)
+	public String exportXLStoFS(ModelMap modelMap) {
+		List<String> infoMsgs = new ArrayList<>();
+		
+		Log.i("Begin To Get Essays!");
+		List<Essay> allEssays = new EssayDAOImpl().getAllEssayList();
+		
+		Log.i("Get Essays Succeed! Begin To Export");
+		ExcelUtil.exportDBtoFSXLS(allEssays);
+		
+		Log.i("Export Success!");
+    	infoMsgs.add("导出成功！");
+		
+    	
+    	modelMap.addAttribute("Infos", infoMsgs);
+		return "DataImEx";
+	}
+	
     @RequestMapping(value="/singleSaveExcel", method=RequestMethod.POST )
     public String singleSaveOnlyExcel(@RequestParam("file") MultipartFile file, @RequestParam("desc") String desc, ModelMap modelMap ){
 		List<String> infoMsgs = new ArrayList<>();
@@ -98,6 +116,10 @@ public class FileUploadController {
     }
 	
 	private static final String filePathPrefix = "d:\\test\\";
+	
+	
+	
+	
 	
 	@RequestMapping(value="/singleUpload")
     public String singleUpload(){

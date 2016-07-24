@@ -42,7 +42,7 @@
 
 							<label>将所有结果导出到 Excel</label>
 
-							<form role="form" method="POST">
+							<form role="form" method="POST" action="${pageContext.request.contextPath}/dataExportExcel">
 								<button type="submit" class="btn btn-info">一键导出</button>
 							</form>
 
@@ -64,7 +64,7 @@
 
 							<hr />
 
-							<form role="form" method="POST" action="singleSaveExcel"
+							<form role="form" method="POST" action="${pageContext.request.contextPath}/singleSaveExcel"
 								enctype="multipart/form-data">
 
 								<div class="form-group">
