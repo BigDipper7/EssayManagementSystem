@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.eva.me.dao.EssayDAOImpl;
+import com.eva.me.model.Essay;
+import com.eva.me.util.ExcelUtil;
 import com.eva.me.util.Log;
 
 /**
@@ -47,15 +50,38 @@ public class FileUploadController {
             		modelMap.addAttribute("Infos", infoMsgs);
 					return "DataImEx";
 				}
+                
+                final String filePath = filePathPrefix + fileName;
                 byte[] bytes = file.getBytes();
                 BufferedOutputStream buffStream = 
-                        new BufferedOutputStream(new FileOutputStream(new File(filePathPrefix + fileName)));
+                        new BufferedOutputStream(new FileOutputStream(new File(filePath)));
                 buffStream.write(bytes);
                 buffStream.close();
                 
                 Log.i("You have successfully uploaded " + fileName);
                 infoMsgs.add("上传成功！  文件名： " + fileName);
         		modelMap.addAttribute("Infos", infoMsgs);
+        		
+        		//after download success, we can do excel load:
+        		new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						Log.d("=========== Begin import from upload file ============");
+						List<Essay> res = ExcelUtil.importFSXLStoObjectList(filePath);
+						if (res!=null) {
+							EssayDAOImpl eDaoImpl = new EssayDAOImpl();
+							for (Essay essay : res) {
+								eDaoImpl.addEssay(essay);
+								Log.d("Add Essay: "+essay);
+							}
+						}
+						Log.d("=========== End import from upload file ============");
+						Log.d("All Import Done!");
+					}
+				}).start();;
+        		
+        		
                 return "DataImEx";
             } catch (Exception e) {
             	Log.e("You failed to upload " + fileName + ": " + e.getMessage());
