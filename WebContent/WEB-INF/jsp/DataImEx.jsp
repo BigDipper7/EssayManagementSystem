@@ -15,16 +15,6 @@
 		<jsp:include page="universal/NavigationBar.jsp"></jsp:include>
 		<div id="page-wrapper">
 			
-			<c:if test="${ Infos!=null }">
-				<c:forEach items="${ Infos }" var="info">
-					<font color="red"></font>
-					<div class="alert alert-info alert-dismissable">
-				       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-				       <c:out value="${ info }"></c:out>
-					</div>
-				</c:forEach>
-			</c:if>
-			
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">导入、导出</h1>
@@ -35,6 +25,16 @@
 
 			<div class="row">
 				<div class="col-lg-12">
+					
+					<c:if test="${ Infos!=null }">
+						<c:forEach items="${ Infos }" var="info">
+							<font color="red"></font>
+							<div class="alert alert-info alert-dismissable">
+						       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						       <c:out value="${ info }"></c:out>
+							</div>
+						</c:forEach>
+					</c:if>
 
 					<div class="panel panel-default">
 						<div class="panel-heading">Excel 导出</div>
