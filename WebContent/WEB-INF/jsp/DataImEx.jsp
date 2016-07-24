@@ -27,13 +27,13 @@
 				<div class="col-lg-12">
 
 					<div class="panel panel-default">
-						<div class="panel-heading">导出到 excel</div>
+						<div class="panel-heading"> Excel 导出</div>
 						<div class="panel-body">
+						
+							<label>将所有结果导出到 Excel</label>
+
 							<form role="form" method="POST">
-								<div class="form-group">
-									<label>将所有结果导出到excel</label>
-								</div>
-								<button type="submit" class="btn btn-info">Submit</button>
+								<button type="submit" class="btn btn-info">一键导出</button>
 							</form>
 
 						</div>
@@ -47,10 +47,19 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">句子分词结果</div>
+						<div class="panel-heading"> Excel 导入</div>
 						<div class="panel-body">
-
-							<h1>${ result }</h1>
+							
+							<label>将  Excel 中数据导入数据库，注意，并不会进行覆盖，增量导入，如有重复，手动删除</label>
+							
+							<hr/>
+							
+							<label>文件上传：（仅支持excel）</label>
+							
+							<form role="form" method="POST">
+								<button type="submit" class="btn btn-info">一键导出</button>
+							</form>
+							
 						</div>
 						<%-- <div class="panel-footer">
 					              Panel Footer
