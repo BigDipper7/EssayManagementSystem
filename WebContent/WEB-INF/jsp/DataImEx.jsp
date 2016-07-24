@@ -56,8 +56,12 @@
 							
 							<label>文件上传：（仅支持excel）</label>
 							
-							<form role="form" method="POST">
-								<button type="submit" class="btn btn-info">一键导出</button>
+							<form role="form" method="POST" action="upload" enctype="multipart/form-data">
+						       
+								<input id="file-id" type="file" name="file" />
+								<br/>
+								<input type="submit" class="btn btn-info" value="Upload"/>
+						       
 							</form>
 							
 						</div>
