@@ -33,6 +33,7 @@
 		<springmvc.version>4.2.5.RELEASE</springmvc.version>
 		<jackson.version>2.7.4</jackson.version>
         <lucene.version>4.4.0</lucene.version>
+        <poi.version>3.14</poi.version>
 	</properties>
 
 	<dependencies>
@@ -136,8 +137,15 @@
 		    <artifactId>gson</artifactId>
 		    <version>2.2.4</version>
 		</dependency>
-	
-
+		
+		<!-- Apache poi -->
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>${poi.version}</version>
+		</dependency>
+		
 	</dependencies>
 
 </project>
