@@ -22,5 +22,6 @@
         <td>Account</td>
         <td>${account}</td>
     </tr>
+</table>
 </body>
 </html>
