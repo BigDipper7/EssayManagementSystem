@@ -84,7 +84,7 @@ public class FileUtil {
 			f.mkdirs();
 		}
 		
-		final String finalPath = filePath + File.pathSeparator + TimeUtil.getCurrTimStr() + suffix;
+		final String finalPath = filePath + File.separator + TimeUtil.getCurrTimStr() + suffix;
 		Log.i("cur file path: "+finalPath);
 		//mk file 
 		f = new File(finalPath);
