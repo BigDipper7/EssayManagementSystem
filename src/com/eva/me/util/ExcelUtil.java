@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -149,7 +150,7 @@ public class ExcelUtil {
         Row rowHead = sheet.getRow(0);
         
         //判断表头是否正确
-        if(rowHead.getPhysicalNumberOfCells() != 3)
+        if(rowHead.getPhysicalNumberOfCells() != 2)
         {
             System.out.println("表头的数量不对!");
         }
@@ -157,9 +158,15 @@ public class ExcelUtil {
         //获得数据的总行数
         int totalRowNum = sheet.getLastRowNum();
         
+        
+        //get return result:
+        List<Essay> result = new ArrayList<>();
+        
         //要获得属性
-        String name = "";
-        int latitude = 0;
+//        int id = 0;
+        String ques = "";
+        String ans = "";
+//        int latitude = 0;//no useful
         
        //获得所有数据
         for(int i = 1 ; i <= totalRowNum ; i++)
@@ -169,16 +176,26 @@ public class ExcelUtil {
             
             //获得获得第i行第0列的 String类型对象
             Cell cell = row.getCell((short)0);
-            name = cell.getStringCellValue().toString();
+            ques = cell.getStringCellValue().toString();
             
             //获得一个数字类型的数据
             cell = row.getCell((short)1);
-            latitude = (int) cell.getNumericCellValue();
+            ans = cell.getStringCellValue().toString();
+//            latitude = (int) cell.getNumericCellValue();
             
-            System.out.println("名字："+name+",经纬度："+latitude);
+            System.out.println("\nques："+ques+", \nans："+ans);
             
+            
+            //convert one row to object Essay
+            Essay essay = new Essay();
+            essay.setTitle(ques);
+            essay.setContent(ans);
+            essay.setAuthor("");
+            essay.setCategory("");
+            //add roe to list
+            result.add(essay);
         }
-		return null;
+		return result;
 	}
 	
 	public static void main(String[] args) {
