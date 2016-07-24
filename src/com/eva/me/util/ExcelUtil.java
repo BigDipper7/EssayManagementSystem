@@ -4,22 +4,23 @@
 package com.eva.me.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.taglibs.standard.lang.jstl.NullLiteral;
-import org.hibernate.result.Output;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.eva.me.dao.EssayDAOImpl;
 import com.eva.me.model.Essay;
-import com.sun.org.apache.regexp.internal.recompile;
 
 
 
@@ -28,7 +29,10 @@ import com.sun.org.apache.regexp.internal.recompile;
  *
  */
 public class ExcelUtil {
-	
+	/**
+	 * export object list to excel in FS,
+	 * @param allEssays
+	 */
 	public static void exportDBtoFSXLS(List<Essay> allEssays) {
 //		allEssays = new EssayDAOImpl().getAllEssayList();
 		
@@ -88,6 +92,93 @@ public class ExcelUtil {
 			}
 		}
 		
+	}
+	
+	/**
+	 * import FS excel and transfer it to object list
+	 * @param filePath object file path
+	 * @return
+	 */
+	public static List<Essay> importFSXLStoObjectList(String filePath) {
+		//String filePath = "E:\\123.xlsx";
+        
+        //判断是否为excel类型文件
+        if(!filePath.endsWith(".xls")&&!filePath.endsWith(".xlsx"))
+        {
+            System.out.println("文件不是excel类型");
+        }
+        
+        FileInputStream fis =null;
+        Workbook wookbook = null;
+        
+        try
+        {
+            //获取一个绝对地址的流
+              fis = new FileInputStream(filePath);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+       
+        try 
+        {
+            //2003版本的excel，用.xls结尾
+            wookbook = new HSSFWorkbook(fis);//得到工作簿
+             
+        } 
+        catch (Exception ex) 
+        {
+            //ex.printStackTrace();
+            try
+            {
+                //2007版本的excel，用.xlsx结尾
+                
+                wookbook = new XSSFWorkbook(fis);//得到工作簿
+            } catch (IOException e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        
+        //得到一个工作表
+        Sheet sheet = wookbook.getSheetAt(0);
+        
+        //获得表头
+        Row rowHead = sheet.getRow(0);
+        
+        //判断表头是否正确
+        if(rowHead.getPhysicalNumberOfCells() != 3)
+        {
+            System.out.println("表头的数量不对!");
+        }
+        
+        //获得数据的总行数
+        int totalRowNum = sheet.getLastRowNum();
+        
+        //要获得属性
+        String name = "";
+        int latitude = 0;
+        
+       //获得所有数据
+        for(int i = 1 ; i <= totalRowNum ; i++)
+        {
+            //获得第i行对象
+            Row row = sheet.getRow(i);
+            
+            //获得获得第i行第0列的 String类型对象
+            Cell cell = row.getCell((short)0);
+            name = cell.getStringCellValue().toString();
+            
+            //获得一个数字类型的数据
+            cell = row.getCell((short)1);
+            latitude = (int) cell.getNumericCellValue();
+            
+            System.out.println("名字："+name+",经纬度："+latitude);
+            
+        }
+		return null;
 	}
 	
 	public static void main(String[] args) {
