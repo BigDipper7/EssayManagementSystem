@@ -54,9 +54,9 @@ public class ExcelUtil {
 			
 			//new row, init cell
 			HSSFRow row = sheet.createRow(i + titleOffset);
-			row.getCell(0).setCellValue(id);
-			row.getCell(1).setCellValue(question);
-			row.getCell(2).setCellValue(answer);
+			row.createCell(0).setCellValue(id);
+			row.createCell(1).setCellValue(question);
+			row.createCell(2).setCellValue(answer);
 			
 			System.out.println("finish row:"+i);
 			//index to count:
