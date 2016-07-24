@@ -119,6 +119,7 @@ public class ExcelUtil {
         }
         catch(Exception e)
         {
+        	System.err.println("Read excel file error: Path: "+filePath);
             e.printStackTrace();
         }
        
@@ -131,14 +132,16 @@ public class ExcelUtil {
         catch (Exception ex) 
         {
             //ex.printStackTrace();
+        	System.err.println("Not xls, must change to read by xlsx");
             try
             {
+                fis = new FileInputStream(filePath);
                 //2007版本的excel，用.xlsx结尾
                 
                 wookbook = new XSSFWorkbook(fis);//得到工作簿
             } catch (IOException e)
             {
-                // TODO Auto-generated catch block
+            	System.err.println("Xlsx read workbook error");
                 e.printStackTrace();
             }
         }
@@ -195,56 +198,73 @@ public class ExcelUtil {
             //add roe to list
             result.add(essay);
         }
+        
+        if (fis != null) {
+			try {
+				fis.close();
+			} catch (IOException e) {
+				System.err.println("fis close error");
+				e.printStackTrace();
+			}
+		}
+        
 		return result;
 	}
 	
+	
 	public static void main(String[] args) {
-		System.out.println("====== begin generate excel ========");
+//		System.out.println("====== begin generate excel ========");
+//		
+//		HSSFWorkbook wb = new HSSFWorkbook();
+//		HSSFSheet sheet = wb.createSheet("demo sheet 1");
+//		
+//		HSSFRow row = sheet.createRow(0);
+//		HSSFCell cell = row.createCell(0);
+//		cell.setCellValue("这就是随便写一写，试一试");
+//		
+//		HSSFRow row2 = sheet.createRow(20);
+//		HSSFCell cell2 = row2.createCell(12);
+//		cell2.setCellValue("another");
+//		
+//		System.out.println("content generate ////");
+//		
+//		FileOutputStream fos = null;
+//		try {
+//			File f = new File("d:\\wook.xls");
+//			if (!f.exists()) {
+//				f.createNewFile();
+//			}
+//			fos = new FileOutputStream(f);
+//			wb.write(fos);
+//			
+//			System.out.println("========= all write done =========");
+//			
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//			if (fos!=null) {
+//				
+//				try {
+//					fos.flush();
+//					fos.close();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//		}
+
+		final String filePath = "d:\\test\\2016_07_24__02_55_44_812.xlsx";
+		List<Essay> list = ExcelUtil.importFSXLStoObjectList(filePath);
 		
-		HSSFWorkbook wb = new HSSFWorkbook();
-		HSSFSheet sheet = wb.createSheet("demo sheet 1");
-		
-		HSSFRow row = sheet.createRow(0);
-		HSSFCell cell = row.createCell(0);
-		cell.setCellValue("这就是随便写一写，试一试");
-		
-		HSSFRow row2 = sheet.createRow(20);
-		HSSFCell cell2 = row2.createCell(12);
-		cell2.setCellValue("another");
-		
-		System.out.println("content generate ////");
-		
-		FileOutputStream fos = null;
-		try {
-			File f = new File("d:\\wook.xls");
-			if (!f.exists()) {
-				f.createNewFile();
-			}
-			fos = new FileOutputStream(f);
-			wb.write(fos);
-			
-			System.out.println("========= all write done =========");
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if (fos!=null) {
-				
-				try {
-					fos.flush();
-					fos.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+		for (Essay essay : list) {
+			Log.d(essay);
 		}
 		
-		
-		
 	}
+	
 }
