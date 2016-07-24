@@ -72,6 +72,9 @@
                         <li>
                             <a href="javascript:show_exp_btn_confirm()">语料导出</a>
                         </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/dataImEx">语料导入、导出Excel</a>
+                        </li>
                         <!-- <li>
                             <a href="${pageContext.request.contextPath}/corpus/delete">删除语料</a>
                         </li>
