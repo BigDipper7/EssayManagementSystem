@@ -135,9 +135,10 @@ public class ExcelUtil {
         	System.err.println("Not xls, must change to read by xlsx");
             try
             {
-                fis = new FileInputStream(filePath);
-                //2007版本的excel，用.xlsx结尾
+                fis = new FileInputStream(filePath);//[Potential Bug Fix Here] the fileInputStream close to early
+                									//, must re new the stream, or cause Stream Close IOException
                 
+                //2007版本的excel，用.xlsx结尾
                 wookbook = new XSSFWorkbook(fis);//得到工作簿
             } catch (IOException e)
             {
