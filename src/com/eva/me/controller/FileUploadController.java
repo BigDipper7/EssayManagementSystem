@@ -6,8 +6,11 @@ package com.eva.me.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,26 +31,37 @@ public class FileUploadController {
 	
 
     @RequestMapping(value="/singleSaveExcel", method=RequestMethod.POST )
-    public @ResponseBody String singleSaveOnlyExcel(@RequestParam("file") MultipartFile file, @RequestParam("desc") String desc ){
+    public String singleSaveOnlyExcel(@RequestParam("file") MultipartFile file, @RequestParam("desc") String desc, ModelMap modelMap ){
+		List<String> infoMsgs = new ArrayList<>();
+    	
     	System.out.println("File Description:"+desc);
     	String fileName = null;
     	if (!file.isEmpty()) {
             try {
                 fileName = file.getOriginalFilename();
                 if (!fileName.endsWith(".xls") && !fileName.endsWith(".xlsx")) {
-					return "Upload File Invalid, file type not support, Excel Only!";
+                	infoMsgs.add("Upload File Invalid, file type not support, Excel Only!");
+            		modelMap.addAttribute("Infos", infoMsgs);
+					return "DataImEx";
 				}
                 byte[] bytes = file.getBytes();
                 BufferedOutputStream buffStream = 
                         new BufferedOutputStream(new FileOutputStream(new File(filePathPrefix + fileName)));
                 buffStream.write(bytes);
                 buffStream.close();
-                return "You have successfully uploaded " + fileName;
+                
+                infoMsgs.add("You have successfully uploaded " + fileName);
+        		modelMap.addAttribute("Infos", infoMsgs);
+                return "DataImEx";
             } catch (Exception e) {
-                return "You failed to upload " + fileName + ": " + e.getMessage();
+            	infoMsgs.add("You failed to upload " + fileName + ": " + e.getMessage());
+        		modelMap.addAttribute("Infos", infoMsgs);
+                return "DataImEx";
             }
         } else {
-            return "Unable to upload. File is empty.";
+        	infoMsgs.add("Unable to upload. Check if file is empty.");
+    		modelMap.addAttribute("Infos", infoMsgs);
+            return "DataImEx";
         }
     }
 	
