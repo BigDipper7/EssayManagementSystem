@@ -26,6 +26,31 @@ public class FileUploadController {
 		return "DataImEx";
 	}
 	
+
+    @RequestMapping(value="/singleSaveExcel", method=RequestMethod.POST )
+    public @ResponseBody String singleSaveOnlyExcel(@RequestParam("file") MultipartFile file, @RequestParam("desc") String desc ){
+    	System.out.println("File Description:"+desc);
+    	String fileName = null;
+    	if (!file.isEmpty()) {
+            try {
+                fileName = file.getOriginalFilename();
+                if (!fileName.endsWith(".xls") && !fileName.endsWith(".xlsx")) {
+					return "Upload File Invalid, file type not support, Excel Only!";
+				}
+                byte[] bytes = file.getBytes();
+                BufferedOutputStream buffStream = 
+                        new BufferedOutputStream(new FileOutputStream(new File(filePathPrefix + fileName)));
+                buffStream.write(bytes);
+                buffStream.close();
+                return "You have successfully uploaded " + fileName;
+            } catch (Exception e) {
+                return "You failed to upload " + fileName + ": " + e.getMessage();
+            }
+        } else {
+            return "Unable to upload. File is empty.";
+        }
+    }
+	
 	private static final String filePathPrefix = "d:\\test\\";
 	
 	@RequestMapping(value="/singleUpload")
