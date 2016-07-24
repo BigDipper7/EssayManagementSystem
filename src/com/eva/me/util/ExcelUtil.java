@@ -30,7 +30,7 @@ import com.sun.org.apache.regexp.internal.recompile;
 public class ExcelUtil {
 	
 	public static void exportDBtoFSXLS(List<Essay> allEssays) {
-		allEssays = new EssayDAOImpl().getAllEssayList();
+//		allEssays = new EssayDAOImpl().getAllEssayList();
 		
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("ÎÊ´ðÁÐ±í");
