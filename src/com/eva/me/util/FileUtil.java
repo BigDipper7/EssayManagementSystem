@@ -17,6 +17,8 @@ import com.eva.me.lucene.LuceneIndex;
  *
  */
 public class FileUtil {
+	public static String uploadDir = LuceneIndex.uploadDirectoryPath;
+	
 
 	public static void delete(File file) throws IOException {
 		if (!file.exists()) {
@@ -80,7 +82,8 @@ public class FileUtil {
 	
 	private static FileOutputStream getOutputStreamWithFilenameTimestamp(final String suffix) throws IOException {
 		//mk dir
-		final String filePath = LuceneIndex.uploadDirectoryPath;
+		final String filePath = FileUtil.uploadDir;
+		System.out.println("=================================filepath:"+filePath);
 		File f = new File(filePath);
 		if (!f.exists()) {
 			f.mkdirs();

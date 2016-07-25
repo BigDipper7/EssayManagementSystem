@@ -15,6 +15,7 @@ import org.apache.lucene.util.Version;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.eva.me.model.QAPairAdv;
+import com.eva.me.util.FileUtil;
 import com.eva.me.util.Log;
 
 import java.io.File;
@@ -61,8 +62,10 @@ public class LuceneIndex {
 //        indexDirectoryPath = "d://test//index";
         indexDirectoryPath = properties.getProperty("indexfolder");
         uploadDirectoryPath = properties.getProperty("uploadFolder");
-        System.out.println("fileDirectoryPath:"+fileDirectoryPath+"|\nindexDirectoryPath:"+indexDirectoryPath);
+        System.out.println("fileDirectoryPath:"+fileDirectoryPath+"|\nindexDirectoryPath:"+indexDirectoryPath+"|\nuploadDirectoryPath:"+uploadDirectoryPath);
         qaFileOperate = SingleQaFileOperate.getSinleQaFileOperate();
+        
+        FileUtil.uploadDir = uploadDirectoryPath;
     }
 
     //constructor
