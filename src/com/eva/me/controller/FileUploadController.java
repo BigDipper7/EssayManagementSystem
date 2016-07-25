@@ -21,6 +21,7 @@ import com.eva.me.dao.EssayDAOImpl;
 import com.eva.me.lucene.LuceneIndex;
 import com.eva.me.model.Essay;
 import com.eva.me.util.ExcelUtil;
+import com.eva.me.util.FileUtil;
 import com.eva.me.util.Log;
 
 /**
@@ -116,7 +117,7 @@ public class FileUploadController {
         }
     }
 	
-	private static final String filePathPrefix = LuceneIndex.uploadDirectoryPath;
+	private static final String filePathPrefix = FileUtil.uploadDir;
 	
 	
 	
