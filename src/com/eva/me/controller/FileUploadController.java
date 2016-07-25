@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.eva.me.dao.EssayDAOImpl;
+import com.eva.me.lucene.LuceneIndex;
 import com.eva.me.model.Essay;
 import com.eva.me.util.ExcelUtil;
 import com.eva.me.util.Log;
@@ -115,7 +116,7 @@ public class FileUploadController {
         }
     }
 	
-	private static final String filePathPrefix = "d:\\test\\";
+	private static final String filePathPrefix = LuceneIndex.uploadDirectoryPath;
 	
 	
 	

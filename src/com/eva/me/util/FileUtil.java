@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
+import com.eva.me.lucene.LuceneIndex;
+
 /**
  * @author violi
  *
@@ -78,7 +80,7 @@ public class FileUtil {
 	
 	private static FileOutputStream getOutputStreamWithFilenameTimestamp(final String suffix) throws IOException {
 		//mk dir
-		final String filePath = "d:\\test";
+		final String filePath = LuceneIndex.uploadDirectoryPath;
 		File f = new File(filePath);
 		if (!f.exists()) {
 			f.mkdirs();

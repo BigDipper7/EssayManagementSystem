@@ -37,6 +37,7 @@ public class LuceneIndex {
 
     public static String fileDirectoryPath = "";
     static String indexDirectoryPath = "";
+    public static String uploadDirectoryPath = "";
 
 
     //init path from properties
@@ -59,6 +60,7 @@ public class LuceneIndex {
 //        indexDirectoryPath = classpath  + properties.getProperty("indexfolder");
 //        indexDirectoryPath = "d://test//index";
         indexDirectoryPath = properties.getProperty("indexfolder");
+        uploadDirectoryPath = properties.getProperty("uploadFolder");
         System.out.println("fileDirectoryPath:"+fileDirectoryPath+"|\nindexDirectoryPath:"+indexDirectoryPath);
         qaFileOperate = SingleQaFileOperate.getSinleQaFileOperate();
     }
