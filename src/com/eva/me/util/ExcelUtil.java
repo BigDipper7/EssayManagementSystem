@@ -30,13 +30,7 @@ import com.eva.me.model.Essay;
  *
  */
 public class ExcelUtil {
-	/**
-	 * export object list to excel in FS,
-	 * @param allEssays
-	 */
-	public static void exportDBtoFSXLS(List<Essay> allEssays) {
-//		allEssays = new EssayDAOImpl().getAllEssayList();
-		
+	public static HSSFWorkbook exportDBtoWorkbook(List<Essay> allEssays) {
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("问答列表");
 		
@@ -68,6 +62,48 @@ public class ExcelUtil {
 			i++;
 		}
 		
+		return workbook;
+	}
+	
+	/**
+	 * export object list to excel in FS,
+	 * @param allEssays
+	 */
+	public static void exportDBtoFSXLS(List<Essay> allEssays) {
+//		allEssays = new EssayDAOImpl().getAllEssayList();
+		
+//		HSSFWorkbook workbook = new HSSFWorkbook();
+//		HSSFSheet sheet = workbook.createSheet("问答列表");
+//		
+//		//init titles:
+//		final int titleOffset = 1;
+//		HSSFRow rowTitle = sheet.createRow(0);
+//		rowTitle.createCell(0).setCellValue("#ID");
+//		rowTitle.createCell(1).setCellValue("问题");
+//		rowTitle.createCell(2).setCellValue("答案");
+//		
+//		int i = 0;
+//		for (Essay essay : allEssays) {
+//			//for loop to get each essay
+//			int id = essay.getId();
+//			String question = essay.getTitle();
+//			String answer = essay.getContent();
+//			
+//			//pre-process of String question and answer
+//			System.out.println(String.format("[%d] id:%d \nquestion:%s \nanswer:%s", i, id, question, answer));
+//			
+//			//new row, init cell
+//			HSSFRow row = sheet.createRow(i + titleOffset);
+//			row.createCell(0).setCellValue(id);
+//			row.createCell(1).setCellValue(question);
+//			row.createCell(2).setCellValue(answer);
+//			
+//			System.out.println("finish row:"+i);
+//			//index to count:
+//			i++;
+//		}
+		
+		HSSFWorkbook workbook = exportDBtoWorkbook(allEssays);
 		
 		// write all memory xls data to 
 		FileOutputStream fos = null;
