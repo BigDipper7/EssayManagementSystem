@@ -77,14 +77,7 @@ public class FileUploadController {
 		
 		Log.i("Get Workbook Ready!");
 		//Prepare workbook.....
-		HSSFWorkbook wb = new HSSFWorkbook();
-		HSSFSheet sheet = wb.createSheet("问答列表");
-		//init titles:
-		final int titleOffset = 1;
-		HSSFRow rowTitle = sheet.createRow(0);
-		rowTitle.createCell(0).setCellValue("#ID");
-		rowTitle.createCell(1).setCellValue("问题");
-		rowTitle.createCell(2).setCellValue("答案");
+		HSSFWorkbook wb = ExcelUtil.exportDBtoWorkbook(allEssays);
 		
 		
 		Log.i("Begin download process");
