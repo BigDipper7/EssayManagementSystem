@@ -71,7 +71,7 @@ public class FileUploadController {
 					return "DataImEx";
 				}
                 
-                final String filePath = filePathPrefix + fileName;
+                final String filePath = filePathPrefix + File.separator + fileName;
                 byte[] bytes = file.getBytes();
                 BufferedOutputStream buffStream = 
                         new BufferedOutputStream(new FileOutputStream(new File(filePath)));

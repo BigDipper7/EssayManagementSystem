@@ -39,7 +39,7 @@
           <div class="col-lg-12">
 
             <div class="dataTable_wrapper">
-              <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+              <table class="table table-striped table-bordered table-hover" id="dataTables-example"  cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <td>#</td>
