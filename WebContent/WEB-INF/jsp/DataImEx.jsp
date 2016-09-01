@@ -45,7 +45,7 @@
 							<form role="form" method="POST" action="${pageContext.request.contextPath}/dataExportExcel">
 								<button type="submit" class="btn btn-info">一键导出</button>
 							</form>
-							
+							<hr/>
 							<label>将所有结果导出到 Excel并下载该文件</label>
 							
 							<form role="form" method="POST" action="${pageContext.request.contextPath}/dataExportExcelDownload">
