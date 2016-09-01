@@ -86,6 +86,7 @@ public class FileUploadController {
         try {
             wb.write(os);
         } catch (IOException e) {
+        	Log.e("Workbook write to ByteArrayOutputStream ERROR!!!");
             e.printStackTrace();
         }
 
@@ -95,13 +96,13 @@ public class FileUploadController {
         // 设置response参数，可以打开下载页面
         response.reset();
         response.setContentType("application/vnd.ms-excel;charset=utf-8");
-        response.setHeader("Content-Disposition", "attachment;filename=" + (TimeUtil.getCurrTimStr() + ".xls"));
+        response.setHeader("Content-Disposition", "attachment;filename=" + ("export_" + TimeUtil.getCurrTimStr() + ".xls"));
 
         ServletOutputStream out = null;
 		try {
 			out = response.getOutputStream();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
+			Log.e("response.getOutputStream(); error!");
 			e1.printStackTrace();
 		}
 
@@ -122,18 +123,21 @@ public class FileUploadController {
             }
 
         } catch (final IOException e) {
+        	Log.e("Write Input to Output Error!");
             e.printStackTrace();
         } finally {
             if (bis != null)
 				try {
 					bis.close();
 				} catch (IOException e) {
+					Log.e("BufferedInputStream close error!");
 					e.printStackTrace();
 				}
             if (bos != null)
 				try {
 					bos.close();
 				} catch (IOException e) {
+					Log.e("BufferedOutputStream close error!");
 					e.printStackTrace();
 				}
         }
