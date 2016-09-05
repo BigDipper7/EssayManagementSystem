@@ -48,9 +48,11 @@ public class EditorDemoController {
 
 	@RequestMapping(path={"/deamon"}, method=RequestMethod.POST)
 	public String getAllPostData(@ModelAttribute Essay essay, ModelMap modelMap) {
-		Log.i("handle post data...");
-		Log.i(modelMap);
-
+//		Log.i("handle post data...");
+//		Log.i(modelMap);
+		Log.i("================ Incoming New Essay ============");
+		Log.d(essay);
+		
 		modelMap.addAttribute("title", essay.getTitle());
 		modelMap.addAttribute("author", essay.getAuthor());
 		modelMap.addAttribute("content", essay.getContent());
@@ -58,7 +60,7 @@ public class EditorDemoController {
 		essay.category = EssayUtil.decode(essay.category);
 		essay.content = EssayUtil.decode(essay.content);
 		essay.title = EssayUtil.decode(essay.title);
-		Log.i("=========New Essay======================");
+		Log.i("--- Essay after decode ---");
 		Log.i(essay);
 		
 		new EssayService().createEssay(essay);

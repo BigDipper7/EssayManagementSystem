@@ -142,7 +142,7 @@ public class ExcelUtil {
         //判断是否为excel类型文件
         if(!filePath.endsWith(".xls")&&!filePath.endsWith(".xlsx"))
         {
-            System.out.println("文件不是excel类型");
+            Log.e("文件不是excel类型!请检查!");
         }
         
         FileInputStream fis =null;
