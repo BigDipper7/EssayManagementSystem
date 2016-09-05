@@ -130,9 +130,9 @@ public class JSONController {
 		String paramSearchTxt = request.getParameter("search[value]");
 		
 		Log.i("========= Retrieve Parameter =========");
-		Log.i("==== paramStart: ["+paramStart+"]");
-		Log.i("==== paramLength: ["+paramLength+"]");
-		Log.i("==== paramSearchTxt: ["+paramSearchTxt+"]");
+		Log.i("==== param-Start: ["+paramStart+"]");
+		Log.i("==== param-Length: ["+paramLength+"]");
+		Log.i("==== param-SearchTxt: ["+paramSearchTxt+"]");
 		
 		int start = Integer.parseInt(paramStart);
 		int length = Integer.parseInt(paramLength);
