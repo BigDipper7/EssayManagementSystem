@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 import java.util.Vector;
 
@@ -46,10 +47,12 @@ public class LuceneIndex {
     static {
     	Log.i("====================================\n--------Properties begin loading---------\n");
         properties = new Properties();
-        classpath = LuceneIndex.class.getClassLoader().getResource("").getPath();
-        Log.i("classpath:"+classpath);
+//        classpath = LuceneIndex.class.getClassLoader().getResource("").getPath();
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        InputStream input = classLoader.getResourceAsStream("proper.properties");
+//        Log.i("classpath"+input.);
         try {
-            properties.load(new FileInputStream(classpath + "/proper.properties"));
+            properties.load(input);
         } catch (FileNotFoundException e) {
             Log.e("cannot find proper file...");
             e.printStackTrace();
