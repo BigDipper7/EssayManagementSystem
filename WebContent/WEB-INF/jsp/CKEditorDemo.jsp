@@ -93,7 +93,13 @@
 	<script>
 		// Replace the <textarea id="editor1"> with a CKEditor
 		// instance, using default configuration.
-		CKEDITOR.config.entites_latin=false
+		CKEDITOR.config.htmlEncodeOutput = false;
+		CKEDITOR.config.entities  = false;
+		CKEDITOR.config.basicEntities = false;
+		CKEDITOR.config.entities_greek = false;
+		CKEDITOR.config.entities_latin = false;
+		//CKEDITOR.config.entites_latin = false;
+		//CKEDITOR.config.entities_additional = '#8220#8221';
 		CKEDITOR.replace('editor');
 	</script>
 
