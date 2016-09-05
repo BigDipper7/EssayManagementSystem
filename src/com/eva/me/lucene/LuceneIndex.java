@@ -44,16 +44,17 @@ public class LuceneIndex {
 
     //init path from properties
     static {
+    	Log.i("====================================\n--------Properties begin loading---------\n");
         properties = new Properties();
         classpath = LuceneIndex.class.getClassLoader().getResource("").getPath();
-        System.out.println("classpath:"+classpath);
+        Log.i("classpath:"+classpath);
         try {
             properties.load(new FileInputStream(classpath + "/proper.properties"));
         } catch (FileNotFoundException e) {
-            System.err.println("cannot find proper file...");
+            Log.e("cannot find proper file...");
             e.printStackTrace();
         } catch (IOException e) {
-            System.err.println("read the properties file is error...");
+            Log.e("read the properties file is error...");
             e.printStackTrace();
         }
 //        fileDirectoryPath = classpath  + properties.getProperty("faqfolder");
@@ -64,7 +65,9 @@ public class LuceneIndex {
         indexDirectoryPath = properties.getProperty("indexfolder");
         uploadDirectoryPath = properties.getProperty("uploadFolder");
         exportDirectoryPath = properties.getProperty("exportFolder");
-        System.out.println("fileDirectoryPath:"+fileDirectoryPath+"|\nindexDirectoryPath:"+indexDirectoryPath+"|\nuploadDirectoryPath:"+uploadDirectoryPath);
+        Log.i("fileDirectoryPath:"+fileDirectoryPath+"|\nindexDirectoryPath:"+indexDirectoryPath+"|\nuploadDirectoryPath:"+uploadDirectoryPath);
+    	Log.i("====================================\n--------Properties loading end---------\n");
+    	
         qaFileOperate = SingleQaFileOperate.getSinleQaFileOperate();
         
 //        FileUtil.uploadDir = uploadDirectoryPath;
