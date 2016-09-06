@@ -103,7 +103,7 @@
 		// instance,
 		var editor = CKEDITOR.replace('editor');
 		
-		var oldCont = editor.getData();
+		
 		
 		// The "change" event is fired whenever a change is made in the editor.
 		editor.on( 'change', function() {
@@ -111,24 +111,30 @@
 		    //console.log( 'Total bytes: ' + evt.editor.getData().length );
 		    //console.log( 'Change data: ' + evt.editor.getData() );
 		    
-		    console.log('old content:'+oldCont);
-		    
-		    var newCont = editor.getData();
-		    console.log('new content before:'+newCont);
-		    
-		    if(oldCont === newCont) {
-		    	console.log('same...')
-		    	return;
+		    if (editor.checkDirty()) {
+		    	editor.resetDirty();
+		    	
+			    var newCont = editor.getData();
+			    console.log('new content before:'+newCont);
+			    
+			    //if(oldCont === newCont) {
+			    	//console.log('same...')
+			    	//return;
+			    //}
+			    
+			    newCont = newCont.replace(/\—/g,'[-]');
+			    newCont = newCont.replace(/\——/g,'[--]');
+			    newCont = newCont.replace(/\“/g,'[-"]');
+			    newCont = newCont.replace(/\”/g,'["-]');
+			    console.log('new content after:'+newCont);
+			    
+			    //oldCont = newCont;
+			    editor.setData(newCont, function() {
+			    	//editor.getSelection().selectRanges( ranges );
+			    });
 		    }
+		    //console.log('old content:'+oldCont);
 		    
-		    newCont = newCont.replace(/\—/g,'[-]');
-		    newCont = newCont.replace(/\——/g,'[--]');
-		    newCont = newCont.replace(/\“/g,'[-"]');
-		    newCont = newCont.replace(/\”/g,'["-]');
-		    console.log('new content after:'+newCont);
-		    
-		    oldCont = newCont;
-		    editor.insertHtml(newCont);
 		});
 	</script>
 
