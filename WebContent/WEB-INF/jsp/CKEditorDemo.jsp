@@ -91,8 +91,6 @@
 	<!-- /#wrapper -->
 
 	<script>
-		// Replace the <textarea id="editor1"> with a CKEditor
-		// instance, using default configuration.
 		CKEDITOR.config.htmlEncodeOutput = false;
 		CKEDITOR.config.entities  = false;
 		CKEDITOR.config.basicEntities = false;
@@ -100,7 +98,38 @@
 		CKEDITOR.config.entities_latin = false;
 		//CKEDITOR.config.entites_latin = false;
 		//CKEDITOR.config.entities_additional = '#8220#8221';
-		CKEDITOR.replace('editor');
+		
+		// Replace the <textarea id="editor1"> with a CKEditor
+		// instance,
+		var editor = CKEDITOR.replace('editor');
+		
+		var oldCont = editor.getData();
+		
+		// The "change" event is fired whenever a change is made in the editor.
+		editor.on( 'change', function() {
+		    // getData() returns CKEditor's HTML content.
+		    //console.log( 'Total bytes: ' + evt.editor.getData().length );
+		    //console.log( 'Change data: ' + evt.editor.getData() );
+		    
+		    console.log('old content:'+oldCont);
+		    
+		    var newCont = editor.getData();
+		    console.log('new content before:'+newCont);
+		    
+		    if(oldCont === newCont) {
+		    	console.log('same...')
+		    	return;
+		    }
+		    
+		    newCont = newCont.replace(/\—/g,'[-]');
+		    newCont = newCont.replace(/\——/g,'[--]');
+		    newCont = newCont.replace(/\“/g,'[-"]');
+		    newCont = newCont.replace(/\”/g,'["-]');
+		    console.log('new content after:'+newCont);
+		    
+		    oldCont = newCont;
+		    editor.insertHtml(newCont);
+		});
 	</script>
 
 	<script type="text/javascript">
