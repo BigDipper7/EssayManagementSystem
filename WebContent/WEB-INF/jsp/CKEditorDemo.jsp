@@ -113,6 +113,9 @@
 			content = content.replace(/\——/g,'--');
 			content = content.replace(/\“/g,'"');
 			content = content.replace(/\”/g,'"');
+			content = content.replace(/\‘/g,"'");
+			content = content.replace(/\’/g,"'");
+			content = content.replace(/\……/g,"......");
 			console.log('new contents:'+content);
 			CKEDITOR.instances.editor.setData(content);
 			$('#essay').submit();
