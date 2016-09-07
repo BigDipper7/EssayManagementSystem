@@ -108,11 +108,11 @@ public class EditorDemoController {
 		}
 		essay.setId(id);
 		
-		essay.author = EssayUtil.decode(essay.author);
-		essay.category = EssayUtil.decode(essay.category);
-		essay.content = EssayUtil.decode(essay.content);
-		essay.title = EssayUtil.decode(essay.title);
-		Log.i("=========New Essay======================");
+//		essay.author = EssayUtil.decode(essay.author);
+//		essay.category = EssayUtil.decode(essay.category);
+//		essay.content = EssayUtil.decode(essay.content);
+//		essay.title = EssayUtil.decode(essay.title);
+		Log.i("=========Update Essay======================");
 		Log.i(essay);
 		
 //		new EssayService().updateEssay(essay);
