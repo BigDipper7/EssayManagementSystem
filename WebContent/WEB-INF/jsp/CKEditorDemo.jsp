@@ -35,7 +35,7 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-12">
-									<form:form role="form" commandName="essay" method="POST" action="" accept-charset="ISO-8859-1">
+									<form:form id="essay" role="form" commandName="essay" method="POST" action="" accept-charset="ISO-8859-1">
 										<div class="form-group">
 											<input id="hidtitle" type="hidden" value="${ essay.title }"/>
 											<input id="hidauthor" type="hidden" value="${ essay.author }"/>
@@ -71,7 +71,7 @@
 
 											<div class="form-group">
 												<input type="reset" class="btn btn-default" value="Reset"/>
-												<input type="submit" class="btn btn-success" value="Submit"/>
+												<input type="button" class="btn btn-success" value="Submit" onClick="submitForm()"/>
 											</div>
 
 										</div>
@@ -103,39 +103,20 @@
 		// instance,
 		var editor = CKEDITOR.replace('editor');
 		
-		
-		
-		// The "change" event is fired whenever a change is made in the editor.
-		editor.on( 'change', function() {
-		    // getData() returns CKEditor's HTML content.
-		    //console.log( 'Total bytes: ' + evt.editor.getData().length );
-		    //console.log( 'Change data: ' + evt.editor.getData() );
-		    
-		    if (editor.checkDirty()) {
-		    	editor.resetDirty();
-		    	
-			    var newCont = editor.getData();
-			    console.log('new content before:'+newCont);
-			    
-			    //if(oldCont === newCont) {
-			    	//console.log('same...')
-			    	//return;
-			    //}
-			    
-			    newCont = newCont.replace(/\—/g,'[-]');
-			    newCont = newCont.replace(/\——/g,'[--]');
-			    newCont = newCont.replace(/\“/g,'[-"]');
-			    newCont = newCont.replace(/\”/g,'["-]');
-			    console.log('new content after:'+newCont);
-			    
-			    //oldCont = newCont;
-			    editor.setData(newCont, function() {
-			    	//editor.getSelection().selectRanges( ranges );
-			    });
-		    }
-		    //console.log('old content:'+oldCont);
-		    
-		});
+	</script>
+	
+	<script type="text/javascript">
+		function submitForm() {
+			var content = CKEDITOR.instances.editor.getData();
+			console.log('contents:'+content);
+			content = content.replace(/\—/g,'-');
+			content = content.replace(/\——/g,'--');
+			content = content.replace(/\“/g,'"');
+			content = content.replace(/\”/g,'"');
+			console.log('new contents:'+content);
+			CKEDITOR.instances.editor.setData(content);
+			$('#essay').submit();
+		}
 	</script>
 
 	<script type="text/javascript">
