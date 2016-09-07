@@ -53,15 +53,20 @@ public class EditorDemoController {
 		Log.i("================ Incoming New Essay ============");
 		Log.d(essay);
 		
+//		//test
+//		if (essay.getContent().contains("&")) {
+//			
+//		}
+		
 		modelMap.addAttribute("title", essay.getTitle());
 		modelMap.addAttribute("author", essay.getAuthor());
 		modelMap.addAttribute("content", essay.getContent());
-		essay.author = EssayUtil.decode(essay.author);
-		essay.category = EssayUtil.decode(essay.category);
-		essay.content = EssayUtil.decode(essay.content);
-		essay.title = EssayUtil.decode(essay.title);
-		Log.i("--- Essay after decode ---");
-		Log.i(essay);
+//		essay.author = EssayUtil.decode(essay.author);
+//		essay.category = EssayUtil.decode(essay.category);
+//		essay.content = EssayUtil.decode(essay.content);
+//		essay.title = EssayUtil.decode(essay.title);
+//		Log.i("--- Essay after decode ---");
+//		Log.i(essay);
 		
 		new EssayService().createEssay(essay);
 
