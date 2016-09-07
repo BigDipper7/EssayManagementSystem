@@ -92,15 +92,12 @@
 
 	<script>
 		CKEDITOR.config.htmlEncodeOutput = false;
-		CKEDITOR.config.entities  = false;
+		CKEDITOR.config.entities = false;
 		CKEDITOR.config.basicEntities = false;
 		CKEDITOR.config.entities_greek = false;
 		CKEDITOR.config.entities_latin = false;
-		//CKEDITOR.config.entites_latin = false;
-		//CKEDITOR.config.entities_additional = '#8220#8221';
 		
-		// Replace the <textarea id="editor1"> with a CKEditor
-		// instance,
+		// Replace the <textarea id="editor1"> with a CKEditor instance
 		var editor = CKEDITOR.replace('editor');
 		
 	</script>
@@ -108,7 +105,7 @@
 	<script type="text/javascript">
 		function submitForm() {
 			var content = CKEDITOR.instances.editor.getData();
-			console.log('contents:'+content);
+			//console.log('contents:'+content);
 			content = content.replace(/\—/g,'-');
 			content = content.replace(/\——/g,'--');
 			content = content.replace(/\“/g,'"');
@@ -116,7 +113,7 @@
 			content = content.replace(/\‘/g,"'");
 			content = content.replace(/\’/g,"'");
 			content = content.replace(/\……/g,"......");
-			console.log('new contents:'+content);
+			//console.log('new contents:'+content);
 			CKEDITOR.instances.editor.setData(content);
 			$('#essay').submit();
 		}
