@@ -59,7 +59,7 @@ public class UserController {
 //			user.setUsername("Wrong!!");
 //			modelMap.addAttribute("User",user);
 			List<String> errorMsgs = new ArrayList<String>();
-			errorMsgs.add("µÇÂ½Ê§°Ü£¬ÓÃ»§Ãû»òÃÜÂë´íÎó£¡");
+			errorMsgs.add("ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼Œè¯·é‡è¯•");
 			modelMap.addAttribute("Errors", errorMsgs);
 			user.setPassword("");
 			modelMap.addAttribute("User", user);
@@ -95,7 +95,7 @@ public class UserController {
 		
 		//TODO: add redirect pass parameters
 		//List<String> errorMsgs = new ArrayList<String>();
-		//errorMsgs.add("µÇ³ö³É¹¦£¡");
+		//errorMsgs.add("ï¿½Ç³ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
 		//modelMap.addAttribute("Errors", errorMsgs);
 		return "redirect:/login";
 	}

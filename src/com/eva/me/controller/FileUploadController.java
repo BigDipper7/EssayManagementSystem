@@ -61,7 +61,7 @@ public class FileUploadController {
 		ExcelUtil.exportDBtoFSXLS(allEssays);
 		
 		Log.i("Export Success!");
-    	infoMsgs.add("µ¼³ö³É¹¦£¡");
+    	infoMsgs.add("å¯¼å‡ºæˆåŠŸï¼");
 		
     	
     	modelMap.addAttribute("Infos", infoMsgs);
@@ -93,7 +93,7 @@ public class FileUploadController {
         byte[] content = os.toByteArray();
         InputStream is = new ByteArrayInputStream(content);
 
-        // ÉèÖÃresponse²ÎÊı£¬¿ÉÒÔ´ò¿ªÏÂÔØÒ³Ãæ
+        // ï¿½ï¿½ï¿½ï¿½responseï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½
         response.reset();
         response.setContentType("application/vnd.ms-excel;charset=utf-8");
         response.setHeader("Content-Disposition", "attachment;filename=" + ("export_" + TimeUtil.getCurrTimStr() + ".xls"));
@@ -143,7 +143,7 @@ public class FileUploadController {
         }
 		
 		Log.i("Export Success!");
-    	infoMsgs.add("µ¼³ö³É¹¦£¡");
+    	infoMsgs.add("å¯¼å‡ºæˆåŠŸï¼");
 		
     	
     	modelMap.addAttribute("Infos", infoMsgs);
@@ -161,7 +161,7 @@ public class FileUploadController {
                 fileName = file.getOriginalFilename();
                 if (!fileName.endsWith(".xls") && !fileName.endsWith(".xlsx")) {
                 	Log.e("Upload File Invalid, file type not support, Excel Only!");
-                	infoMsgs.add("ÉÏ´«ÎÄ¼ş¸ñÊ½´íÎó£¬½öÖ§³Ö Excel£¡");
+                	infoMsgs.add("ä¸Šä¼ çš„æ–‡ä»¶ä¸æ˜¯Excelç±»å‹ï¼Œè¯·é‡è¯•");
             		modelMap.addAttribute("Infos", infoMsgs);
 					return "DataImEx";
 				}
@@ -174,7 +174,7 @@ public class FileUploadController {
                 buffStream.close();
                 
                 Log.i("You have successfully uploaded " + fileName);
-                infoMsgs.add("ÉÏ´«³É¹¦£¡  ÎÄ¼şÃû£º " + fileName);
+                infoMsgs.add("å·²æˆåŠŸä¸Šä¼ æ–‡ä»¶ï¼š" + fileName + "ï¼Œè¯·ç­‰å¾…æ•°æ®å¯¼å…¥");
         		modelMap.addAttribute("Infos", infoMsgs);
         		
         		//after download success, we can do excel load:
@@ -200,13 +200,13 @@ public class FileUploadController {
                 return "DataImEx";
             } catch (Exception e) {
             	Log.e("You failed to upload " + fileName + ": " + e.getMessage());
-            	infoMsgs.add("ÉÏ´«Ê§°Ü£¬ ÎÄ¼şÃû£º  " + fileName + "£¬´íÎóÔ­Òò£º " + e.getMessage());
+            	infoMsgs.add("ä¸Šä¼ æ–‡ä»¶ [ " + fileName + "] å¤±è´¥ï¼Œé”™è¯¯åŸå› ï¼š" + e.getMessage());
         		modelMap.addAttribute("Infos", infoMsgs);
                 return "DataImEx";
             }
         } else {
         	Log.e("Unable to upload. Check if file is empty.");
-        	infoMsgs.add("ÉÏ´«Ê§°Ü£¬Çë¼ì²éÊÇ·ñ³É¹¦Ñ¡ÔñÎÄ¼ş");
+        	infoMsgs.add("æ²¡æœ‰é€‰æ‹©æ–‡ä»¶ï¼Œè¯·é‡è¯•ï¼");
     		modelMap.addAttribute("Infos", infoMsgs);
             return "DataImEx";
         }

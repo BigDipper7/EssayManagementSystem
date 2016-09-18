@@ -73,7 +73,7 @@ public class AdminManageController {
 		}
 		ExportData.exportListToFS(allEssays);
 		
-		infoMsgs.add("Êı¾İµ¼³ö³É¹¦");
+		infoMsgs.add("å·²æˆåŠŸå°†æ•°æ®å¯¼å‡ºæˆexcelï¼");
 		modelMap.addAttribute("Infos", infoMsgs);
 		return "Main";
 	}
