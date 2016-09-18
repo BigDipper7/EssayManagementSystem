@@ -32,14 +32,14 @@ import com.eva.me.model.Essay;
 public class ExcelUtil {
 	public static HSSFWorkbook exportDBtoWorkbook(List<Essay> allEssays) {
 		HSSFWorkbook workbook = new HSSFWorkbook();
-		HSSFSheet sheet = workbook.createSheet("ÎÊ´ğÁĞ±í");
+		HSSFSheet sheet = workbook.createSheet("é—®ç­”åˆ—è¡¨");
 		
 		//init titles:
 		final int titleOffset = 1;
 		HSSFRow rowTitle = sheet.createRow(0);
 		rowTitle.createCell(0).setCellValue("#ID");
-		rowTitle.createCell(1).setCellValue("ÎÊÌâ");
-		rowTitle.createCell(2).setCellValue("´ğ°¸");
+		rowTitle.createCell(1).setCellValue("é—®é¢˜");
+		rowTitle.createCell(2).setCellValue("ç­”æ¡ˆ");
 		
 		int i = 0;
 		for (Essay essay : allEssays) {
@@ -73,14 +73,14 @@ public class ExcelUtil {
 //		allEssays = new EssayDAOImpl().getAllEssayList();
 		
 //		HSSFWorkbook workbook = new HSSFWorkbook();
-//		HSSFSheet sheet = workbook.createSheet("ÎÊ´ğÁĞ±í");
+//		HSSFSheet sheet = workbook.createSheet("é—®ç­”åˆ—è¡¨");
 //		
 //		//init titles:
 //		final int titleOffset = 1;
 //		HSSFRow rowTitle = sheet.createRow(0);
 //		rowTitle.createCell(0).setCellValue("#ID");
-//		rowTitle.createCell(1).setCellValue("ÎÊÌâ");
-//		rowTitle.createCell(2).setCellValue("´ğ°¸");
+//		rowTitle.createCell(1).setCellValue("é—®é¢˜");
+//		rowTitle.createCell(2).setCellValue("ç­”æ¡ˆ");
 //		
 //		int i = 0;
 //		for (Essay essay : allEssays) {
@@ -139,10 +139,10 @@ public class ExcelUtil {
 	public static List<Essay> importFSXLStoObjectList(String filePath) {
 		//String filePath = "E:\\123.xlsx";
         
-        //ÅĞ¶ÏÊÇ·ñÎªexcelÀàĞÍÎÄ¼ş
+        //åˆ¤æ–­æ˜¯å¦ä¸ºexcelç±»å‹æ–‡ä»¶
         if(!filePath.endsWith(".xls")&&!filePath.endsWith(".xlsx"))
         {
-            Log.e("ÎÄ¼ş²»ÊÇexcelÀàĞÍ!Çë¼ì²é!");
+            Log.e("æ–‡ä»¶ä¸æ˜¯excelç±»å‹!è¯·æ£€æŸ¥!");
         }
         
         FileInputStream fis =null;
@@ -150,7 +150,7 @@ public class ExcelUtil {
         
         try
         {
-            //»ñÈ¡Ò»¸ö¾ø¶ÔµØÖ·µÄÁ÷
+        	//è·å–ä¸€ä¸ªç»å¯¹åœ°å€çš„æµ
               fis = new FileInputStream(filePath);
         }
         catch(Exception e)
@@ -161,8 +161,8 @@ public class ExcelUtil {
        
         try 
         {
-            //2003°æ±¾µÄexcel£¬ÓÃ.xls½áÎ²
-            wookbook = new HSSFWorkbook(fis);//µÃµ½¹¤×÷²¾
+        	//2003ç‰ˆæœ¬çš„excelï¼Œç”¨.xlsç»“å°¾
+            wookbook = new HSSFWorkbook(fis);//å¾—åˆ°å·¥ä½œç°¿
              
         } 
         catch (Exception ex) 
@@ -174,8 +174,8 @@ public class ExcelUtil {
                 fis = new FileInputStream(filePath);//[Potential Bug Fix Here] the fileInputStream close to early
                 									//, must re new the stream, or cause Stream Close IOException
                 
-                //2007°æ±¾µÄexcel£¬ÓÃ.xlsx½áÎ²
-                wookbook = new XSSFWorkbook(fis);//µÃµ½¹¤×÷²¾
+              //2007ç‰ˆæœ¬çš„excelï¼Œç”¨.xlsxç»“å°¾
+                wookbook = new XSSFWorkbook(fis);//å¾—åˆ°å·¥ä½œç°¿
             } catch (IOException e)
             {
             	System.err.println("Xlsx read workbook error");
@@ -183,47 +183,47 @@ public class ExcelUtil {
             }
         }
         
-        //µÃµ½Ò»¸ö¹¤×÷±í
+        //å¾—åˆ°ä¸€ä¸ªå·¥ä½œè¡¨
         Sheet sheet = wookbook.getSheetAt(0);
         
-        //»ñµÃ±íÍ·
+        //è·å¾—è¡¨å¤´
         Row rowHead = sheet.getRow(0);
         
-        //ÅĞ¶Ï±íÍ·ÊÇ·ñÕıÈ·
+        //åˆ¤æ–­è¡¨å¤´æ˜¯å¦æ­£ç¡®
         if(rowHead.getPhysicalNumberOfCells() != 2)
         {
-            System.out.println("±íÍ·µÄÊıÁ¿²»¶Ô!");
+            System.out.println("è¡¨å¤´çš„æ•°é‡ä¸å¯¹!");
         }
         
-        //»ñµÃÊı¾İµÄ×ÜĞĞÊı
+        //è·å¾—æ•°æ®çš„æ€»è¡Œæ•°
         int totalRowNum = sheet.getLastRowNum();
         
         
         //get return result:
         List<Essay> result = new ArrayList<>();
         
-        //Òª»ñµÃÊôĞÔ
+        //è¦è·å¾—å±æ€§
 //        int id = 0;
         String ques = "";
         String ans = "";
 //        int latitude = 0;//no useful
         
-       //»ñµÃËùÓĞÊı¾İ
+        //è·å¾—æ‰€æœ‰æ•°æ®
         for(int i = 1 ; i <= totalRowNum ; i++)
         {
-            //»ñµÃµÚiĞĞ¶ÔÏó
+            //è·å¾—ç¬¬iè¡Œå¯¹è±¡
             Row row = sheet.getRow(i);
             
-            //»ñµÃ»ñµÃµÚiĞĞµÚ0ÁĞµÄ StringÀàĞÍ¶ÔÏó
+            //è·å¾—è·å¾—ç¬¬iè¡Œç¬¬0åˆ—çš„ Stringç±»å‹å¯¹è±¡
             Cell cell = row.getCell((short)0);
             ques = cell.getStringCellValue().toString();
             
-            //»ñµÃÒ»¸öÊı×ÖÀàĞÍµÄÊı¾İ
+            //è·å¾—ä¸€ä¸ªæ•°å­—ç±»å‹çš„æ•°æ®
             cell = row.getCell((short)1);
             ans = cell.getStringCellValue().toString();
 //            latitude = (int) cell.getNumericCellValue();
             
-            System.out.println("\nques£º"+ques+", \nans£º"+ans);
+            System.out.println("\nques:"+ques+", \nans:"+ans);
             
             
             //convert one row to object Essay
@@ -257,7 +257,7 @@ public class ExcelUtil {
 //		
 //		HSSFRow row = sheet.createRow(0);
 //		HSSFCell cell = row.createCell(0);
-//		cell.setCellValue("Õâ¾ÍÊÇËæ±ãĞ´Ò»Ğ´£¬ÊÔÒ»ÊÔ");
+//		cell.setCellValue("è¿™å°±æ˜¯éšä¾¿å†™ä¸€å†™ï¼Œè¯•ä¸€è¯•");
 //		
 //		HSSFRow row2 = sheet.createRow(20);
 //		HSSFCell cell2 = row2.createCell(12);

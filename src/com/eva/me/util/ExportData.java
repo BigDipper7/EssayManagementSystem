@@ -107,8 +107,8 @@ public class ExportData {
 		}
 //		exportListToFS(list);
 		Essay e = new Essay();
-		e.content = "°¡¹þ¹þÉ¶ÊÂ<br>";
-		e.title = "ÊÇµÄÃ´<br>";
+		e.content = "è¿™æ˜¯å†…å®¹<br>";
+		e.title = "ï¿½è¿™æ˜¯æ ‡é¢˜<br>";
 				
 		saveAndIndex(e);
 	}

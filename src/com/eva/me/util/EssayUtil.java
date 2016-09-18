@@ -95,12 +95,12 @@ public class EssayUtil {
 	public static String md5(String str){  
 	    String pwd = null;  
 	    try {  
-	        // Éú³ÉÒ»¸öMD5¼ÓÃÜ¼ÆËãÕªÒª  
+	        // ç”Ÿæˆä¸€ä¸ªMD5åŠ å¯†è®¡ç®—æ‘˜è¦  
 	        MessageDigest md = MessageDigest.getInstance("MD5");  
-	        // ¼ÆËãmd5º¯Êý  
+	        // è®¡ç®—md5å‡½æ•°  
 	        md.update(str.getBytes());  
-	        // digest()×îºóÈ·¶¨·µ»Ømd5 hashÖµ£¬·µ»ØÖµÎª8Îª×Ö·û´®¡£ÒòÎªmd5 hashÖµÊÇ16Î»µÄhexÖµ£¬Êµ¼ÊÉÏ¾ÍÊÇ8Î»µÄ×Ö·û  
-	        // BigIntegerº¯ÊýÔò½«8Î»µÄ×Ö·û´®×ª»»³É16Î»hexÖµ£¬ÓÃ×Ö·û´®À´±íÊ¾£»µÃµ½×Ö·û´®ÐÎÊ½µÄhashÖµ  
+	        // digest()æœ€åŽç¡®å®šè¿”å›žmd5 hashå€¼ï¼Œè¿”å›žå€¼ä¸º8ä¸ºå­—ç¬¦ä¸²ã€‚å› ä¸ºmd5 hashå€¼æ˜¯16ä½çš„hexå€¼ï¼Œå®žé™…ä¸Šå°±æ˜¯8ä½çš„å­—ç¬¦  
+	        // BigIntegerå‡½æ•°åˆ™å°†8ä½çš„å­—ç¬¦ä¸²è½¬æ¢æˆ16ä½hexå€¼ï¼Œç”¨å­—ç¬¦ä¸²æ¥è¡¨ç¤ºï¼›å¾—åˆ°å­—ç¬¦ä¸²å½¢å¼çš„hashå€¼  
 	        pwd = new BigInteger(1, md.digest()).toString(16);  
 	    } catch (NoSuchAlgorithmException e) {  
 	        e.printStackTrace();  
@@ -111,7 +111,7 @@ public class EssayUtil {
 	
 	
 	/**
-	 * ¿É½«ÖÐÎÄ×ª»»³É "&#" ¿ªÍ·µÄhtmlÊµÌå±àÂë
+	 * å¯å°†ä¸­æ–‡è½¬æ¢æˆ "&#" å¼€å¤´çš„htmlå®žä½“ç¼–ç 
 	 *
 	 *
 	 * @param str
@@ -121,8 +121,8 @@ public class EssayUtil {
 	  char[] arrs = str.toCharArray();//Hex.encodeHex();
 	  StringBuilder sb = new StringBuilder();
 	  for (char c : arrs) {
-	    // \\u ±íÊ¾Unicode±àÂë¡£
-	    if (c >= '\u2E80' && c <= '\uFE4F') {//  [ Ö»ÊÇÖÐÎÄÒ»°ã [ \u4e00-\u9fa5]£»ÖÐÈÕº«Í³Ò»±íÒâÎÄ×Ö£¨CJK Unified Ideographs£© [\u2E80-\uFE4F]
+		// \\u è¡¨ç¤ºUnicodeç¼–ç ã€‚
+		if (c >= '\u2E80' && c <= '\uFE4F') {//  [ åªæ˜¯ä¸­æ–‡ä¸€èˆ¬ [ \u4e00-\u9fa5]ï¼›ä¸­æ—¥éŸ©ç»Ÿä¸€è¡¨æ„æ–‡å­—ï¼ˆCJK Unified Ideographsï¼‰ [\u2E80-\uFE4F]
 	      sb.append("&#").append((int)c).append(";");
 	    } else {
 	      sb.append(c);
@@ -133,7 +133,7 @@ public class EssayUtil {
 
 
 	/**
-	 *  "&#" ¿ªÍ·µÄhtmlÊµÌå±àÂë ×ª»»³ÉÖÐÎÄ£¨ÆäÊµÖ»ÊÇ½«³¤¶ÈÎª5µÄÕûÐÍ×÷ÁË×ª»»£¬¶Ô¿ªÆäËüÈçÓ¢ÎÄÊµÌå»á³öÏÖ´íÎó¡££©
+	 *  "&#" å¼€å¤´çš„htmlå®žä½“ç¼–ç  è½¬æ¢æˆä¸­æ–‡ï¼ˆå…¶å®žåªæ˜¯å°†é•¿åº¦ä¸º5çš„æ•´åž‹ä½œäº†è½¬æ¢ï¼Œå¯¹å¼€å…¶å®ƒå¦‚è‹±æ–‡å®žä½“ä¼šå‡ºçŽ°é”™è¯¯ã€‚ï¼‰
 	 *
 	 * <option value="zh_CN">&#20013;&#25991; (&#31616;&#20307;)</option><option value="zh_TW">&#20013;&#25991; (&#32321;&#39636;)</option>
 	 *
