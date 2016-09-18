@@ -61,10 +61,10 @@ public class EditorDemoController {
 		modelMap.addAttribute("title", essay.getTitle());
 		modelMap.addAttribute("author", essay.getAuthor());
 		modelMap.addAttribute("content", essay.getContent());
-//		essay.author = EssayUtil.decode(essay.author);
-//		essay.category = EssayUtil.decode(essay.category);
-//		essay.content = EssayUtil.decode(essay.content);
-//		essay.title = EssayUtil.decode(essay.title);
+		essay.author = EssayUtil.decode(essay.author);
+		essay.category = EssayUtil.decode(essay.category);
+		essay.content = EssayUtil.decode(essay.content);
+		essay.title = EssayUtil.decode(essay.title);
 //		Log.i("--- Essay after decode ---");
 //		Log.i(essay);
 		
@@ -108,10 +108,10 @@ public class EditorDemoController {
 		}
 		essay.setId(id);
 		
-//		essay.author = EssayUtil.decode(essay.author);
-//		essay.category = EssayUtil.decode(essay.category);
-//		essay.content = EssayUtil.decode(essay.content);
-//		essay.title = EssayUtil.decode(essay.title);
+		essay.author = EssayUtil.decode(essay.author);
+		essay.category = EssayUtil.decode(essay.category);
+		essay.content = EssayUtil.decode(essay.content);
+		essay.title = EssayUtil.decode(essay.title);
 		Log.i("=========Update Essay======================");
 		Log.i(essay);
 		

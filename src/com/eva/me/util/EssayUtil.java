@@ -11,6 +11,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import org.apache.poi.util.TempFile;
+
 import com.eva.me.dao.EssayDAOImpl;
 import com.eva.me.lucene.LuceneIndex;
 import com.eva.me.model.Essay;
@@ -145,7 +147,7 @@ public class EssayUtil {
 	  String[] tmp = str.split(";&#|&#|;");
 	  StringBuilder sb = new StringBuilder("");
 	  for (int i = 0; i < tmp.length; i++) {
-	    if (tmp[i].matches("\\d{5}")) {
+	    if (tmp[i].matches("\\d{5}")&&!tmp[i].equals("12366")) {//TODO: HARD CODE to implements except 12366 num
 	      sb.append((char) Integer.parseInt(tmp[i]));
 	    } else {
 	      sb.append(tmp[i]);
