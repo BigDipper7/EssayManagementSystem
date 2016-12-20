@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.catalina.ant.FindLeaksTask;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -22,7 +21,7 @@ import com.eva.me.funcinterf.Executable;
 import com.eva.me.model.Essay;
 import com.eva.me.util.HibernateUtil;
 import com.eva.me.util.Log;
-import com.mysql.cj.fabric.xmlrpc.base.Params;
+//import com.mysql.cj.fabric.xmlrpc.base.Params;
 
 /**
  * @author phoen_000

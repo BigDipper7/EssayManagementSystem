@@ -18,7 +18,7 @@ public class HibernateUtil {
 		SessionFactory temp;
 		try {
 			Log.i("Session Factory Initialize Begin...");
-			temp = new Configuration().configure(configPath).buildSessionFactory();
+			temp = new Configuration().configure().buildSessionFactory();
 			Log.i("Session Factory Initialize Success...");
 		} catch (Exception e) {
 			temp = null;

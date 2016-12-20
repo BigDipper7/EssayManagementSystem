@@ -5,7 +5,6 @@ package com.eva.me.dao;
 
 import java.util.List;
 
-import org.apache.catalina.ant.FindLeaksTask;
 
 import com.eva.me.model.Essay;
 

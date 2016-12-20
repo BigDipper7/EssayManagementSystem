@@ -59,10 +59,11 @@ public class UserController {
 //			user.setUsername("Wrong!!");
 //			modelMap.addAttribute("User",user);
 			List<String> errorMsgs = new ArrayList<String>();
-			errorMsgs.add("用户名或密码错误，请重试");
+			errorMsgs.add("用户名或密码错误，请重试～");
 			modelMap.addAttribute("Errors", errorMsgs);
 			user.setPassword("");
 			modelMap.addAttribute("User", user);
+			Log.i("Null User !");
 			return "Login";
 //			return new ModelAndView("Login", "User", new User());
 		}

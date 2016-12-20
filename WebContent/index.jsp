@@ -7,6 +7,7 @@
 <title>Welcome</title>
 </head>
 <body>
-	<h1>Hello InDeX</h1>
+	<h1>Welcome, Visitor</h1>
+	<a href="/login">Here!</a>
 </body>
 </html>
